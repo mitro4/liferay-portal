@@ -743,43 +743,42 @@ app.server.jboss.zip.name=jboss-eap-$${app.server.jboss.version}.zip</echo>
 
 		<antcall target="build-dist-plugins" />
 
-		<antcall target="build-dist-geronimo" />
-		<antcall target="build-dist-glassfish" />
-		<antcall target="build-dist-jboss" />
-		<antcall target="build-dist-jetty" />
-		<antcall target="build-dist-jonas" />
-		<antcall target="build-dist-resin" />
-		<antcall target="build-dist-tcat" />
 		<antcall target="build-dist-tomcat" />
 
 		<antcall target="zip-api" />
-		<antcall target="zip-geronimo" />
-		<antcall target="zip-glassfish" />
-		<antcall target="zip-jboss" />
-		<antcall target="zip-jetty" />
-		<antcall target="zip-jonas" />
 		<antcall target="zip-patching-tool" />
 		<antcall target="zip-portal-client" />
 		<antcall target="zip-portal-dependencies" />
-		<antcall target="zip-resin" />
 		<antcall target="zip-sql" />
 		<antcall target="zip-src" />
-		<antcall target="zip-tcat" />
 		<antcall target="zip-tomcat" />
 
-		<ant antfile="build-maven.xml" target="zip-maven" inheritAll="false" />
+		<!-- LIFERAY-RE
+			To speed-up builds build javadoc only if dist.build.doc property set true
+		  -->
+		<if>
+			<equals arg1="${dist.build.maven}" arg2="true" />
+			<then>
 
+				<ant antfile="build-maven.xml" target="zip-maven" inheritAll="false" />
+			</then>
+		</if>
+		
 		<!--<antcall target="build-dist-sql-oracle" />-->
 
 		<ant dir="${lp.plugins.dir}" target="extract-plugins-sdk" inheritAll="false" />
 
-		<move file="${lp.plugins.dir}/dist/liferay-plugins-sdk-${lp.version}.zip" tofile="dist/liferay-plugins-sdk-${lp.version}.zip" />
+		<!-- LIFERAY-RE
+		     В liferay-plugins испольузется версия 6.2.0, а в liferay-portlet при сборке - 6.2.5.1 - по этому тут идет копирование
+			с переименованием версии
+		  -->
+		<move file="${lp.plugins.dir}/dist/liferay-plugins-sdk-${lp.version.major}.0.zip" tofile="dist/liferay-plugins-sdk-${lp.version}.zip" />
 
-		<antcall target="update-plugins-includes">
+		<!-- antcall target="update-plugins-includes">
 			<param name="plugins.includes.marketplace.required" value="true" />
 		</antcall>
 
-		<ant dir="${lp.plugins.dir}" target="all" inheritAll="false" />
+		<ant dir="${lp.plugins.dir}" target="all" inheritAll="false" / -->
 
 		<if>
 			<isset property="dist.username" />
@@ -2324,7 +2323,7 @@ plugins.includes=</echo>
 		<xmltask source="${lp.plugins.dir}/summary.xml">
 			<call path="plugins-summary/plugin">
 				<param name="plugins.includes.plugin.bundle" path="releng/bundle/text()" />
-				<param name="plugins.includes.plugin.dependent-apps" path="releng/dependent-apps/text()" />
+				<param name="plugins.includes.plugin.dependent-apps" path="releng/dependent-apps/text()" default=""/>
 				<param name="plugins.includes.plugin.marketplace" path="releng/marketplace/text()" />
 				<param name="plugins.includes.plugin.name" path="artifact-id/text()" />
 				<param name="plugins.includes.plugin.public" path="releng/public/text()" />
@@ -2342,15 +2341,24 @@ plugins.includes=</echo>
 	</target>
 
 	<target name="zip-api">
-		<delete file="dist/liferay-portal-doc-${lp.version}.zip" failonerror="false" />
+		<!-- LIFERAY-RE
+			To speed-up builds build javadoc only if dist.build.doc property set true
+		  -->
+		<if>
+			<equals arg1="${dist.build.doc}" arg2="true" />
+			<then>
 
-		<zip destfile="dist/liferay-portal-doc-${lp.version}.zip">
-			<zipfileset
-				dir="api"
-				includes="**/*.css,**/*.gif,**/*.html"
-				prefix="liferay-portal-doc-${lp.version}"
-			/>
-		</zip>
+				<delete file="dist/liferay-portal-doc-${lp.version}.zip" failonerror="false" />
+
+				<zip destfile="dist/liferay-portal-doc-${lp.version}.zip">
+					<zipfileset
+						dir="api"
+						includes="**/*.css,**/*.gif,**/*.html"
+						prefix="liferay-portal-doc-${lp.version}"
+						/>
+				</zip>
+			</then>
+		</if>
 	</target>
 
 	<target name="zip-db-upgrade">
@@ -2814,13 +2822,13 @@ plugins.includes=</echo>
 	<target name="zip-src">
 		<delete file="dist/liferay-portal-src-${lp.version}.zip" failonerror="false" />
 
-		<zip destfile="dist/liferay-portal-src-${lp.version}.zip">
+		<!-- zip destfile="dist/liferay-portal-src-${lp.version}.zip">
 			<zipfileset
 				dir="${lp.source.dir}"
 				excludes="portal-web/test/com/**,portal-web/test-ant-templates/**"
 				prefix="liferay-portal-src-${lp.version}"
 			/>
-		</zip>
+		</zip -->
 	</target>
 
 	<target name="zip-tcat">

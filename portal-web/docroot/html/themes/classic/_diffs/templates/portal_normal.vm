@@ -62,8 +62,19 @@ $theme.include($body_top_include)
 
 	<footer id="footer" role="contentinfo">
 		<p class="powered-by">
-			#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+			#language ("powered-by") <a href="http://www.liferay.ru" rel="external">Liferay RE</a>
 		</p>
+		#if ($yaMetrikaID && $yaMetrikaID != "")
+			<p class="powered-by">
+				<!-- Yandex.Metrika informer -->
+				<a href="https://metrika.yandex.ru/stat/?id=${yaMetrikaID}&from=informer"
+				target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/${yaMetrikaID}/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+				style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer(
+				Unknown macro: {i}
+				);return false}catch(e){}" /></a>
+				<!-- /Yandex.Metrika informer -->
+			</p>
+		#end
 	</footer>
 </div>
 

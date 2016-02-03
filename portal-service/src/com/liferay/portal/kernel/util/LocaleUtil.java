@@ -198,7 +198,7 @@ public class LocaleUtil {
 	}
 
 	private LocaleUtil() {
-		_locale = new Locale("en", "US");
+		_locale = new Locale("ru", "RU");
 	}
 
 	private boolean _equals(Locale locale1, Locale locale2) {

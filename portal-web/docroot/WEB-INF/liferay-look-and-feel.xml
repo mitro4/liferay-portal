@@ -37,7 +37,7 @@
 	<theme id="control-panel" name="Control Panel">
 		<root-path>/html/themes/control_panel</root-path>
 		<settings>
-			<setting configurable="true" key="footer-text" type="textarea" value="Powered by Liferay" />
+			<setting configurable="true" key="footer-text" type="textarea" value="Powered by Liferay RE" />
 		</settings>
 	</theme>
 	<theme id="mobile" name="Mobile">

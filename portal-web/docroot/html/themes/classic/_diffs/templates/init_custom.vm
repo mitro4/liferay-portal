@@ -1,1 +1,5 @@
 #set ($css_class = "${css_class} dockbar-split")
+
+##----Yandex Metrika and WebMaster
+#set ($groupTypeSettingsProperties = $page_group.getTypeSettingsProperties())
+#set ($yaMetrikaID = $groupTypeSettingsProperties.getProperty("analytics_yaMetrika"))

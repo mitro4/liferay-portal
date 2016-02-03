@@ -52,7 +52,6 @@ public class NtlmPostFilter extends BasePortalFilter {
 		long companyId = PortalInstances.getCompanyId(request);
 
 		if (AuthSettingsUtil.isNtlmEnabled(companyId) &&
-			BrowserSnifferUtil.isIe(request) &&
 			request.getMethod().equals(HttpMethods.POST)) {
 
 			String authorization = GetterUtil.getString(
