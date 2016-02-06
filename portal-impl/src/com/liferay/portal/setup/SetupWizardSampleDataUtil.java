@@ -71,14 +71,14 @@ public class SetupWizardSampleDataUtil {
 			OrganizationLocalServiceUtil.addOrganization(
 				defaultUser.getUserId(),
 				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
-				"Liferay, Inc.", true);
+				"ООО Ромашка", true);
 
 		GroupLocalServiceUtil.updateFriendlyURL(
 			organization.getGroupId(), "/liferay");
 
 		Layout extranetLayout = LayoutLocalServiceUtil.addLayout(
 			defaultUser.getUserId(), organization.getGroupId(), false,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Liferay, Inc. Extranet",
+			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "ООО Ромашка, внешний сайт",
 			null, null, LayoutConstants.TYPE_PORTLET, false, "/extranet",
 			new ServiceContext());
 
@@ -96,7 +96,7 @@ public class SetupWizardSampleDataUtil {
 
 		Layout intranetLayout = LayoutLocalServiceUtil.addLayout(
 			defaultUser.getUserId(), organization.getGroupId(), true,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Liferay, Inc. Intranet",
+			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "ООО Ромашка, внутренний сайт",
 			null, null, LayoutConstants.TYPE_PORTLET, false, "/intranet",
 			new ServiceContext());
 
@@ -116,14 +116,15 @@ public class SetupWizardSampleDataUtil {
 
 		if (user == null) {
 			user = UserLocalServiceUtil.addDefaultAdminUser(
-				companyId, "joebloggs", "test@liferay.com",
-				LocaleUtil.getDefault(), "Joe", StringPool.BLANK, "Bloggs");
+				companyId, "iiivanov", "test@liferay.com",
+				LocaleUtil.getDefault(), "Иван", "Иванович", "Иванов");
 		}
 		else {
-			user.setScreenName("joebloggs");
-			user.setGreeting("Welcome Joe Bloggs!");
-			user.setFirstName("Joe");
-			user.setLastName("Bloggs");
+			user.setScreenName("iiivanov");
+			user.setGreeting("Добро пожаловать, Иван Иванович Иванов!");
+			user.setFirstName("Иван");
+			user.setMiddleName("Иванович");
+			user.setLastName("Иванов");
 		}
 
 		user.setPasswordReset(false);
@@ -145,7 +146,7 @@ public class SetupWizardSampleDataUtil {
 		throws Exception {
 
 		for (Object[] organizationArray : _ORGANIZATION_ARRAYS) {
-			String name = "Liferay " + organizationArray[0];
+			String name = "ООО Ромашка " + organizationArray[0];
 			long regionId = (Long)organizationArray[1];
 			long countryId = (Long)organizationArray[2];
 			String type = (String)organizationArray[3];
@@ -193,7 +194,7 @@ public class SetupWizardSampleDataUtil {
 				User user = UserLocalServiceUtil.addUser(
 					0, defaultUser.getCompanyId(), false, "test", "test", false,
 					screenName, emailAddress, 0, null, LocaleUtil.getDefault(),
-					"Test", null, lastName, 0, 0, true, Calendar.JANUARY, 1,
+					"Иван", "Иванович", lastName, 0, 0, true, Calendar.JANUARY, 1,
 					1970, null, groupIds, organizationIds, null, null, false,
 					new ServiceContext());
 
@@ -210,55 +211,55 @@ public class SetupWizardSampleDataUtil {
 
 	private static Object[][] _ORGANIZATION_ARRAYS = {
 		{
-			"Chicago", 19014L, 19L, OrganizationConstants.TYPE_LOCATION, "ORD"
+			"Москва ", 19014L, 19L, OrganizationConstants.TYPE_LOCATION, "MSK"
 		},
 		{
-			"Consulting", 19005L, 19L,
+			"Санкт-Петербург", 19005L, 19L,
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		},
 		{
-			"Dalian", 0L, 2L, OrganizationConstants.TYPE_LOCATION, "DLC"
+			"Сочи", 0L, 2L, OrganizationConstants.TYPE_LOCATION, "SCH"
 		},
 		{
-			"Engineering", 19005L, 19L,
+			"Краснодар", 19005L, 19L,
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		},
 		{
-			"Frankfurt", 0L, 4L, OrganizationConstants.TYPE_LOCATION, "FRA"
+			"Екатерингбург", 0L, 4L, OrganizationConstants.TYPE_LOCATION, "EKB"
 		},
 		{
-			"Hong Kong", 0L, 2L, OrganizationConstants.TYPE_LOCATION, "HKG"
+			"Челябинск", 0L, 2L, OrganizationConstants.TYPE_LOCATION, "CHB"
 		},
 		{
-			"Kuala Lumpur", 0L, 135L, OrganizationConstants.TYPE_LOCATION, "KUL"
+			"Тюмень", 0L, 135L, OrganizationConstants.TYPE_LOCATION, "TUM"
 		},
 		{
-			"Los Angeles", 19005L, 19L, OrganizationConstants.TYPE_LOCATION,
-			"LAX"
+			"Омск", 19005L, 19L, OrganizationConstants.TYPE_LOCATION,
+			"OMK"
 		},
 		{
-			"Madrid", 0L, 15L, OrganizationConstants.TYPE_LOCATION, "MAD"
+			"Калининград", 0L, 15L, OrganizationConstants.TYPE_LOCATION, "KGD"
 		},
 		{
-			"Marketing", 19005L, 19L,
+			"Новосибирск", 19005L, 19L,
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		},
 		{
-			"New York", 19033L, 19L, OrganizationConstants.TYPE_LOCATION, "NYC"
+			"Томск", 19033L, 19L, OrganizationConstants.TYPE_LOCATION, "TSK"
 		},
 		{
-			"Saint Paulo", 0L, 48L, OrganizationConstants.TYPE_LOCATION, "GRU"
+			"Кемерово", 0L, 48L, OrganizationConstants.TYPE_LOCATION, "KEM"
 		},
 		{
-			"Sales", 19005L, 19L,
+			"Красноярск", 19005L, 19L,
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		},
 		{
-			"San Francisco", 19005L, 19L, OrganizationConstants.TYPE_LOCATION,
-			"SFO"
+			"Якутск", 19005L, 19L, OrganizationConstants.TYPE_LOCATION,
+			"YAK"
 		},
 		{
-			"Support", 19005L, 19L,
+			"Владивосток", 19005L, 19L,
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		}
 	};

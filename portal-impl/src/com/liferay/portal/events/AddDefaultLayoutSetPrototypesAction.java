@@ -89,8 +89,8 @@ public class AddDefaultLayoutSetPrototypesAction
 		throws Exception {
 
 		LayoutSet layoutSet = addLayoutSetPrototype(
-			companyId, defaultUserId, "Intranet Site",
-			"Site with Documents and News", layoutSetPrototypes);
+			companyId, defaultUserId, "Сайт интранет",
+			"Сайт с документами и новостями", layoutSetPrototypes);
 
 		if (layoutSet == null) {
 			return;
@@ -98,7 +98,7 @@ public class AddDefaultLayoutSetPrototypesAction
 
 		// Home layout
 
-		Layout layout = addLayout(layoutSet, "Home", "/home", "2_columns_i");
+		Layout layout = addLayout(layoutSet, "Домашнаяя страница", "/home", "2_columns_i");
 
 		addPortletId(layout, PortletKeys.ACTIVITIES, "column-1");
 
@@ -132,7 +132,7 @@ public class AddDefaultLayoutSetPrototypesAction
 		// Documents layout
 
 		layout = addLayout(
-			layoutSet, "Documents and Media", "/documents", "1_column");
+			layoutSet, "Документы и медиа", "/documents", "1_column");
 
 		portletId = addPortletId(
 			layout, PortletKeys.DOCUMENT_LIBRARY, "column-1");
@@ -158,7 +158,7 @@ public class AddDefaultLayoutSetPrototypesAction
 
 		// News layout
 
-		layout = addLayout(layoutSet, "News", "/news", "2_columns_iii");
+		layout = addLayout(layoutSet, "Новости", "/news", "2_columns_iii");
 
 		portletId = addPortletId(layout, PortletKeys.RSS, "column-1");
 
@@ -166,7 +166,7 @@ public class AddDefaultLayoutSetPrototypesAction
 
 		preferences.put("expandedEntriesPerFeed", "3");
 		preferences.put(
-			"portletSetupTitle_" + LocaleUtil.getDefault(), "Technology news");
+			"portletSetupTitle_" + LocaleUtil.getDefault(), "Новости технологии");
 		preferences.put("portletSetupUseCustomTitle", Boolean.TRUE.toString());
 		preferences.put(
 			"urls", "http://partners.userland.com/nytRss/technology.xml");
@@ -179,11 +179,11 @@ public class AddDefaultLayoutSetPrototypesAction
 
 		preferences.put("expandedEntriesPerFeed", "0");
 		preferences.put(
-			"portletSetupTitle_" + LocaleUtil.getDefault(), "Liferay news");
+			"portletSetupTitle_" + LocaleUtil.getDefault(), "Новости Liferay");
 		preferences.put("portletSetupUseCustomTitle", Boolean.TRUE.toString());
 		preferences.put(
-			"urls", "http://www.liferay.com/en/about-us/news/-/blogs/rss");
-		preferences.put("titles", "Liferay Press Releases");
+			"urls", "http://www.liferay.com/ru/about-us/news/-/blogs/rss");
+		preferences.put("titles", "Пресс-релизы Liferay");
 
 		updatePortletSetup(layout, portletId, preferences);
 	}
@@ -194,8 +194,8 @@ public class AddDefaultLayoutSetPrototypesAction
 		throws Exception {
 
 		LayoutSet layoutSet = addLayoutSetPrototype(
-			companyId, defaultUserId, "Community Site",
-			"Site with Forums and Wiki", layoutSetPrototypes);
+			companyId, defaultUserId, "Сайт сообщества",
+			"Сайт с форумами и вики", layoutSetPrototypes);
 
 		if (layoutSet == null) {
 			return;
@@ -203,7 +203,7 @@ public class AddDefaultLayoutSetPrototypesAction
 
 		// Home layout
 
-		Layout layout = addLayout(layoutSet, "Home", "/home", "2_columns_iii");
+		Layout layout = addLayout(layoutSet, "Домашняя страница", "/home", "2_columns_iii");
 
 		addPortletId(layout, PortletKeys.MESSAGE_BOARDS, "column-1");
 
@@ -226,14 +226,14 @@ public class AddDefaultLayoutSetPrototypesAction
 		preferences.put("anyAssetType", Boolean.FALSE.toString());
 
 		preferences.put(
-			"portletSetupTitle_" + LocaleUtil.getDefault(), "Upcoming Events");
+			"portletSetupTitle_" + LocaleUtil.getDefault(), "Входящие события");
 		preferences.put("portletSetupUseCustomTitle", Boolean.TRUE.toString());
 
 		updatePortletSetup(layout, portletId, preferences);
 
 		// Wiki layout
 
-		layout = addLayout(layoutSet, "Wiki", "/wiki", "2_columns_iii");
+		layout = addLayout(layoutSet, "Вики", "/wiki", "2_columns_iii");
 
 		addPortletId(layout, PortletKeys.WIKI, "column-1");
 		addPortletId(

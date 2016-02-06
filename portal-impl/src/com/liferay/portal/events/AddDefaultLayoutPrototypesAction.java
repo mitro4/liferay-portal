@@ -60,9 +60,9 @@ public class AddDefaultLayoutPrototypesAction
 		throws Exception {
 
 		Layout layout = addLayoutPrototype(
-			companyId, defaultUserId, "Blog",
-			"Create, edit, and view blogs from this page. Explore topics " +
-				"using tags, and connect with other members that blog.",
+			companyId, defaultUserId, "Блог",
+			"Создавайте, редактируйте и просматривайте блоги на этой странице. Исследуйте темы, " +
+				"используйте теги и связывайтесь с другими пользователям этого блога.",
 			"2_columns_iii", layoutPrototypes);
 
 		if (layout == null) {
@@ -125,10 +125,10 @@ public class AddDefaultLayoutPrototypesAction
 		throws Exception {
 
 		Layout layout = addLayoutPrototype(
-			companyId, defaultUserId, "Content Display Page",
-			"Create, edit, and explore web content with this page. Search " +
-				"available content, explore related content with tags, and " +
-					"browse content categories.",
+			companyId, defaultUserId, "Страница отображения содержимого",
+			"Создание, редактирование и просматр сетевого контента на этой странице. Поиск " +
+				"доступного контента, исследование контента, зависимого от тегов и " +
+					"просмотр категорий контента.",
 			"2_columns_ii", layoutPrototypes);
 
 		if (layout == null) {
@@ -160,10 +160,9 @@ public class AddDefaultLayoutPrototypesAction
 		throws Exception {
 
 		Layout layout = addLayoutPrototype(
-			companyId, defaultUserId, "Wiki",
-			"Collaborate with members through the wiki on this page. " +
-				"Discover related content through tags, and navigate quickly " +
-					"and easily with categories.",
+			companyId, defaultUserId, "Вики",
+			"Взаимодействуйте с другими пользователями через вики на этой странице. " +
+				"Исследуйте зависимый контент с помощью тегов и используйте быструю и простую навигацию по категориям.",
 			"2_columns_iii", layoutPrototypes);
 
 		if (layout == null) {
