@@ -40,7 +40,7 @@ public class HelloWorldPortlet extends GenericPortlet {
 
 		PrintWriter writer = renderResponse.getWriter();
 
-		writer.print("Welcome to " + ReleaseInfo.getReleaseInfo() + ".");
+		writer.print("Добро пожаловать в " + ReleaseInfo.getReleaseInfo() + ".");
 
 		writer.close();
 	}

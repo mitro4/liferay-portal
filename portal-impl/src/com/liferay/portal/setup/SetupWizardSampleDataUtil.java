@@ -176,7 +176,7 @@ public class SetupWizardSampleDataUtil {
 				organization.getOrganizationId()
 			};
 
-			for (int i = 1; i <= 10; i++) {
+			for (int i = 1; i <= 3; i++) {
 				String screenName = organizationPrefix + i;
 
 				StringBundler sb = new StringBundler(4);
@@ -211,57 +211,16 @@ public class SetupWizardSampleDataUtil {
 
 	private static Object[][] _ORGANIZATION_ARRAYS = {
 		{
-			"Москва ", 19014L, 19L, OrganizationConstants.TYPE_LOCATION, "MSK"
+			"Москва ", 13001L, 13L, OrganizationConstants.TYPE_LOCATION, "MSK"
 		},
 		{
-			"Санкт-Петербург", 19005L, 19L,
+			"Санкт-Петербург", 13002L, 13L,
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		},
 		{
-			"Сочи", 0L, 2L, OrganizationConstants.TYPE_LOCATION, "SCH"
-		},
-		{
-			"Краснодар", 19005L, 19L,
+			"Новосибирск", 13048L, 13L,
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		},
-		{
-			"Екатерингбург", 0L, 4L, OrganizationConstants.TYPE_LOCATION, "EKB"
-		},
-		{
-			"Челябинск", 0L, 2L, OrganizationConstants.TYPE_LOCATION, "CHB"
-		},
-		{
-			"Тюмень", 0L, 135L, OrganizationConstants.TYPE_LOCATION, "TUM"
-		},
-		{
-			"Омск", 19005L, 19L, OrganizationConstants.TYPE_LOCATION,
-			"OMK"
-		},
-		{
-			"Калининград", 0L, 15L, OrganizationConstants.TYPE_LOCATION, "KGD"
-		},
-		{
-			"Новосибирск", 19005L, 19L,
-			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
-		},
-		{
-			"Томск", 19033L, 19L, OrganizationConstants.TYPE_LOCATION, "TSK"
-		},
-		{
-			"Кемерово", 0L, 48L, OrganizationConstants.TYPE_LOCATION, "KEM"
-		},
-		{
-			"Красноярск", 19005L, 19L,
-			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
-		},
-		{
-			"Якутск", 19005L, 19L, OrganizationConstants.TYPE_LOCATION,
-			"YAK"
-		},
-		{
-			"Владивосток", 19005L, 19L,
-			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
-		}
 	};
 
 }

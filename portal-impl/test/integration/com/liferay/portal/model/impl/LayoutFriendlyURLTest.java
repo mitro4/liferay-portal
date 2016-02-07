@@ -177,7 +177,7 @@ public class LayoutFriendlyURLTest {
 
 		friendlyURLMap = new HashMap<Locale, String>();
 
-		friendlyURLMap.put(LocaleUtil.SPAIN, "/home");
+		friendlyURLMap.put(LocaleUtil.RU, "/home");
 		friendlyURLMap.put(LocaleUtil.US, "/welcome");
 
 		try {
@@ -198,7 +198,7 @@ public class LayoutFriendlyURLTest {
 
 		Map<Locale, String> friendlyURLMap = new HashMap<Locale, String>();
 
-		friendlyURLMap.put(LocaleUtil.SPAIN, "/home");
+		friendlyURLMap.put(LocaleUtil.RU, "/home");
 		friendlyURLMap.put(LocaleUtil.US, "/home");
 
 		try {
@@ -225,7 +225,7 @@ public class LayoutFriendlyURLTest {
 
 		Map<Locale, String> friendlyURLMap = new HashMap<Locale, String>();
 
-		friendlyURLMap.put(LocaleUtil.SPAIN, "/home");
+		friendlyURLMap.put(LocaleUtil.RU, "/home");
 		friendlyURLMap.put(LocaleUtil.US, "/home");
 
 		try {
