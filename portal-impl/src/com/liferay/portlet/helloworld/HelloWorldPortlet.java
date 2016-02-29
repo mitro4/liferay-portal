@@ -14,8 +14,12 @@
 
 package com.liferay.portlet.helloworld;
 
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,18 +33,22 @@ import javax.portlet.RenderResponse;
 /**
  * @author Brian Wing Shun Chan
  */
-public class HelloWorldPortlet extends GenericPortlet {
+public class HelloWorldPortlet extends MVCPortlet {
 
 	@Override
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException {
-
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		
 		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
 		PrintWriter writer = renderResponse.getWriter();
+		
+		String message = LanguageUtil.format(themeDisplay.getLocale(), "hello.world.info.message", ReleaseInfo.getReleaseInfo());
 
-		writer.print("Добро пожаловать в " + ReleaseInfo.getReleaseInfo() + ".");
+		writer.print(message);
+//		writer.print("Добро пожаловать в " + ReleaseInfo.getReleaseInfo() + ".");
 
 		writer.close();
 	}

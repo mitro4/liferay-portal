@@ -627,11 +627,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
-		<portlet-info>
-			<title>Hello World</title>
-			<short-title>Hello World</short-title>
-			<keywords>Hello World</keywords>
-		</portlet-info>
+		<resource-bundle>com.liferay.portlet.StrutsResourceBundle</resource-bundle>
 		<security-role-ref>
 			<role-name>guest</role-name>
 		</security-role-ref>
