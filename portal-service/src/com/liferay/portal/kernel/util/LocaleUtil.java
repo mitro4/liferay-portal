@@ -87,6 +87,8 @@ public class LocaleUtil {
 
 	public static final Locale US = Locale.US;
 
+	public static final Locale RU = new Locale("ru", "RU");
+
 	public static boolean equals(Locale locale1, Locale locale2) {
 		return getInstance()._equals(locale1, locale2);
 	}

@@ -71,14 +71,14 @@ public class SetupWizardSampleDataUtil {
 			OrganizationLocalServiceUtil.addOrganization(
 				defaultUser.getUserId(),
 				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
-				"Liferay, Inc.", true);
+				"ООО Ромашка", true);
 
 		GroupLocalServiceUtil.updateFriendlyURL(
 			organization.getGroupId(), "/liferay");
 
 		Layout extranetLayout = LayoutLocalServiceUtil.addLayout(
 			defaultUser.getUserId(), organization.getGroupId(), false,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Liferay, Inc. Extranet",
+			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "ООО Ромашка, внешний сайт",
 			null, null, LayoutConstants.TYPE_PORTLET, false, "/extranet",
 			new ServiceContext());
 
@@ -96,7 +96,7 @@ public class SetupWizardSampleDataUtil {
 
 		Layout intranetLayout = LayoutLocalServiceUtil.addLayout(
 			defaultUser.getUserId(), organization.getGroupId(), true,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Liferay, Inc. Intranet",
+			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "ООО Ромашка, внутренний сайт",
 			null, null, LayoutConstants.TYPE_PORTLET, false, "/intranet",
 			new ServiceContext());
 
@@ -145,7 +145,7 @@ public class SetupWizardSampleDataUtil {
 		throws Exception {
 
 		for (Object[] organizationArray : _ORGANIZATION_ARRAYS) {
-			String name = "Liferay " + organizationArray[0];
+			String name = "ООО Ромашка " + organizationArray[0];
 			long regionId = (Long)organizationArray[1];
 			long countryId = (Long)organizationArray[2];
 			String type = (String)organizationArray[3];
@@ -175,7 +175,7 @@ public class SetupWizardSampleDataUtil {
 				organization.getOrganizationId()
 			};
 
-			for (int i = 1; i <= 10; i++) {
+			for (int i = 1; i <= 3; i++) {
 				String screenName = organizationPrefix + i;
 
 				StringBundler sb = new StringBundler(4);
@@ -193,7 +193,7 @@ public class SetupWizardSampleDataUtil {
 				User user = UserLocalServiceUtil.addUser(
 					0, defaultUser.getCompanyId(), false, "test", "test", false,
 					screenName, emailAddress, 0, null, LocaleUtil.getDefault(),
-					"Test", null, lastName, 0, 0, true, Calendar.JANUARY, 1,
+					"Иван", "Иванович", lastName, 0, 0, true, Calendar.JANUARY, 1,
 					1970, null, groupIds, organizationIds, null, null, false,
 					new ServiceContext());
 
@@ -210,57 +210,16 @@ public class SetupWizardSampleDataUtil {
 
 	private static Object[][] _ORGANIZATION_ARRAYS = {
 		{
-			"Chicago", 19014L, 19L, OrganizationConstants.TYPE_LOCATION, "ORD"
+			"Москва ", 13001L, 13L, OrganizationConstants.TYPE_LOCATION, "MSK"
 		},
 		{
-			"Consulting", 19005L, 19L,
+			"Санкт-Петербург", 13002L, 13L,
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		},
 		{
-			"Dalian", 0L, 2L, OrganizationConstants.TYPE_LOCATION, "DLC"
-		},
-		{
-			"Engineering", 19005L, 19L,
+			"Новосибирск", 13048L, 13L,
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		},
-		{
-			"Frankfurt", 0L, 4L, OrganizationConstants.TYPE_LOCATION, "FRA"
-		},
-		{
-			"Hong Kong", 0L, 2L, OrganizationConstants.TYPE_LOCATION, "HKG"
-		},
-		{
-			"Kuala Lumpur", 0L, 135L, OrganizationConstants.TYPE_LOCATION, "KUL"
-		},
-		{
-			"Los Angeles", 19005L, 19L, OrganizationConstants.TYPE_LOCATION,
-			"LAX"
-		},
-		{
-			"Madrid", 0L, 15L, OrganizationConstants.TYPE_LOCATION, "MAD"
-		},
-		{
-			"Marketing", 19005L, 19L,
-			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
-		},
-		{
-			"New York", 19033L, 19L, OrganizationConstants.TYPE_LOCATION, "NYC"
-		},
-		{
-			"Saint Paulo", 0L, 48L, OrganizationConstants.TYPE_LOCATION, "GRU"
-		},
-		{
-			"Sales", 19005L, 19L,
-			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
-		},
-		{
-			"San Francisco", 19005L, 19L, OrganizationConstants.TYPE_LOCATION,
-			"SFO"
-		},
-		{
-			"Support", 19005L, 19L,
-			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
-		}
 	};
 
 }
