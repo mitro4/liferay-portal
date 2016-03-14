@@ -178,6 +178,7 @@
 				<value>EUR</value>
 				<value>JPY</value>
 				<value>USD</value>
+				<value>RUR</value>
 			</preference>
 			<preferences-validator>com.liferay.portlet.currencyconverter.CurrencyPreferencesValidator</preferences-validator>
 		</portlet-preferences>

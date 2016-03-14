@@ -2,26 +2,26 @@
 
 <root>
 	<structure>
-		<name><![CDATA[Learning Module Metadata]]></name>
-		<description><![CDATA[Learning Module Metadata]]></description>
-		<root available-locales="[$LOCALE_DEFAULT$]" default-locale="[$LOCALE_DEFAULT$]">
+		<name><![CDATA[Метаданные модуля обучения]]></name>
+		<description><![CDATA[Метаданные модуля обучения]]></description>
+		<root available-locales="ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="string" indexType="keyword" multiple="true" name="select2235" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="home_edition" type="option" value="HE">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Home Edition]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Домашняя версия]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="business_edition" type="option" value="BE">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Business Edition]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Бизнес версия]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="enterprise_edition" type="option" value="EE">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Enterprise Edition]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Промышленная версия]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
+				<meta-data locale="ru_RU">
 					<entry name="label"><![CDATA[Product]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
@@ -29,21 +29,21 @@
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" multiple="true" name="select3212" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="1_0" type="option" value="1">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
+					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[1.0]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="2_0" type="option" value="2">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
+					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[2.0]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="3_0" type="option" value="3">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
+					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[3.0]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
+				<meta-data locale="ru_RU">
 					<entry name="label"><![CDATA[Version]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
@@ -51,21 +51,21 @@
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" multiple="true" name="select4115" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="administration" type="option" value="admin">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Administration]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Администрирование]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="installation" type="option" value="install">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Installation]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Установка]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="configuration" type="option" value="config">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Configuration]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Конфигурация]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
+				<meta-data locale="ru_RU">
 					<entry name="label"><![CDATA[Topics]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
@@ -73,22 +73,22 @@
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select5069" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="beginner" type="option" value="beginner">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Beginner]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Начальный]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="intermediate" type="option" value="intermediate">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Intermediate]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Средний]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="advanced" type="option" value="advanced">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Advanced]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Продвинутый]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Level]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[уровень]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -96,71 +96,71 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[Marketing Campaign Theme Metadata]]></name>
-		<description><![CDATA[Marketing Campaign Theme Metadata]]></description>
-		<root available-locales="[$LOCALE_DEFAULT$]" default-locale="[$LOCALE_DEFAULT$]">
+		<name><![CDATA[Метаданные темы маркетинговой кампании]]></name>
+		<description><![CDATA[Метаданные темы маркетинговой кампании]]></description>
+		<root available-locales="ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select2305" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="strong_company" type="option" value="strong">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Strong Company]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Сильная компания]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="new_product_launch" type="option" value="product">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[New Product Launch]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Запуск нового продукта]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="company_philosophy" type="option" value="philosophy">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Company Philosophy]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Философия компании]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Select]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Выберите]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select3229" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="your_trusted_advisor" type="option" value="advisor">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Your Trusted Advisor]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Ваш надежный советник]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="10_years_of_customer_solutions" type="option" value="solutions">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[10 Years of Customer Solutions]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[10 лет клиентских решений]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="making_a_difference" type="option" value="difference">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Making a Difference]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Создавая уникальное]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Campaign Theme]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Тема кампании]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select4282" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="awareness" type="option" value="awareness">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Awareness]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Осознание]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="lead_generation" type="option" value="leads">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Lead Generation]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Ведущее Поколение]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="customer_service" type="option" value="service">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Customer Service]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Обслуживание клиентов]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Business Goal]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Бизнес-цель]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -168,47 +168,47 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[Meeting Metadata]]></name>
-		<description><![CDATA[Metadata for meeting]]></description>
-		<root available-locales="[$LOCALE_DEFAULT$]" default-locale="[$LOCALE_DEFAULT$]">
+		<name><![CDATA[Метаданные встречи]]></name>
+		<description><![CDATA[Метаданные встречи]]></description>
+		<root available-locales="ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" name="ddm-date3054" readOnly="false" required="false" showLabel="true" type="ddm-date" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Date]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Дата]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text2217" readOnly="false" required="false" showLabel="true" type="text" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Meeting Name]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Название встречи]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text4569" readOnly="false" required="false" showLabel="true" type="text" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Time]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Время]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text5638" readOnly="false" required="false" showLabel="true" type="text" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Location]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Местоположение]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="text" name="textarea6584" readOnly="false" required="false" showLabel="true" type="textarea" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Description]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Описание]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="text" name="textarea7502" readOnly="false" required="false" showLabel="true" type="textarea" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Participants]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Участники]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -216,89 +216,90 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[contract]]></name>
+		<name><![CDATA[договор]]></name>
+		<description><![CDATA[договор]]></description>
 		<dynamic-structure>true</dynamic-structure>
-		<root available-locales="[$LOCALE_DEFAULT$]" default-locale="[$LOCALE_DEFAULT$]">
+		<root available-locales="ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" name="ddm-date18949" readOnly="false" required="false" showLabel="true" type="ddm-date" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Effective Date]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Дата заключения]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" name="ddm-date20127" readOnly="false" required="false" showLabel="true" type="ddm-date" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Expiration Date]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Дата окончания]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select10264" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="nda" type="option" value="NDA">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[NDA]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Соглашение о неразглашении конфиденциальной информации]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="msa" type="option" value="MSA">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
+					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[MSA]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="license_agreement" type="option" value="License">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[License Agreement]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Лицензионное соглашение]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Contract Type]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Тип договора]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select4893" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="draft" type="option" value="Draft">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Draft]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Черновик]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="in_review" type="option" value="Review">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[In Review]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Рассматривается]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="suspended" type="option" value="Suspended">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Suspended]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Приостановлен]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="signed" type="option" value="Signed">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Signed]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Подписан]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Status]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Статус]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text14822" readOnly="false" required="false" showLabel="true" type="text" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Legal Reviewer]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Юридический Рецензент]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text17700" readOnly="false" required="false" showLabel="true" type="text" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Signing Authority]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Право подписи]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text2087" readOnly="false" required="false" showLabel="true" type="text" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Deal Name]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Имя сделки]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -306,41 +307,43 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[image-gallery-image]]></name>
+		<name><![CDATA[картинка галереи]]></name>
+		<description><![CDATA[картинка галереи]]></description>
 		<dynamic-structure>true</dynamic-structure>
-		<root available-locales="en_US" default-locale="en_US" />
+		<root available-locales="ru_RU" default-locale="ru_RU"/>
 	</structure>
 	<structure>
-		<name><![CDATA[marketing-banner]]></name>
+		<name><![CDATA[рекламный баннер]]></name>
+		<description><![CDATA[рекламный баннер]]></description>
 		<dynamic-structure>true</dynamic-structure>
-		<root available-locales="[$LOCALE_DEFAULT$]" default-locale="[$LOCALE_DEFAULT$]">
+		<root available-locales="ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="string" indexType="keyword" name="radio5547" readOnly="false" required="false" showLabel="true" type="radio">
 				<dynamic-element name="yes" type="option" value="yes">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Yes]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Да]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="no" type="option" value="no">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[No]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Нет]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Needs Legal Review]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Требуется юридический рецензент]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text2033" readOnly="false" required="false" showLabel="true" type="text" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Banner Name]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Название баннера]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="text" name="textarea2873" readOnly="false" required="false" showLabel="true" type="textarea" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Description]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Описание]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -348,19 +351,20 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[online-training]]></name>
+		<name><![CDATA[онлайн обучение]]></name>
+		<description><![CDATA[онлайн обучение]]></description>
 		<dynamic-structure>true</dynamic-structure>
-		<root available-locales="[$LOCALE_DEFAULT$]" default-locale="[$LOCALE_DEFAULT$]">
+		<root available-locales="ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="string" indexType="keyword" name="text2082" readOnly="false" required="false" showLabel="true" type="text" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Lesson Title]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Заголовок урока]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text2979" readOnly="false" required="false" showLabel="true" type="text" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Author]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Автор]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -368,100 +372,101 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[sales-presentation]]></name>
+		<name><![CDATA[презентации продаж]]></name>
+		<description><![CDATA[презентации продаж]]></description>
 		<dynamic-structure>true</dynamic-structure>
-		<root available-locales="[$LOCALE_DEFAULT$]" default-locale="[$LOCALE_DEFAULT$]">
+		<root available-locales="ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select2890" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="home_edition" type="option" value="HE">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Home Edition]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Домашняя версия]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="business_edition" type="option" value="BE">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Business Edition]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Бизнес версия]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="enterprise_edition" type="option" value="EE">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Enterprise Edition]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Промышленная версия]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Product]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Продукт]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select3864" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="1_0" type="option" value="1">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
+					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[1.0]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="2_0" type="option" value="2">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
+					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[2.0]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="3_0" type="option" value="3">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
+					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[3.0]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Version]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Версия]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" multiple="true" name="select4831" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="website" type="option" value="website">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Website]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Веб-сайт]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="collaboration" type="option" value="collaboration">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Collaboration]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Сотрудничество]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="intranet" type="option" value="intranet">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[Intranet]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Интранет]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Areas of Interest]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Область интересов]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" multiple="true" name="select5929" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="acme" type="option" value="acme">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[ACME]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[Кульминация]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="sevencogs" type="option" value="sevencogs">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[SevenCogs]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[ООО Ромашка]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="freeplus" type="option" value="freeplus">
-					<meta-data locale="[$LOCALE_DEFAULT$]">
-						<entry name="label"><![CDATA[FreePlus]]></entry>
+					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[ООО Нет+]]></entry>
 					</meta-data>
 				</dynamic-element>
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Competitors]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Конкуренты]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text1993" readOnly="false" required="false" showLabel="true" type="text" width="25">
-				<meta-data locale="[$LOCALE_DEFAULT$]">
-					<entry name="label"><![CDATA[Prospect Name]]></entry>
+				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Название проспекта]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
