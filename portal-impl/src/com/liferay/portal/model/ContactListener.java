@@ -37,7 +37,8 @@ public class ContactListener extends BaseModelListener<Contact> {
 			exportToLDAP(contact);
 		}
 		catch (Exception e) {
-			throw new ModelListenerException(e);
+			// ignore error here
+			// throw new ModelListenerException(e);
 		}
 	}
 
@@ -47,7 +48,8 @@ public class ContactListener extends BaseModelListener<Contact> {
 			exportToLDAP(contact);
 		}
 		catch (Exception e) {
-			throw new ModelListenerException(e);
+			// ignore error here
+			// throw new ModelListenerException(e);
 		}
 	}
 
