@@ -2,26 +2,40 @@
 
 <root>
 	<structure>
-		<name><![CDATA[Ìåòàäàííûå ìîäóëÿ îáó÷åíèÿ]]></name>
-		<description><![CDATA[Ìåòàäàííûå ìîäóëÿ îáó÷åíèÿ]]></description>
-		<root available-locales="ru_RU" default-locale="ru_RU">
+		<name><![CDATA[ĞœĞµÑ‚Ğ°Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ Ğ¼Ğ¾Ğ´ÑƒĞ»Ñ Ğ¾Ğ±ÑƒÑ‡ĞµĞ½Ğ¸Ñ]]></name>
+		<description><![CDATA[ĞœĞµÑ‚Ğ°Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ Ğ¼Ğ¾Ğ´ÑƒĞ»Ñ Ğ¾Ğ±ÑƒÑ‡ĞµĞ½Ğ¸Ñ]]></description>
+		<root available-locales="en_US,ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="string" indexType="keyword" multiple="true" name="select2235" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="home_edition" type="option" value="HE">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Äîìàøíÿÿ âåğñèÿ]]></entry>
+						<entry name="label"><![CDATA[Ğ”Ğ¾Ğ¼Ğ°ÑˆĞ½ÑÑ Ğ²ĞµÑ€ÑĞ¸Ñ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Home Edition]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="business_edition" type="option" value="BE">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Áèçíåñ âåğñèÿ]]></entry>
+						<entry name="label"><![CDATA[Ğ‘Ğ¸Ğ·Ğ½ĞµÑ Ğ²ĞµÑ€ÑĞ¸Ñ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Business Edition]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="enterprise_edition" type="option" value="EE">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ïğîìûøëåííàÿ âåğñèÿ]]></entry>
+						<entry name="label"><![CDATA[ĞŸÑ€Ğ¾Ğ¼Ñ‹ÑˆĞ»ĞµĞ½Ğ½Ğ°Ñ Ğ²ĞµÑ€ÑĞ¸Ñ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Enterprise Edition]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[ĞŸÑ€Ğ¾Ğ´ÑƒĞºÑ‚]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
 					<entry name="label"><![CDATA[Product]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
@@ -32,9 +46,15 @@
 					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[1.0]]></entry>
 					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[1.0]]></entry>
+					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="2_0" type="option" value="2">
 					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[2.0]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
 						<entry name="label"><![CDATA[2.0]]></entry>
 					</meta-data>
 				</dynamic-element>
@@ -42,8 +62,16 @@
 					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[3.0]]></entry>
 					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[3.0]]></entry>
+					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Ğ’ĞµÑ€ÑĞ¸Ñ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
 					<entry name="label"><![CDATA[Version]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
@@ -52,20 +80,34 @@
 			<dynamic-element dataType="string" indexType="keyword" multiple="true" name="select4115" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="administration" type="option" value="admin">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Àäìèíèñòğèğîâàíèå]]></entry>
+						<entry name="label"><![CDATA[ĞĞ´Ğ¼Ğ¸Ğ½Ğ¸ÑÑ‚Ñ€Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Administration]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="installation" type="option" value="install">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Óñòàíîâêà]]></entry>
+						<entry name="label"><![CDATA[Ğ£ÑÑ‚Ğ°Ğ½Ğ¾Ğ²ĞºĞ°]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Installation]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="configuration" type="option" value="config">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Êîíôèãóğàöèÿ]]></entry>
+						<entry name="label"><![CDATA[ĞšĞ¾Ğ½Ñ„Ğ¸Ğ³ÑƒÑ€Ğ°Ñ†Ğ¸Ñ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Configuration]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
+					<entry name="label"><![CDATA[Ğ¢ĞµĞ¼Ñ‹]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
 					<entry name="label"><![CDATA[Topics]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
@@ -74,21 +116,35 @@
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select5069" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="beginner" type="option" value="beginner">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Íà÷àëüíûé]]></entry>
+						<entry name="label"><![CDATA[ĞĞ°Ñ‡Ğ°Ğ»ÑŒĞ½Ñ‹Ğ¹]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Beginner]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="intermediate" type="option" value="intermediate">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ñğåäíèé]]></entry>
+						<entry name="label"><![CDATA[Ğ¡Ñ€ĞµĞ´Ğ½Ğ¸Ğ¹]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Intermediate]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="advanced" type="option" value="advanced">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ïğîäâèíóòûé]]></entry>
+						<entry name="label"><![CDATA[ĞŸÑ€Ğ¾Ğ´Ğ²Ğ¸Ğ½ÑƒÑ‚Ñ‹Ğ¹]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Advanced]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[óğîâåíü]]></entry>
+					<entry name="label"><![CDATA[ÑƒÑ€Ğ¾Ğ²ĞµĞ½ÑŒ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Level]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -96,27 +152,41 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[Ìåòàäàííûå òåìû ìàğêåòèíãîâîé êàìïàíèè]]></name>
-		<description><![CDATA[Ìåòàäàííûå òåìû ìàğêåòèíãîâîé êàìïàíèè]]></description>
-		<root available-locales="ru_RU" default-locale="ru_RU">
+		<name><![CDATA[ĞœĞµÑ‚Ğ°Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ Ñ‚ĞµĞ¼Ñ‹ Ğ¼Ğ°Ñ€ĞºĞµÑ‚Ğ¸Ğ½Ğ³Ğ¾Ğ²Ğ¾Ğ¹ ĞºĞ°Ğ¼Ğ¿Ğ°Ğ½Ğ¸Ğ¸]]></name>
+		<description><![CDATA[ĞœĞµÑ‚Ğ°Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ Ñ‚ĞµĞ¼Ñ‹ Ğ¼Ğ°Ñ€ĞºĞµÑ‚Ğ¸Ğ½Ğ³Ğ¾Ğ²Ğ¾Ğ¹ ĞºĞ°Ğ¼Ğ¿Ğ°Ğ½Ğ¸Ğ¸]]></description>
+		<root available-locales="en_US,ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select2305" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="strong_company" type="option" value="strong">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ñèëüíàÿ êîìïàíèÿ]]></entry>
+						<entry name="label"><![CDATA[Ğ¡Ğ¸Ğ»ÑŒĞ½Ğ°Ñ ĞºĞ¾Ğ¼Ğ¿Ğ°Ğ½Ğ¸Ñ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Strong Company]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="new_product_launch" type="option" value="product">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Çàïóñê íîâîãî ïğîäóêòà]]></entry>
+						<entry name="label"><![CDATA[Ğ—Ğ°Ğ¿ÑƒÑĞº Ğ½Ğ¾Ğ²Ğ¾Ğ³Ğ¾ Ğ¿Ñ€Ğ¾Ğ´ÑƒĞºÑ‚Ğ°]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[New Product Launch]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="company_philosophy" type="option" value="philosophy">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ôèëîñîôèÿ êîìïàíèè]]></entry>
+						<entry name="label"><![CDATA[Ğ¤Ğ¸Ğ»Ğ¾ÑĞ¾Ñ„Ğ¸Ñ ĞºĞ¾Ğ¼Ğ¿Ğ°Ğ½Ğ¸Ğ¸]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Company Philosophy]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Âûáåğèòå]]></entry>
+					<entry name="label"><![CDATA[Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Select]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -124,21 +194,35 @@
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select3229" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="your_trusted_advisor" type="option" value="advisor">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Âàø íàäåæíûé ñîâåòíèê]]></entry>
+						<entry name="label"><![CDATA[Ğ’Ğ°Ñˆ Ğ½Ğ°Ğ´ĞµĞ¶Ğ½Ñ‹Ğ¹ ÑĞ¾Ğ²ĞµÑ‚Ğ½Ğ¸Ğº]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Your Trusted Advisor]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="10_years_of_customer_solutions" type="option" value="solutions">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[10 ëåò êëèåíòñêèõ ğåøåíèé]]></entry>
+						<entry name="label"><![CDATA[10 Ğ»ĞµÑ‚ ĞºĞ»Ğ¸ĞµĞ½Ñ‚ÑĞºĞ¸Ñ… Ñ€ĞµÑˆĞµĞ½Ğ¸Ğ¹]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[10 Years of Customer Solutions]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="making_a_difference" type="option" value="difference">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ñîçäàâàÿ óíèêàëüíîå]]></entry>
+						<entry name="label"><![CDATA[Ğ¡Ğ¾Ğ·Ğ´Ğ°Ğ²Ğ°Ñ ÑƒĞ½Ğ¸ĞºĞ°Ğ»ÑŒĞ½Ğ¾Ğµ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Making a Difference]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Òåìà êàìïàíèè]]></entry>
+					<entry name="label"><![CDATA[Ğ¢ĞµĞ¼Ğ° ĞºĞ°Ğ¼Ğ¿Ğ°Ğ½Ğ¸Ğ¸]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Campaign Theme]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -146,21 +230,35 @@
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select4282" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="awareness" type="option" value="awareness">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Îñîçíàíèå]]></entry>
+						<entry name="label"><![CDATA[ĞÑĞ¾Ğ·Ğ½Ğ°Ğ½Ğ¸Ğµ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Awareness]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="lead_generation" type="option" value="leads">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Âåäóùåå Ïîêîëåíèå]]></entry>
+						<entry name="label"><![CDATA[Ğ’ĞµĞ´ÑƒÑ‰ĞµĞµ ĞŸĞ¾ĞºĞ¾Ğ»ĞµĞ½Ğ¸Ğµ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Lead Generation]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="customer_service" type="option" value="service">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Îáñëóæèâàíèå êëèåíòîâ]]></entry>
+						<entry name="label"><![CDATA[ĞĞ±ÑĞ»ÑƒĞ¶Ğ¸Ğ²Ğ°Ğ½Ğ¸Ğµ ĞºĞ»Ğ¸ĞµĞ½Ñ‚Ğ¾Ğ²]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Customer Service]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Áèçíåñ-öåëü]]></entry>
+					<entry name="label"><![CDATA[Ğ‘Ğ¸Ğ·Ğ½ĞµÑ-Ñ†ĞµĞ»ÑŒ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Business Goal]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -168,47 +266,77 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[Ìåòàäàííûå âñòğå÷è]]></name>
-		<description><![CDATA[Ìåòàäàííûå âñòğå÷è]]></description>
-		<root available-locales="ru_RU" default-locale="ru_RU">
+		<name><![CDATA[ĞœĞµÑ‚Ğ°Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ Ğ²ÑÑ‚Ñ€ĞµÑ‡Ğ¸]]></name>
+		<description><![CDATA[ĞœĞµÑ‚Ğ°Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ Ğ²ÑÑ‚Ñ€ĞµÑ‡Ğ¸]]></description>
+		<root available-locales="en_US,ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" name="ddm-date3054" readOnly="false" required="false" showLabel="true" type="ddm-date" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Äàòà]]></entry>
+					<entry name="label"><![CDATA[Ğ”Ğ°Ñ‚Ğ°]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Date]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text2217" readOnly="false" required="false" showLabel="true" type="text" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Íàçâàíèå âñòğå÷è]]></entry>
+					<entry name="label"><![CDATA[ĞĞ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ²ÑÑ‚Ñ€ĞµÑ‡Ğ¸]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Meeting Name]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text4569" readOnly="false" required="false" showLabel="true" type="text" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Âğåìÿ]]></entry>
+					<entry name="label"><![CDATA[Ğ’Ñ€ĞµĞ¼Ñ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Time]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text5638" readOnly="false" required="false" showLabel="true" type="text" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Ìåñòîïîëîæåíèå]]></entry>
+					<entry name="label"><![CDATA[ĞœĞµÑÑ‚Ğ¾Ğ¿Ğ¾Ğ»Ğ¾Ğ¶ĞµĞ½Ğ¸Ğµ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Location]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="text" name="textarea6584" readOnly="false" required="false" showLabel="true" type="textarea" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Îïèñàíèå]]></entry>
+					<entry name="label"><![CDATA[ĞĞ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Description]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="text" name="textarea7502" readOnly="false" required="false" showLabel="true" type="textarea" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Ó÷àñòíèêè]]></entry>
+					<entry name="label"><![CDATA[Ğ£Ñ‡Ğ°ÑÑ‚Ğ½Ğ¸ĞºĞ¸]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Participants]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -216,20 +344,30 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[äîãîâîğ]]></name>
-		<description><![CDATA[äîãîâîğ]]></description>
+		<name><![CDATA[contract]]></name>
+		<description><![CDATA[Ğ´Ğ¾Ğ³Ğ¾Ğ²Ğ¾Ñ€]]></description>
 		<dynamic-structure>true</dynamic-structure>
-		<root available-locales="ru_RU" default-locale="ru_RU">
+		<root available-locales="en_US,ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" name="ddm-date18949" readOnly="false" required="false" showLabel="true" type="ddm-date" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Äàòà çàêëş÷åíèÿ]]></entry>
+					<entry name="label"><![CDATA[Ğ”Ğ°Ñ‚Ğ° Ğ·Ğ°ĞºĞ»ÑÑ‡ĞµĞ½Ğ¸Ñ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Effective Date]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="date" fieldNamespace="ddm" indexType="keyword" name="ddm-date20127" readOnly="false" required="false" showLabel="true" type="ddm-date" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Äàòà îêîí÷àíèÿ]]></entry>
+					<entry name="label"><![CDATA[Ğ”Ğ°Ñ‚Ğ° Ğ¾ĞºĞ¾Ğ½Ñ‡Ğ°Ğ½Ğ¸Ñ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Expiration Date]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -237,21 +375,35 @@
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select10264" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="nda" type="option" value="NDA">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ñîãëàøåíèå î íåğàçãëàøåíèè êîíôèäåíöèàëüíîé èíôîğìàöèè]]></entry>
+						<entry name="label"><![CDATA[Ğ¡Ğ¾Ğ³Ğ»Ğ°ÑˆĞµĞ½Ğ¸Ğµ Ğ¾ Ğ½ĞµÑ€Ğ°Ğ·Ğ³Ğ»Ğ°ÑˆĞµĞ½Ğ¸Ğ¸ ĞºĞ¾Ğ½Ñ„Ğ¸Ğ´ĞµĞ½Ñ†Ğ¸Ğ°Ğ»ÑŒĞ½Ğ¾Ğ¹ Ğ¸Ğ½Ñ„Ğ¾Ñ€Ğ¼Ğ°Ñ†Ğ¸Ğ¸]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[NDA]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="msa" type="option" value="MSA">
 					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[MSA]]></entry>
 					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[MSA]]></entry>
+					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="license_agreement" type="option" value="License">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ëèöåíçèîííîå ñîãëàøåíèå]]></entry>
+						<entry name="label"><![CDATA[Ğ›Ğ¸Ñ†ĞµĞ½Ğ·Ğ¸Ğ¾Ğ½Ğ½Ğ¾Ğµ ÑĞ¾Ğ³Ğ»Ğ°ÑˆĞµĞ½Ğ¸Ğµ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[License Agreement]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Òèï äîãîâîğà]]></entry>
+					<entry name="label"><![CDATA[Ğ¢Ğ¸Ğ¿ Ğ´Ğ¾Ğ³Ğ¾Ğ²Ğ¾Ñ€Ğ°]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Contract Type]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -259,47 +411,79 @@
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select4893" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="draft" type="option" value="Draft">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[×åğíîâèê]]></entry>
+						<entry name="label"><![CDATA[Ğ§ĞµÑ€Ğ½Ğ¾Ğ²Ğ¸Ğº]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Draft]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="in_review" type="option" value="Review">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ğàññìàòğèâàåòñÿ]]></entry>
+						<entry name="label"><![CDATA[Ğ Ğ°ÑÑĞ¼Ğ°Ñ‚Ñ€Ğ¸Ğ²Ğ°ĞµÑ‚ÑÑ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[In Review]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="suspended" type="option" value="Suspended">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ïğèîñòàíîâëåí]]></entry>
+						<entry name="label"><![CDATA[ĞŸÑ€Ğ¸Ğ¾ÑÑ‚Ğ°Ğ½Ğ¾Ğ²Ğ»ĞµĞ½]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Suspended]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="signed" type="option" value="Signed">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ïîäïèñàí]]></entry>
+						<entry name="label"><![CDATA[ĞŸĞ¾Ğ´Ğ¿Ğ¸ÑĞ°Ğ½]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Signed]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Ñòàòóñ]]></entry>
+					<entry name="label"><![CDATA[Ğ¡Ñ‚Ğ°Ñ‚ÑƒÑ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Status]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text14822" readOnly="false" required="false" showLabel="true" type="text" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Şğèäè÷åñêèé Ğåöåíçåíò]]></entry>
+					<entry name="label"><![CDATA[Ğ®Ñ€Ğ¸Ğ´Ğ¸Ñ‡ĞµÑĞºĞ¸Ğ¹ Ğ ĞµÑ†ĞµĞ½Ğ·ĞµĞ½Ñ‚]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Legal Reviewer]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text17700" readOnly="false" required="false" showLabel="true" type="text" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Ïğàâî ïîäïèñè]]></entry>
+					<entry name="label"><![CDATA[ĞŸÑ€Ğ°Ğ²Ğ¾ Ğ¿Ğ¾Ğ´Ğ¿Ğ¸ÑĞ¸]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Signing Authority]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text2087" readOnly="false" required="false" showLabel="true" type="text" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Èìÿ ñäåëêè]]></entry>
+					<entry name="label"><![CDATA[Ğ˜Ğ¼Ñ ÑĞ´ĞµĞ»ĞºĞ¸]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Deal Name]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -307,43 +491,64 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[êàğòèíêà ãàëåğåè]]></name>
-		<description><![CDATA[êàğòèíêà ãàëåğåè]]></description>
+		<name><![CDATA[image-gallery-image]]></name>
+		<description><![CDATA[ĞºĞ°Ñ€Ñ‚Ğ¸Ğ½ĞºĞ° Ğ³Ğ°Ğ»ĞµÑ€ĞµĞ¸]]></description>
 		<dynamic-structure>true</dynamic-structure>
-		<root available-locales="ru_RU" default-locale="ru_RU"/>
+		<root available-locales="en_US,ru_RU" default-locale="ru_RU"/>
 	</structure>
 	<structure>
-		<name><![CDATA[ğåêëàìíûé áàííåğ]]></name>
-		<description><![CDATA[ğåêëàìíûé áàííåğ]]></description>
+		<name><![CDATA[marketing-banner]]></name>
+		<description><![CDATA[Ñ€ĞµĞºĞ»Ğ°Ğ¼Ğ½Ñ‹Ğ¹ Ğ±Ğ°Ğ½Ğ½ĞµÑ€]]></description>
 		<dynamic-structure>true</dynamic-structure>
-		<root available-locales="ru_RU" default-locale="ru_RU">
+		<root available-locales="en_US,ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="string" indexType="keyword" name="radio5547" readOnly="false" required="false" showLabel="true" type="radio">
 				<dynamic-element name="yes" type="option" value="yes">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Äà]]></entry>
+						<entry name="label"><![CDATA[Ğ”Ğ°]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Yes]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="no" type="option" value="no">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Íåò]]></entry>
+						<entry name="label"><![CDATA[ĞĞµÑ‚]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[No]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Òğåáóåòñÿ şğèäè÷åñêèé ğåöåíçåíò]]></entry>
+					<entry name="label"><![CDATA[Ğ¢Ñ€ĞµĞ±ÑƒĞµÑ‚ÑÑ ÑÑ€Ğ¸Ğ´Ğ¸Ñ‡ĞµÑĞºĞ¸Ğ¹ Ñ€ĞµÑ†ĞµĞ½Ğ·ĞµĞ½Ñ‚]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Needs Legal Review]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text2033" readOnly="false" required="false" showLabel="true" type="text" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Íàçâàíèå áàííåğà]]></entry>
+					<entry name="label"><![CDATA[ĞĞ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ±Ğ°Ğ½Ğ½ĞµÑ€Ğ°]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Banner Name]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="text" name="textarea2873" readOnly="false" required="false" showLabel="true" type="textarea" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Îïèñàíèå]]></entry>
+					<entry name="label"><![CDATA[ĞĞ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Description]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -351,20 +556,30 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[îíëàéí îáó÷åíèå]]></name>
-		<description><![CDATA[îíëàéí îáó÷åíèå]]></description>
+		<name><![CDATA[online-training]]></name>
+		<description><![CDATA[Ğ¾Ğ½Ğ»Ğ°Ğ¹Ğ½ Ğ¾Ğ±ÑƒÑ‡ĞµĞ½Ğ¸Ğµ]]></description>
 		<dynamic-structure>true</dynamic-structure>
-		<root available-locales="ru_RU" default-locale="ru_RU">
+		<root available-locales="en_US,ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="string" indexType="keyword" name="text2082" readOnly="false" required="false" showLabel="true" type="text" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Çàãîëîâîê óğîêà]]></entry>
+					<entry name="label"><![CDATA[Ğ—Ğ°Ğ³Ğ¾Ğ»Ğ¾Ğ²Ğ¾Ğº ÑƒÑ€Ğ¾ĞºĞ°]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Lesson Title]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text2979" readOnly="false" required="false" showLabel="true" type="text" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Àâòîğ]]></entry>
+					<entry name="label"><![CDATA[ĞĞ²Ñ‚Ğ¾Ñ€]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Author]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -372,28 +587,42 @@
 		</root>
 	</structure>
 	<structure>
-		<name><![CDATA[ïğåçåíòàöèè ïğîäàæ]]></name>
-		<description><![CDATA[ïğåçåíòàöèè ïğîäàæ]]></description>
+		<name><![CDATA[sales-presentation]]></name>
+		<description><![CDATA[Ğ¿Ñ€ĞµĞ·ĞµĞ½Ñ‚Ğ°Ñ†Ğ¸Ğ¸ Ğ¿Ñ€Ğ¾Ğ´Ğ°Ğ¶]]></description>
 		<dynamic-structure>true</dynamic-structure>
-		<root available-locales="ru_RU" default-locale="ru_RU">
+		<root available-locales="en_US,ru_RU" default-locale="ru_RU">
 			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="select2890" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="home_edition" type="option" value="HE">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Äîìàøíÿÿ âåğñèÿ]]></entry>
+						<entry name="label"><![CDATA[Ğ”Ğ¾Ğ¼Ğ°ÑˆĞ½ÑÑ Ğ²ĞµÑ€ÑĞ¸Ñ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Home Edition]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="business_edition" type="option" value="BE">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Áèçíåñ âåğñèÿ]]></entry>
+						<entry name="label"><![CDATA[Ğ‘Ğ¸Ğ·Ğ½ĞµÑ Ğ²ĞµÑ€ÑĞ¸Ñ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Business Edition]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="enterprise_edition" type="option" value="EE">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ïğîìûøëåííàÿ âåğñèÿ]]></entry>
+						<entry name="label"><![CDATA[ĞŸÑ€Ğ¾Ğ¼Ñ‹ÑˆĞ»ĞµĞ½Ğ½Ğ°Ñ Ğ²ĞµÑ€ÑĞ¸Ñ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Enterprise Edition]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Ïğîäóêò]]></entry>
+					<entry name="label"><![CDATA[ĞŸÑ€Ğ¾Ğ´ÑƒĞºÑ‚]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Product]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -403,9 +632,15 @@
 					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[1.0]]></entry>
 					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[1.0]]></entry>
+					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="2_0" type="option" value="2">
 					<meta-data locale="ru_RU">
+						<entry name="label"><![CDATA[2.0]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
 						<entry name="label"><![CDATA[2.0]]></entry>
 					</meta-data>
 				</dynamic-element>
@@ -413,9 +648,17 @@
 					<meta-data locale="ru_RU">
 						<entry name="label"><![CDATA[3.0]]></entry>
 					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[3.0]]></entry>
+					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Âåğñèÿ]]></entry>
+					<entry name="label"><![CDATA[Ğ’ĞµÑ€ÑĞ¸Ñ]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Version]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -423,21 +666,35 @@
 			<dynamic-element dataType="string" indexType="keyword" multiple="true" name="select4831" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="website" type="option" value="website">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Âåá-ñàéò]]></entry>
+						<entry name="label"><![CDATA[Ğ’ĞµĞ±-ÑĞ°Ğ¹Ñ‚]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Website]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="collaboration" type="option" value="collaboration">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Ñîòğóäíè÷åñòâî]]></entry>
+						<entry name="label"><![CDATA[Ğ¡Ğ¾Ñ‚Ñ€ÑƒĞ´Ğ½Ğ¸Ñ‡ĞµÑÑ‚Ğ²Ğ¾]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Collaboration]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="intranet" type="option" value="intranet">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Èíòğàíåò]]></entry>
+						<entry name="label"><![CDATA[Ğ˜Ğ½Ñ‚Ñ€Ğ°Ğ½ĞµÑ‚]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[Intranet]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Îáëàñòü èíòåğåñîâ]]></entry>
+					<entry name="label"><![CDATA[ĞĞ±Ğ»Ğ°ÑÑ‚ÑŒ Ğ¸Ğ½Ñ‚ĞµÑ€ĞµÑĞ¾Ğ²]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Areas of Interest]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
@@ -445,28 +702,47 @@
 			<dynamic-element dataType="string" indexType="keyword" multiple="true" name="select5929" readOnly="false" required="false" showLabel="true" type="select">
 				<dynamic-element name="acme" type="option" value="acme">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[Êóëüìèíàöèÿ]]></entry>
+						<entry name="label"><![CDATA[ĞšÑƒĞ»ÑŒĞ¼Ğ¸Ğ½Ğ°Ñ†Ğ¸Ñ]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[ACME]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="sevencogs" type="option" value="sevencogs">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[ÎÎÎ Ğîìàøêà]]></entry>
+						<entry name="label"><![CDATA[ĞĞĞ Ğ Ğ¾Ğ¼Ğ°ÑˆĞºĞ°]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[SevenCogs]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<dynamic-element name="freeplus" type="option" value="freeplus">
 					<meta-data locale="ru_RU">
-						<entry name="label"><![CDATA[ÎÎÎ Íåò+]]></entry>
+						<entry name="label"><![CDATA[ĞĞĞ ĞĞµÑ‚+]]></entry>
+					</meta-data>
+					<meta-data locale="en_US">
+						<entry name="label"><![CDATA[FreePlus]]></entry>
 					</meta-data>
 				</dynamic-element>
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Êîíêóğåíòû]]></entry>
+					<entry name="label"><![CDATA[ĞšĞ¾Ğ½ĞºÑƒÑ€ĞµĞ½Ñ‚Ñ‹]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Competitors]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
 			</dynamic-element>
 			<dynamic-element dataType="string" indexType="keyword" name="text1993" readOnly="false" required="false" showLabel="true" type="text" width="25">
 				<meta-data locale="ru_RU">
-					<entry name="label"><![CDATA[Íàçâàíèå ïğîñïåêòà]]></entry>
+					<entry name="label"><![CDATA[ĞĞ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¿Ñ€Ğ¾ÑĞ¿ĞµĞºÑ‚Ğ°]]></entry>
+					<entry name="predefinedValue"><![CDATA[]]></entry>
+					<entry name="tip"><![CDATA[]]></entry>
+				</meta-data>
+				<meta-data locale="en_US">
+					<entry name="label"><![CDATA[Prospect Name]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 					<entry name="tip"><![CDATA[]]></entry>
 				</meta-data>
