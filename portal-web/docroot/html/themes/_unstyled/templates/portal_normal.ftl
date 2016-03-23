@@ -67,7 +67,7 @@ ${theme.include(body_top_include)}
 
 	<footer id="footer" role="contentinfo">
 		<p class="powered-by">
-			<@liferay.language key="powered-by" /> <a href="http://www.liferay.ru" rel="external">Liferay RE</a>
+			<@liferay.language key="powered-by" /> <a href="http://www.liferay.ru" rel="external" target="_blank">Liferay RE</a>
 		</p>
 	</footer>
 </div>
