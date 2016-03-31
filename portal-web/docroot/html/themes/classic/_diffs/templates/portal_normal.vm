@@ -64,6 +64,7 @@ $theme.include($body_top_include)
 		<p class="powered-by">
 			#language ("powered-by") <a href="http://www.liferay.ru" rel="external" target="_blank">Liferay RE</a>
 		</p>
+		<!-- Пример использования Yandex.Metrika informer. Для размещения в других темах требуется скопировать этот кусок кода -->
 		#if ($yaMetrikaID && $yaMetrikaID != "")
 			<p class="powered-by">
 				<!-- Yandex.Metrika informer -->
