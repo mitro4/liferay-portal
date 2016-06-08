@@ -74,7 +74,7 @@ public class SetupWizardSampleDataUtil {
 				"ООО Ромашка", true);
 
 		GroupLocalServiceUtil.updateFriendlyURL(
-			organization.getGroupId(), "/liferay");
+			organization.getGroupId(), "/romashka");
 
 		Layout extranetLayout = LayoutLocalServiceUtil.addLayout(
 			defaultUser.getUserId(), organization.getGroupId(), false,
@@ -112,11 +112,11 @@ public class SetupWizardSampleDataUtil {
 			intranetLayout.getTypeSettings());
 
 		User user = UserLocalServiceUtil.fetchUserByEmailAddress(
-			company.getCompanyId(), "test@liferay.ru");
+			company.getCompanyId(), "test@liferay.com");
 
 		if (user == null) {
 			user = UserLocalServiceUtil.addDefaultAdminUser(
-				companyId, "vasyapupkin", "test@liferay.ru",
+				companyId, "vasyapupkin", "test@liferay.com",
 				LocaleUtil.getDefault(), "Вася", StringPool.BLANK, "Пупкин");
 		}
 		else {
@@ -217,7 +217,7 @@ public class SetupWizardSampleDataUtil {
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		},
 		{
-			"Новосибирск", 13048L, 13L,
+			"Новосибирск", 13049L, 13L,
 			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
 		},
 	};
