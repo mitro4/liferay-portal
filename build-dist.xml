@@ -2465,6 +2465,11 @@ plugins.includes=</echo>
 						dir="tools/zip_tmpl"
 						prefix="liferay-portal-${lp.version}"
 					/>
+					
+					<zipfileset
+						file="readme_ru.pdf"
+						prefix="liferay-portal-${lp.version}"
+					/>
 				</zip>
 
 				<delete dir="${zip.executable.dir}/../patching-tool" />
