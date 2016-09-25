@@ -1841,6 +1841,10 @@ release was successful.</echo>
 			</filterset>
 		</copy>
 
+		<!-- LRE-90 - add files to setup windows service -->
+		<move file="${app.server.tomcat.bin.dir}/tomcat7w.exe"
+		      tofile="${app.server.tomcat.bin.dir}/liferayw.exe" />
+
 		<chmod perm="a+x">
 			<fileset dir="${app.server.tomcat.bin.dir}">
 				<include name="*.sh" />
