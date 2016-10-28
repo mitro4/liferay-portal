@@ -565,114 +565,100 @@ public class PDFProcessorImpl
 		}
 	}
 
-	private void _generateImagesPB(FileVersion fileVersion, File file)
-		throws Exception {
-
-		_log.trace("Start generate images with PdfBox for file " + fileVersion.getTitle());
-		
-		String tempFileId = DLUtil.getTempFileId(
-			fileVersion.getFileEntryId(), fileVersion.getVersion());
-
-		File thumbnailFile = getThumbnailTempFile(tempFileId);
-
-		int previewFilesCount = 0;
-
-		PDDocument pdDocument = null;
+	private void _generateImagesPB(FileVersion fileVersion, File file) throws Exception {
 
 		try {
-			pdDocument = PDDocument.load(file);
+			_log.trace("Start generate images with PdfBox for file " + fileVersion.getTitle());
 
-			previewFilesCount = pdDocument.getNumberOfPages();
-		}
-		finally {
-			if (pdDocument != null) {
-				pdDocument.close();
-			}
-		}
+			String tempFileId = DLUtil.getTempFileId(fileVersion.getFileEntryId(), fileVersion.getVersion());
 
-		File[] previewFiles = new File[previewFilesCount];
+			File thumbnailFile = getThumbnailTempFile(tempFileId);
 
-		for (int i = 0; i < previewFilesCount; i++) {
-			previewFiles[i] = getPreviewTempFile(tempFileId, i);
-		}
+			int previewFilesCount = 0;
 
-		boolean generatePreview = _isGeneratePreview(fileVersion);
-		boolean generateThumbnail = _isGenerateThumbnail(fileVersion);
+			PDDocument pdDocument = null;
 
-		if (PropsValues.DL_FILE_ENTRY_PREVIEW_FORK_PROCESS_ENABLED) {
-			ProcessCallable<String> processCallable =
-				new LiferayPDFBoxProcessCallable(
-					ServerDetector.getServerId(),
-					PropsUtil.get(PropsKeys.LIFERAY_HOME),
-					Log4JUtil.getCustomLogSettings(), file, thumbnailFile,
-					previewFiles, getThumbnailType(fileVersion),
-					getPreviewType(fileVersion),
-					PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_DPI,
-					PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_HEIGHT,
-					PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_WIDTH,
-					generatePreview, generateThumbnail);
-
-			Future<String> future = ProcessExecutor.execute(
-				ClassPathUtil.getPortalClassPath(), processCallable);
-
-			String processIdentity = String.valueOf(
-				fileVersion.getFileVersionId());
-
-			futures.put(processIdentity, future);
-
-			future.get();
-		}
-		else {
-			LiferayPDFBoxConverter liferayConverter =
-				new LiferayPDFBoxConverter(
-					file, thumbnailFile, previewFiles,
-					getPreviewType(fileVersion), getThumbnailType(fileVersion),
-					PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_DPI,
-					PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_HEIGHT,
-					PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_WIDTH,
-					generatePreview, generateThumbnail);
-
-			liferayConverter.generateImagesPB();
-		}
-
-		if (generateThumbnail) {
 			try {
-				storeThumbnailImages(fileVersion, thumbnailFile);
-			}
-			finally {
-				FileUtil.delete(thumbnailFile);
+				pdDocument = PDDocument.load(file);
+
+				previewFilesCount = pdDocument.getNumberOfPages();
+			} finally {
+				if (pdDocument != null) {
+					pdDocument.close();
+				}
 			}
 
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					"PDFBox generated a thumbnail for " +
-						fileVersion.getFileVersionId());
+			File[] previewFiles = new File[previewFilesCount];
+
+			for (int i = 0; i < previewFilesCount; i++) {
+				previewFiles[i] = getPreviewTempFile(tempFileId, i);
 			}
-		}
 
-		if (generatePreview) {
-			int index = 0;
+			boolean generatePreview = _isGeneratePreview(fileVersion);
+			boolean generateThumbnail = _isGenerateThumbnail(fileVersion);
 
-			for (File previewFile : previewFiles) {
+			_log.trace("Generate preview: " + generatePreview);
+			_log.trace("Generate Thumbnail: " + generateThumbnail);
+
+			if (PropsValues.DL_FILE_ENTRY_PREVIEW_FORK_PROCESS_ENABLED) {
+				ProcessCallable<String> processCallable = new LiferayPDFBoxProcessCallable(ServerDetector.getServerId(),
+						PropsUtil.get(PropsKeys.LIFERAY_HOME), Log4JUtil.getCustomLogSettings(), file, thumbnailFile,
+						previewFiles, getThumbnailType(fileVersion), getPreviewType(fileVersion),
+						PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_DPI,
+						PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_HEIGHT,
+						PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_WIDTH, generatePreview, generateThumbnail);
+
+				Future<String> future = ProcessExecutor.execute(ClassPathUtil.getPortalClassPath(), processCallable);
+
+				String processIdentity = String.valueOf(fileVersion.getFileVersionId());
+
+				futures.put(processIdentity, future);
+
+				future.get();
+			} else {
+				LiferayPDFBoxConverter liferayConverter = new LiferayPDFBoxConverter(file, thumbnailFile, previewFiles,
+						getPreviewType(fileVersion), getThumbnailType(fileVersion),
+						PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_DPI,
+						PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_HEIGHT,
+						PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_WIDTH, generatePreview, generateThumbnail);
+
+				liferayConverter.generateImagesPB();
+			}
+
+			if (generateThumbnail) {
 				try {
-					addFileToStore(
-						fileVersion.getCompanyId(), PREVIEW_PATH,
-						getPreviewFilePath(fileVersion, index +1), previewFile);
-				}
-				finally {
-					FileUtil.delete(previewFile);
+					storeThumbnailImages(fileVersion, thumbnailFile);
+				} finally {
+					FileUtil.delete(thumbnailFile);
 				}
 
-				index++;
+				if (_log.isInfoEnabled()) {
+					_log.info("PDFBox generated a thumbnail for " + fileVersion.getFileVersionId());
+				}
 			}
 
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					"PDFBox generated " +
-						getPreviewFileCount(fileVersion) +
-							" preview pages for " +
-								fileVersion.getFileVersionId());
+			if (generatePreview) {
+				int index = 0;
+
+				for (File previewFile : previewFiles) {
+					try {
+						addFileToStore(fileVersion.getCompanyId(), PREVIEW_PATH,
+								getPreviewFilePath(fileVersion, index + 1), previewFile);
+					} finally {
+						FileUtil.delete(previewFile);
+					}
+
+					index++;
+				}
+
+				if (_log.isInfoEnabled()) {
+					_log.info("PDFBox generated " + getPreviewFileCount(fileVersion) + " preview pages for "
+							+ fileVersion.getFileVersionId());
+				}
 			}
+		} catch (Exception ex) {
+			_log.warn("Cannot generate thumbnail/preview for file + " + fileVersion.getTitle(), ex);
+			throw ex;
 		}
 	}
 
