@@ -80,6 +80,7 @@ public class PDFProcessorImpl
 			FileVersion sourceFileVersion, FileVersion destinationFileVersion)
 		throws Exception {
 
+		_log.trace("Start generate images for file " + destinationFileVersion.getTitle());
 		_generateImages(sourceFileVersion, destinationFileVersion);
 	}
 
@@ -87,6 +88,7 @@ public class PDFProcessorImpl
 	public InputStream getPreviewAsStream(FileVersion fileVersion, int index)
 		throws Exception {
 
+		_log.trace("Start generate preview for file " + fileVersion.getTitle());
 		return doGetPreviewAsStream(fileVersion, index, PREVIEW_TYPE);
 	}
 
@@ -126,7 +128,7 @@ public class PDFProcessorImpl
 	@Override
 	public boolean hasImages(FileVersion fileVersion) {
 		boolean hasImages = false;
-
+		
 		try {
 			hasImages = _hasImages(fileVersion);
 
@@ -138,28 +140,33 @@ public class PDFProcessorImpl
 			_log.error(e, e);
 		}
 
+		_log.trace("Has Images result for file " + fileVersion.getTitle() + " : " + hasImages);
 		return hasImages;
 	}
 
 	@Override
 	public boolean isDocumentSupported(FileVersion fileVersion) {
+		_log.trace("Is Document Supported : " + fileVersion.getTitle());
 		return isSupported(fileVersion);
 	}
 
 	@Override
 	public boolean isDocumentSupported(String mimeType) {
+		_log.trace("Is Document Supported : " + mimeType);
 		return isSupported(mimeType);
 	}
 
 	@Override
 	public boolean isSupported(String mimeType) {
 		if (Validator.isNull(mimeType)) {
+			_log.trace("MimeType " + mimeType + " is not supported");
 			return false;
 		}
 
 		if (mimeType.equals(ContentTypes.APPLICATION_PDF) ||
 			mimeType.equals(ContentTypes.APPLICATION_X_PDF)) {
 
+			_log.trace("MimeType " + mimeType + " is supported");
 			return true;
 		}
 
@@ -173,11 +180,13 @@ public class PDFProcessorImpl
 					DocumentConversionUtil.getConversions(extension);
 
 				if (Arrays.binarySearch(targetExtensions, "pdf") >= 0) {
+					_log.trace("MimeType " + mimeType + " is supported");
 					return true;
 				}
 			}
 		}
 
+		_log.trace("MimeType " + mimeType + " is not supported");
 		return false;
 	}
 
@@ -338,22 +347,27 @@ public class PDFProcessorImpl
 			FileVersion sourceFileVersion, FileVersion destinationFileVersion)
 		throws Exception {
 
+		_log.trace("generate images for " + destinationFileVersion.getTitle());
 		InputStream inputStream = null;
 
 		try {
 			if (sourceFileVersion != null) {
+				_log.trace("Copy images from source");
 				copy(sourceFileVersion, destinationFileVersion);
 
 				return;
 			}
 
 			if (_hasImages(destinationFileVersion)) {
+				_log.trace("Destination version already has image");
 				return;
 			}
 
 			String extension = destinationFileVersion.getExtension();
 
+			_log.trace("Extension : " + extension);
 			if (extension.equals("pdf")) {
+				
 				if (destinationFileVersion instanceof LiferayFileVersion) {
 					try {
 						LiferayFileVersion liferayFileVersion =
@@ -366,6 +380,7 @@ public class PDFProcessorImpl
 						return;
 					}
 					catch (UnsupportedOperationException uoe) {
+						_log.debug(uoe);
 					}
 				}
 
@@ -374,6 +389,7 @@ public class PDFProcessorImpl
 				_generateImages(destinationFileVersion, inputStream);
 			}
 			else if (DocumentConversionUtil.isEnabled()) {
+				_log.trace("Make conversion");
 				inputStream = destinationFileVersion.getContentStream(false);
 
 				String tempFileId = DLUtil.getTempFileId(
@@ -383,6 +399,7 @@ public class PDFProcessorImpl
 				File file = DocumentConversionUtil.convert(
 					tempFileId, inputStream, extension, "pdf");
 
+				_log.trace("Conversoin completed - call preview generation");
 				_generateImages(destinationFileVersion, file);
 			}
 		}
@@ -409,7 +426,8 @@ public class PDFProcessorImpl
 
 	private void _generateImagesGS(FileVersion fileVersion, File file)
 		throws Exception {
-
+		_log.trace("Start generate images with GS for file " + fileVersion.getTitle());
+		
 		if (_isGeneratePreview(fileVersion)) {
 			StopWatch stopWatch = new StopWatch();
 
@@ -550,6 +568,8 @@ public class PDFProcessorImpl
 	private void _generateImagesPB(FileVersion fileVersion, File file)
 		throws Exception {
 
+		_log.trace("Start generate images with PdfBox for file " + fileVersion.getTitle());
+		
 		String tempFileId = DLUtil.getTempFileId(
 			fileVersion.getFileEntryId(), fileVersion.getVersion());
 
