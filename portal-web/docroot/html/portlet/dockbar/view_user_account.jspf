@@ -71,7 +71,7 @@
 					<aui:nav-item cssClass="current-user-language" href='<%= HttpUtil.setParameter(PortalUtil.getCurrentURL(request), "doAsUserLanguageId", doAsUserLanguageId) %>' label="<%= changeLanguageMessage %>" />
 				</c:if>
 			</c:if>
-			<c:if test="<%= userSetupComplete && Validator.isNotNull(themeDisplay.getURLMyAccount()) %>">
+			<c:if test="<%= userSetupComplete %>">
 
 				<%
 				List<Group> mySiteGroups = user.getMySiteGroups(new String[] {User.class.getName()}, false, QueryUtil.ALL_POS);
@@ -125,6 +125,7 @@
 				}
 				%>
 
+                                <c:if test="<%= Validator.isNotNull(themeDisplay.getURLMyAccount()) %>">
 				<%
 				String myAccountURL = themeDisplay.getURLMyAccount().toString();
 
@@ -132,6 +133,7 @@
 				%>
 
 				<aui:nav-item href="<%= myAccountURL %>" iconCssClass="icon-user" label="my-account" title="my-account" useDialog="<%= PropsValues.DOCKBAR_ADMINISTRATIVE_LINKS_SHOW_IN_POP_UP %>" />
+			        </c:if>
 			</c:if>
 
 			<c:if test="<%= themeDisplay.isShowSignOutIcon() %>">
