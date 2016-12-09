@@ -519,12 +519,12 @@ for (int i = 0 ; i < groupMappingArray.length ; i++) {
 				principal = "admin";
 				credentials = "secret";
 				searchFilter = "(&(objectCategory=person)(sAMAccountName=@user_id@))";
-				importUserSearchFilter = "(objectClass=person)";
-				userMappingEmailAddress = "userprincipalname";
+				importUserSearchFilter = "(&(objectClass=person)(mail=*))";
+				userMappingEmailAddress = "mail";
 				userMappingFirstName = "givenName";
 				userMappingFullName = "cn";
 				userMappingGroup = "memberOf";
-				userMappingJobTitle = "";
+				userMappingJobTitle = "title";
 				userMappingLastName = "sn";
 				userMappingMiddleName = "middleName";
 				userMappingPassword = "unicodePwd";
