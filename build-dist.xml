@@ -1844,6 +1844,12 @@ release was successful.</echo>
 		<!-- LRE-90 - add files to setup windows service -->
 		<move file="${app.server.tomcat.bin.dir}/tomcat7w.exe"
 		      tofile="${app.server.tomcat.bin.dir}/liferayw.exe" />
+		
+		<!-- LRE-102 - change default logging -->
+		<copy
+			file="tools/servers/tomcat/conf/logging.properties"
+			tofile="${app.server.tomcat.dir}/conf/logging.properties"
+		/>
 
 		<chmod perm="a+x">
 			<fileset dir="${app.server.tomcat.bin.dir}">
