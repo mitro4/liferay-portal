@@ -14,23 +14,30 @@
 
 package com.liferay.portlet.workflowtasks.notifications;
 
+import javax.portlet.PortletRequest;
+import javax.portlet.WindowState;
+
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.UserNotificationEvent;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletURLFactoryUtil;
-
-import javax.portlet.PortletRequest;
-import javax.portlet.WindowState;
 
 /**
  * @author Jonathan Lee
@@ -102,9 +109,29 @@ public class WorkflowTasksUserNotificationHandler
 				jsonObject.getLong("workflowTaskId"), serviceContext);
 		}
 
+		// LRE-133
+		long plid = PortalUtil.getControlPanelPlid(serviceContext.getCompanyId());
+		
+		String myWorkflowTasksPage = PropsUtil.get("my-workflow-task.page");
+		String myWorkflowTasksSite = PropsUtil.get("my-workflow-task.site");
+		boolean myWorkflowTasksPrivate = GetterUtil.getBoolean(PropsUtil.get("my-workflow-task.private"), false);
+		
+		if (Validator.isNotNull(myWorkflowTasksPage)) {
+			Group workflowSiteGroup = GroupLocalServiceUtil.getGroup(serviceContext.getCompanyId(), GroupConstants.GUEST);
+			if (Validator.isNotNull(myWorkflowTasksSite)) {
+				try {
+					workflowSiteGroup = GroupLocalServiceUtil.getFriendlyURLGroup(serviceContext.getCompanyId(), myWorkflowTasksSite);
+				} catch (Exception ex) {} // ignore error
+			}
+			try {
+			    Layout page = LayoutLocalServiceUtil.getFriendlyURLLayout(workflowSiteGroup.getGroupId(), myWorkflowTasksPrivate, myWorkflowTasksPage);
+			    plid = page.getPlid();
+			} catch (Exception ex) {} // ignore error
+		}
+		
 		LiferayPortletURL portletURL = PortletURLFactoryUtil.create(
 			serviceContext.getRequest(), PortletKeys.MY_WORKFLOW_TASKS,
-			PortalUtil.getControlPanelPlid(serviceContext.getCompanyId()),
+			plid,
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setControlPanelCategory("my");
