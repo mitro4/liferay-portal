@@ -94,7 +94,7 @@ if (Validator.isNotNull(className)) {
 				</c:if>
 
 				<c:if test="<%= vocabulary.isRequired(classNameId) %>">
-					<span class="label-required">(<liferay-ui:message key="required-field" />)</span>
+					<span class="label-required"><liferay-ui:message key="required-field" /></span>
 				</c:if>
 			</label>
 
