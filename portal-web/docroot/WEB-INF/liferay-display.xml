@@ -31,6 +31,8 @@
 		<portlet id="36" />
 		<portlet id="114" />
 		<portlet id="115" />
+		<portlet id="153" />
+		<portlet id="158" />
 		<portlet id="169" />
 	</category>
 	<category name="category.community">
@@ -75,10 +77,8 @@
 		<portlet id="150" />
 		<portlet id="151" />
 		<portlet id="152" />
-		<portlet id="153" />
 		<portlet id="154" />
 		<portlet id="157" />
-		<portlet id="158" />
 		<portlet id="161" />
 		<portlet id="162" />
 		<portlet id="164" />
