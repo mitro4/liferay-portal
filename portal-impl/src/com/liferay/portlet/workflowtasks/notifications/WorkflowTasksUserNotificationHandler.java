@@ -111,6 +111,7 @@ public class WorkflowTasksUserNotificationHandler
 
 		// LRE-133
 		long plid = PortalUtil.getControlPanelPlid(serviceContext.getCompanyId());
+		boolean useMyProfile = true;
 		
 		String myWorkflowTasksPage = PropsUtil.get("my-workflow-task.page");
 		String myWorkflowTasksSite = PropsUtil.get("my-workflow-task.site");
@@ -126,6 +127,7 @@ public class WorkflowTasksUserNotificationHandler
 			try {
 			    Layout page = LayoutLocalServiceUtil.getFriendlyURLLayout(workflowSiteGroup.getGroupId(), myWorkflowTasksPrivate, myWorkflowTasksPage);
 			    plid = page.getPlid();
+			    useMyProfile = false;
 			} catch (Exception ex) {} // ignore error
 		}
 		
@@ -134,12 +136,15 @@ public class WorkflowTasksUserNotificationHandler
 			plid,
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setControlPanelCategory("my");
 		portletURL.setParameter(
 			"struts_action", "/my_workflow_tasks/edit_workflow_task");
 		portletURL.setParameter(
 			"workflowTaskId", jsonObject.getString("workflowTaskId"));
-		portletURL.setWindowState(WindowState.MAXIMIZED);
+		
+		if (useMyProfile) {
+			portletURL.setControlPanelCategory("my");
+		    portletURL.setWindowState(WindowState.MAXIMIZED);
+		}
 
 		return portletURL.toString();
 	}
