@@ -85,7 +85,7 @@ Group scopeGroup = themeDisplay.getScopeGroup();
 
 		<liferay-util:include page="/html/portlet/document_library/sort_button.jsp" />
 
-		<c:if test="<%= !user.isDefaultUser() %>">
+		<c:if test="<%= DLPermission.contains(permissionChecker, scopeGroup.getGroupId(), ActionKeys.ADD_DOCUMENT_TYPE)  %>">
 			<aui:nav-item dropdown="<%= true %>" label="manage">
 
 				<%
