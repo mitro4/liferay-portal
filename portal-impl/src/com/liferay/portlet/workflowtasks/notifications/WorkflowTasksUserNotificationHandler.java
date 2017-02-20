@@ -144,6 +144,12 @@ public class WorkflowTasksUserNotificationHandler
 		if (useMyProfile) {
 			portletURL.setControlPanelCategory("my");
 		    portletURL.setWindowState(WindowState.MAXIMIZED);
+		} else {    
+		    LiferayPortletURL redirectURL = PortletURLFactoryUtil.create(
+					serviceContext.getRequest(), PortletKeys.MY_WORKFLOW_TASKS,
+					plid,
+					PortletRequest.RENDER_PHASE);
+		    portletURL.setParameter("redirect", HtmlUtil.escapeURL(redirectURL.toString()));
 		}
 
 		return portletURL.toString();
