@@ -1350,7 +1350,7 @@ create table Organization_ (
 	modifiedDate DATE null,
 	parentOrganizationId LONG,
 	treePath STRING null,
-	name VARCHAR(100) null,
+	name VARCHAR(255) null,
 	type_ VARCHAR(75) null,
 	recursable BOOLEAN,
 	regionId LONG,
@@ -2185,7 +2185,7 @@ create table UserGroup (
 	createDate DATE null,
 	modifiedDate DATE null,
 	parentUserGroupId LONG,
-	name VARCHAR(75) null,
+	name VARCHAR(255) null,
 	description STRING null,
 	addedByLDAPImport BOOLEAN
 );
