@@ -17,14 +17,14 @@ public class UpgradeNameSize extends UpgradeProcess {
 
         String query = "alter table Organization_ "
                 + ((DB.TYPE_SQLSERVER.equals(db.getType()) || DB.TYPE_POSTGRESQL.equals(db.getType()) || DB.TYPE_HYPERSONIC.equals(db.getType())) ? "alter" : "modify")
-                + " column name varchar(255)";
+                + " column name " + (DB.TYPE_POSTGRESQL.equals(db.getType()) ? "type" : "" ) + " varchar(255)";
 
         log.debug(query);
         runSQL(query);
 
         query = "alter table UserGroup "
                 + ((DB.TYPE_SQLSERVER.equals(db.getType()) || DB.TYPE_POSTGRESQL.equals(db.getType())|| DB.TYPE_HYPERSONIC.equals(db.getType())) ? "alter" : "modify")
-                + " column name varchar(255)";
+                + " column name " + (DB.TYPE_POSTGRESQL.equals(db.getType()) ? "type" : "" ) + " varchar(255)";
         
         log.debug(query);
         runSQL(query);
