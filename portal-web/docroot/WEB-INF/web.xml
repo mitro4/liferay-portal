@@ -560,6 +560,14 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>I18n Servlet</servlet-name>
+		<url-pattern>/kk/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>I18n Servlet</servlet-name>
+		<url-pattern>/kk_KZ/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>I18n Servlet</servlet-name>
 		<url-pattern>/ko/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -979,6 +987,8 @@
 			<url-pattern>/iw_IL/c/portal/protected</url-pattern>
 			<url-pattern>/ja/c/portal/protected</url-pattern>
 			<url-pattern>/ja_JP/c/portal/protected</url-pattern>
+			<url-pattern>/kk/c/portal/protected</url-pattern>
+			<url-pattern>/kk_KZ/c/portal/protected</url-pattern>
 			<url-pattern>/ko/c/portal/protected</url-pattern>
 			<url-pattern>/ko_KR/c/portal/protected</url-pattern>
 			<url-pattern>/lo/c/portal/protected</url-pattern>
