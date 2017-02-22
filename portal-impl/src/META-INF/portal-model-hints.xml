@@ -224,7 +224,7 @@
 		</field>
 		<field name="name" type="String">
 			<hint name="display-width">150</hint>
-			<hint name="max-length">150</hint>
+			<hint name="max-length">512</hint>
 			<validator name="required" />
 		</field>
 		<field name="description" type="String">
@@ -237,7 +237,7 @@
 		<field name="manualMembership" type="boolean" />
 		<field name="membershipRestriction" type="int" />
 		<field name="friendlyURL" type="String">
-			<hint name="max-length">255</hint>
+			<hint name="max-length">1024</hint>
 		</field>
 		<field name="site" type="boolean" />
 		<field name="remoteStagingGroupCount" type="int" />

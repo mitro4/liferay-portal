@@ -28,6 +28,20 @@ public class UpgradeNameSize extends UpgradeProcess {
         
         log.debug(query);
         runSQL(query);
+
+        query = "alter table Group_ "
+                + ((DB.TYPE_SQLSERVER.equals(db.getType()) || DB.TYPE_POSTGRESQL.equals(db.getType())|| DB.TYPE_HYPERSONIC.equals(db.getType())) ? "alter" : "modify")
+                + " column name " + (DB.TYPE_POSTGRESQL.equals(db.getType()) ? "type" : "" ) + " varchar(512)";
+
+        log.debug(query);
+        runSQL(query);
+
+        query = "alter table Group_ "
+                + ((DB.TYPE_SQLSERVER.equals(db.getType()) || DB.TYPE_POSTGRESQL.equals(db.getType())|| DB.TYPE_HYPERSONIC.equals(db.getType())) ? "alter" : "modify")
+                + " column friendlyURL " + (DB.TYPE_POSTGRESQL.equals(db.getType()) ? "type" : "" ) + " varchar(1024)";
+
+        log.debug(query);
+        runSQL(query);
     }
 
 }
