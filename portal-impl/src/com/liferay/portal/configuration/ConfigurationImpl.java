@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.CompanyConstants;
@@ -133,12 +134,10 @@ public class ConfigurationImpl
 			ComponentProperties componentProperties = getComponentProperties();
 
 			value = componentProperties.getProperty(key);
-
+			
 			if (value == null) {
 				value = _nullValue;
 			}
-
-			_values.put(key, value);
 		}
 
 		if (value == _nullValue) {
@@ -153,9 +152,7 @@ public class ConfigurationImpl
 		Object value = _values.get(key);
 
 		if (value == null) {
-			ComponentProperties componentProperties = getComponentProperties();
-
-			value = componentProperties.getString(key);
+			value = _get(key);
 
 			if (value == null) {
 				value = _nullValue;
@@ -185,10 +182,7 @@ public class ConfigurationImpl
 		}
 
 		if (value == null) {
-			ComponentProperties componentProperties = getComponentProperties();
-
-			value = componentProperties.getString(
-				key, getEasyConfFilter(filter));
+			value = _get(key, filter);
 
 			if (filterCacheKey != null) {
 				if (value == null) {
@@ -213,9 +207,7 @@ public class ConfigurationImpl
 		Object value = _values.get(cacheKey);
 
 		if (value == null) {
-			ComponentProperties componentProperties = getComponentProperties();
-
-			String[] array = componentProperties.getStringArray(key);
+			String[] array = _getArray(key);
 
 			value = fixArrayValue(cacheKey, array);
 		}
@@ -238,10 +230,7 @@ public class ConfigurationImpl
 		}
 
 		if (value == null) {
-			ComponentProperties componentProperties = getComponentProperties();
-
-			String[] array = componentProperties.getStringArray(
-				key, getEasyConfFilter(filter));
+			String[] array = _getArray(key, filter);
 
 			value = fixArrayValue(filterCacheKey, array);
 		}
@@ -445,6 +434,75 @@ public class ConfigurationImpl
 		}
 	}
 
+	/** Convert value from UTF-8. Look LRE-138 for details */
+	protected String convert(String value) {
+		try {
+			value = new String(
+				value.getBytes(StringPool.ISO_8859_1), StringPool.UTF8);
+		}
+
+		catch (Exception e) { // ignore error
+		}
+		
+		return value;
+	}
+	
+	
+	protected Object _get(String key) {
+		ComponentProperties componentProperties = getComponentProperties();
+
+		Object value = componentProperties.getString(key);
+		
+		if (value != null && value instanceof String) {
+		    value = convert((String)value);
+		}
+		
+		return value;
+
+	}
+	
+	protected Object _get(String key, Filter filter) {
+		ComponentProperties componentProperties = getComponentProperties();
+
+		String value = componentProperties.getString(
+			key, getEasyConfFilter(filter));	
+		
+		if (value != null) {
+			value = convert(value);
+		}
+			
+		return value;
+	}
+	
+	protected String[] _getArray(String key) {
+		ComponentProperties componentProperties = getComponentProperties();
+
+		String[] array = componentProperties.getStringArray(key);
+		
+		if (array != null) {
+			for (int i=0; i < array.length; i++) {
+				array[i] = convert(array[i]);
+			}
+		}
+		
+		return array;
+	}
+	
+	protected String[] _getArray(String key, Filter filter) {
+		ComponentProperties componentProperties = getComponentProperties();
+
+		String[] array = componentProperties.getStringArray(
+			key, getEasyConfFilter(filter));
+		
+		if (array != null) {
+			for (int i=0; i < array.length; i++) {
+				array[i] = convert(array[i]);
+			}
+		}
+		
+		return array;
+	}
+	
 	private static final String _ARRAY_KEY_PREFIX = "ARRAY_";
 
 	private static final boolean _PRINT_DUPLICATE_CALLS_TO_GET = false;
