@@ -589,11 +589,19 @@ print AdminControl.invoke(appManager, 'startApplication', 'liferay-portal')
 	</target>
 
 	<target name="doc">
-		<antcall target="dtddoc" />
-		<antcall target="javadoc" />
-		<antcall target="javadoc-all" />
-		<antcall target="propertiesdoc" />
-		<ant dir="util-taglib" target="taglibdoc" inheritAll="false" />
+		<!-- LIFERAY-RE
+			To speed-up builds build javadoc only if dist.build.doc property set true
+		  -->
+		<if>
+			<equals arg1="${dist.build.doc}" arg2="true" />
+			<then>
+				<antcall target="dtddoc" />
+				<antcall target="javadoc" />
+				<antcall target="javadoc-all" />
+				<antcall target="propertiesdoc" />
+				<ant dir="util-taglib" target="taglibdoc" inheritAll="false" />
+			</then>
+		</if>
 	</target>
 
 	<target name="dtddoc">
@@ -637,6 +645,7 @@ print AdminControl.invoke(appManager, 'startApplication', 'liferay-portal')
 
 		<mkdir dir="${doc.java.dir}" />
 
+		<!-- Comented for Liferay RE to speedup build process -->
 		<javadoc
 			breakiterator="yes"
 			classpathref="project.classpath"
