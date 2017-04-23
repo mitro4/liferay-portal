@@ -286,7 +286,7 @@ public class ComboServlet extends HttpServlet {
 					int index = resourcePath.lastIndexOf(CharPool.SLASH);
 
 					if (index != -1) {
-						baseURL = resourcePath.substring(0, index + 1);
+						baseURL = PortalUtil.getPathContext() + resourcePath.substring(0, index + 1);
 					}
 
 					stringFileContent = AggregateUtil.updateRelativeURLs(
