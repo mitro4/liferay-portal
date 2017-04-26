@@ -314,15 +314,11 @@
 	<bean id="org.apache.lucene.analysis.ro.RomanianAnalyzer" class="org.apache.lucene.analysis.ro.RomanianAnalyzer">
 		<constructor-arg ref="org.apache.lucene.util.Version" />
 	</bean>
-	<bean id="org.apache.lucene.analysis.ru.RussianAnalyzer" class="org.apache.lucene.analysis.ru.RussianAnalyzer">
-		<constructor-arg ref="org.apache.lucene.util.Version" />
-	</bean>
+	<bean id="org.apache.lucene.analysis.ru.RussianAnalyzer" class="org.apache.lucene.morphology.russian.RussianAnalyzer"/>
 	<bean id="org.apache.lucene.analysis.es.SpanishAnalyzer" class="org.apache.lucene.analysis.es.SpanishAnalyzer">
 		<constructor-arg ref="org.apache.lucene.util.Version" />
 	</bean>
-	<bean id="org.apache.lucene.analysis.standard.StandardAnalyzer" class="org.apache.lucene.analysis.standard.StandardAnalyzer">
-		<constructor-arg ref="org.apache.lucene.util.Version" />
-	</bean>
+	<bean id="org.apache.lucene.analysis.standard.StandardAnalyzer" class="org.apache.lucene.morphology.russian.RussianAnalyzer"/>
 	<bean id="org.apache.lucene.analysis.sv.SwedishAnalyzer" class="org.apache.lucene.analysis.sv.SwedishAnalyzer">
 		<constructor-arg ref="org.apache.lucene.util.Version" />
 	</bean>
