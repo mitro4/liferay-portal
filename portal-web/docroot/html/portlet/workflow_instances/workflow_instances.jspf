@@ -43,6 +43,10 @@
 		long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
 
 		WorkflowHandler workflowHandler = WorkflowHandlerRegistryUtil.getWorkflowHandler(className);
+		WorkflowDefinition def = WorkflowDefinitionManagerUtil.getWorkflowDefinition(themeDisplay.getCompanyId(),
+				workflowInstance.getWorkflowDefinitionName(), workflowInstance.getWorkflowDefinitionVersion());
+		
+		String processName = def.getTitle(themeDisplay.getLanguageId());
 		%>
 
 		<portlet:renderURL var="rowURL">
@@ -58,7 +62,7 @@
 		>
 
 			<%
-			buffer.append(LanguageUtil.get(pageContext, HtmlUtil.escape(workflowInstance.getWorkflowDefinitionName())));
+			buffer.append(processName);
 			%>
 
 		</liferay-ui:search-container-column-text>
