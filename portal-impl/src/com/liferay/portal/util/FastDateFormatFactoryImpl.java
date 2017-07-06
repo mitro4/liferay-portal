@@ -14,21 +14,21 @@
 
 package com.liferay.portal.util;
 
-import com.liferay.portal.kernel.security.pacl.DoPrivileged;
-import com.liferay.portal.kernel.util.FastDateFormatConstants;
-import com.liferay.portal.kernel.util.FastDateFormatFactory;
-import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
-
 import java.text.Format;
-
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang.time.FastDateFormat;
+
+import com.liferay.portal.kernel.security.pacl.DoPrivileged;
+import com.liferay.portal.kernel.util.FastDateFormatConstants;
+import com.liferay.portal.kernel.util.FastDateFormatFactory;
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * @author Brian Wing Shun Chan
@@ -44,7 +44,8 @@ public class FastDateFormatFactoryImpl implements FastDateFormatFactory {
 
 		if (format == null) {
 			format = FastDateFormat.getDateInstance(style, timeZone, locale);
-
+			format = RuDateFormatSymbols.applyRussianSymbols(format, locale);
+			
 			_dateFormats.put(key, format);
 		}
 
@@ -77,7 +78,8 @@ public class FastDateFormatFactoryImpl implements FastDateFormatFactory {
 		if (format == null) {
 			format = FastDateFormat.getDateTimeInstance(
 				dateStyle, timeStyle, timeZone, locale);
-
+			format = RuDateFormatSymbols.applyRussianSymbols(format, locale);
+			
 			_dateTimeFormats.put(key, format);
 		}
 
@@ -121,7 +123,8 @@ public class FastDateFormatFactoryImpl implements FastDateFormatFactory {
 
 		if (format == null) {
 			format = FastDateFormat.getInstance(pattern, timeZone, locale);
-
+			format = RuDateFormatSymbols.applyRussianSymbols(format, locale);
+			
 			_simpleDateFormats.put(key, format);
 		}
 
@@ -141,7 +144,8 @@ public class FastDateFormatFactoryImpl implements FastDateFormatFactory {
 
 		if (format == null) {
 			format = FastDateFormat.getTimeInstance(style, timeZone, locale);
-
+			format = RuDateFormatSymbols.applyRussianSymbols(format, locale);
+			
 			_timeFormats.put(key, format);
 		}
 

@@ -43,6 +43,8 @@ public class DateFormatFactoryImpl implements DateFormatFactory {
 			dateFormat.setTimeZone(timeZone);
 		}
 
+		dateFormat = RuDateFormatSymbols.applyRussianSymbols(dateFormat, locale);
+		
 		return dateFormat;
 	}
 
@@ -65,6 +67,8 @@ public class DateFormatFactoryImpl implements DateFormatFactory {
 			dateFormat.setTimeZone(timeZone);
 		}
 
+		dateFormat = RuDateFormatSymbols.applyRussianSymbols(dateFormat, locale);
+		
 		return dateFormat;
 	}
 
@@ -92,7 +96,8 @@ public class DateFormatFactoryImpl implements DateFormatFactory {
 		if (timeZone != null) {
 			dateFormat.setTimeZone(timeZone);
 		}
-
+		dateFormat = RuDateFormatSymbols.applyRussianSymbols(dateFormat, locale);
+		
 		return dateFormat;
 	}
 
@@ -114,7 +119,8 @@ public class DateFormatFactoryImpl implements DateFormatFactory {
 		if (timeZone != null) {
 			dateFormat.setTimeZone(timeZone);
 		}
-
+		dateFormat = RuDateFormatSymbols.applyRussianSymbols(dateFormat, locale);
+		
 		return dateFormat;
 	}
 
