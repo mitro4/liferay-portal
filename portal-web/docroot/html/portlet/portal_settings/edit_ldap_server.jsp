@@ -518,7 +518,7 @@ for (int i = 0 ; i < groupMappingArray.length ; i++) {
 				baseDN = "dc=example,dc=com";
 				principal = "admin";
 				credentials = "secret";
-				searchFilter = "(&(objectCategory=person)(sAMAccountName=@user_id@))";
+				searchFilter = "(&(objectCategory=person)(sAMAccountName=@screen_name@))";
 				importUserSearchFilter = "(&(objectClass=person)(mail=*))";
 				userMappingEmailAddress = "mail";
 				userMappingFirstName = "givenName";
