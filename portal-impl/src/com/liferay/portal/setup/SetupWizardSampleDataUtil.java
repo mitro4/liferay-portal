@@ -112,15 +112,15 @@ public class SetupWizardSampleDataUtil {
 			intranetLayout.getTypeSettings());
 
 		User user = UserLocalServiceUtil.fetchUserByEmailAddress(
-			company.getCompanyId(), "test@liferay.com");
+			company.getCompanyId(), "admin@liferay.ru");
 
 		if (user == null) {
 			user = UserLocalServiceUtil.addDefaultAdminUser(
-				companyId, "vasyapupkin", "test@liferay.com",
+				companyId, "admin", "admin@liferay.ru",
 				LocaleUtil.getDefault(), "Вася", StringPool.BLANK, "Пупкин");
 		}
 		else {
-			user.setScreenName("vasyapupkin");
+			user.setScreenName("admin");
 			user.setGreeting("Добро пожаловать, Вася Пупкин!");
 			user.setFirstName("Вася");
 			user.setLastName("Пупкин");
