@@ -14,10 +14,20 @@
 		</rollingPolicy>
 
 		<layout class="org.apache.log4j.EnhancedPatternLayout">
-			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%t][%c{1}:%L] %m%n" />
+			<param name="ConversionPattern" value="[%d{dd.MM.yyyy HH:mm:ss,SSS Z}] %-5p [%t][%c{1}:%L] %m%n" />
 		</layout>
 	</appender>
 
+	<appender name="AD_INTEGRATION" class="org.apache.log4j.rolling.RollingFileAppender">
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="@liferay.home@/logs/ad_integration@spi.id@.%d{yyyy-MM-dd}.log" />
+        </rollingPolicy>
+
+        <layout class="org.apache.log4j.EnhancedPatternLayout">
+            <param name="ConversionPattern" value="[%d{dd.MM.yyyy HH:mm:ss,SSS Z}] %-5p [%t][%c{1}:%L] %m%n" />
+        </layout>
+    </appender>
+    
 	<category name="com.browseengine.bobo">
 		<priority value="ERROR" />
 	</category>
@@ -470,10 +480,6 @@
 		<priority value="WARN" />
 	</category>
 
-	<category name="com.liferay.portal.security.auth.LDAPAuth">
-		<priority value="WARN" />
-	</category>
-
 	<category name="com.liferay.portal.security.auth.OpenSSOAutoLogin">
 		<priority value="WARN" />
 	</category>
@@ -496,14 +502,6 @@
 
 	<category name="com.liferay.portal.security.lang.PortalSecurityManager">
 		<priority value="INFO" />
-	</category>
-
-	<category name="com.liferay.portal.security.ldap">
-		<priority value="ERROR" />
-	</category>
-
-	<category name="com.liferay.portal.security.ldap.PortalLDAPUtil">
-		<priority value="ERROR" />
 	</category>
 
 	<category name="com.liferay.portal.security.pacl.BasePACLPolicy">
@@ -1306,6 +1304,28 @@
 		<priority value="WARN" />
 	</category>
 
+	<!-- AD/LDAP Integration Loggin -->
+    <logger name="com.liferay.portal.security.auth.LDAPAuth" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="AD_INTEGRATION" />
+    </logger>
+    <logger name="com.liferay.portal.security.auth.NtlmAutoLogin" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="AD_INTEGRATION" />
+    </logger>
+    <logger name="com.liferay.portal.security.ldap" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="AD_INTEGRATION" />
+    </logger>
+    <logger name="com.liferay.portal.security.ntlm" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="AD_INTEGRATION" />
+    </logger>
+    <logger name="com.liferay.portal.servlet.filters.sso.ntlm" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="AD_INTEGRATION" />
+    </logger>
+    
 	<root>
 		<priority value="INFO" />
 		<appender-ref ref="CONSOLE" />
