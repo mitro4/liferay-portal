@@ -1747,7 +1747,7 @@ release was successful.</echo>
 	</target>
 
 	<target name="unzip-tomcat">
-		<delete dir="${app.server.tomcat.dir}" />
+		<delete dir="${app.server.tomcat.dir}" failonerror="false"/>
 
 		<if>
 			<not>
