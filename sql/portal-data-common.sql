@@ -353,6 +353,14 @@ insert into Region (regionId, countryId, regionCode, name, active_) values (1160
 insert into Region (regionId, countryId, regionCode, name, active_) values (116015, 116, '15', 'Северо-Казахстанская область', TRUE);
 insert into Region (regionId, countryId, regionCode, name, active_) values (116016, 116, '16', 'Восточно-Казахстанская область', TRUE);
 
+insert into Region (regionId, countryId, regionCode, name, active_) values (39001, 39, '1', 'Брестская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (39002, 39, '2', 'Витебская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (39003, 39, '3', 'Гомельская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (39004, 39, '4', 'Гродненская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (39005, 39, '5', 'Минская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (39006, 39, '6', 'Могилёвская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (39007, 39, '7', 'Минск', TRUE);
+
 
 
 insert into Region (regionId, countryId, regionCode, name, active_) values (1001, 1, 'AB', 'Alberta', TRUE);
