@@ -336,6 +336,23 @@ insert into Region (regionId, countryId, regionCode, name, active_) values (1308
 insert into Region (regionId, countryId, regionCode, name, active_) values (13084, 13, '89', 'Ямало-Ненецкий Автономный округ', TRUE);
 insert into Region (regionId, countryId, regionCode, name, active_) values (13085, 13, '76', 'Ярославская область', TRUE);
 
+insert into Region (regionId, countryId, regionCode, name, active_) values (116001, 116, '01', 'Астана', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116002, 116, '02', 'Алматы', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116003, 116, '03', 'Акмолинская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116004, 116, '04', 'Актюбинская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116005, 116, '05', 'Алматинская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116006, 116, '06', 'Атырауская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116007, 116, '07', 'Западно-Казахстанская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116008, 116, '08', 'Жамбылская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116009, 116, '09', 'Карагандинская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116010, 116, '10', 'Костанайская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116011, 116, '11', 'Кызылординская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116012, 116, '12', 'Мангистауская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116013, 116, '13', 'Южно-Казахстанская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116014, 116, '14', 'Павлодарская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116015, 116, '15', 'Северо-Казахстанская область', TRUE);
+insert into Region (regionId, countryId, regionCode, name, active_) values (116016, 116, '16', 'Восточно-Казахстанская область', TRUE);
+
 
 
 insert into Region (regionId, countryId, regionCode, name, active_) values (1001, 1, 'AB', 'Alberta', TRUE);
