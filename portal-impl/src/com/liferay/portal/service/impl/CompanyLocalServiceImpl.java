@@ -391,13 +391,13 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		roleLocalService.checkSystemRoles(companyId);
 
-		// System groups
-
-		groupLocalService.checkSystemGroups(companyId);
-
 		// Company group
 
 		groupLocalService.checkCompanyGroup(companyId);
+
+		// System groups
+
+		groupLocalService.checkSystemGroups(companyId);
 
 		// Default password policy
 

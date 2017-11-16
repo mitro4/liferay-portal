@@ -73,6 +73,11 @@ try {
 
 		throw new NoSuchModelException();
 	}
+	boolean checkGroupMember = GetterUtil.getBoolean(PropsUtil.get("security.check.private.site"),
+                false);
+        if (checkGroupMember && !permissionChecker.hasPermission(groupId, className, classPK, ActionKeys.VIEW)) {
+            throw new NoSuchModelException();
+        }
 
 	String title = assetRenderer.getTitle(locale);
 	String summary = StringPool.BLANK;

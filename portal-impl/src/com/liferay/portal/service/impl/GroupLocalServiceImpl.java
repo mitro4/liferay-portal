@@ -29,10 +29,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.lar.PortletDataContext;
-import com.liferay.portal.kernel.lar.PortletDataContextFactoryUtil;
-import com.liferay.portal.kernel.lar.PortletDataHandler;
-import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
+import com.liferay.portal.kernel.lar.*;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
@@ -3707,20 +3704,74 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
 
 		parameterMap.put(
-			PortletDataHandlerKeys.CATEGORIES,
-			new String[] {Boolean.TRUE.toString()});
+				PortletDataHandlerKeys.LOGO,
+				new String[]{Boolean.TRUE.toString()});
 		parameterMap.put(
-			PortletDataHandlerKeys.PERMISSIONS,
-			new String[] {Boolean.TRUE.toString()});
+				PortletDataHandlerKeys.CATEGORIES,
+				new String[]{Boolean.TRUE.toString()});
 		parameterMap.put(
-			PortletDataHandlerKeys.PORTLET_CONFIGURATION,
-			new String[] {Boolean.TRUE.toString()});
+				PortletDataHandlerKeys.COMMENTS,
+				new String[]{Boolean.TRUE.toString()});
 		parameterMap.put(
-			PortletDataHandlerKeys.PORTLET_DATA,
-			new String[] {Boolean.TRUE.toString()});
+				PortletDataHandlerKeys.RATINGS,
+				new String[]{Boolean.FALSE.toString()});
 		parameterMap.put(
-			PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
-			new String[] {Boolean.TRUE.toString()});
+				PortletDataHandlerKeys.PERMISSIONS,
+				new String[]{Boolean.FALSE.toString()});
+
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_CONFIGURATION,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_DATA,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_DATA_ALL,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_SETUP,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_SETUP_ALL,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS,
+				new String[]{Boolean.FALSE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS_ALL,
+				new String[]{Boolean.FALSE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_USER_PREFERENCES,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_USER_PREFERENCES_ALL,
+				new String[]{Boolean.TRUE.toString()});
+
+		parameterMap.put(
+				PortletDataHandlerKeys.PUBLIC_LAYOUT_PERMISSIONS,
+				new String[]{Boolean.FALSE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.LAYOUT_SET_SETTINGS,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE,
+				new String[]{PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_NAME});
+
+		parameterMap.put(
+				PortletDataHandlerKeys.DATA_STRATEGY,
+				new String[]{PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE});
+		parameterMap.put(
+				PortletDataHandlerKeys.THEME_REFERENCE,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.USER_ID_STRATEGY,
+				new String[]{UserIdStrategy.CURRENT_USER_ID});
 
 		layoutLocalService.importLayouts(
 			defaultUserId, group.getGroupId(), false, parameterMap, larFile);
