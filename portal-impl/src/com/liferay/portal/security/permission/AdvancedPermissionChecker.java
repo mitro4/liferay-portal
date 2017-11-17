@@ -542,14 +542,11 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
                     } catch (Exception e) {
                     }
                     if (Validator.isNotNull(className)) {
-                        /*if (!name.equals(Group.class.getName())
-                                && !name.equals(Layout.class.getName())) {*/
-                            if (!isCompanyAdmin()) {
-                                if (!isGroupMember(groupId)) {
-                                    return false;
-                                }
+                        if (!isCompanyAdmin()) {
+                            if (!isGroupMember(groupId)) {
+                                return false;
                             }
-                        //}
+                        }
                     }
                 }
             }

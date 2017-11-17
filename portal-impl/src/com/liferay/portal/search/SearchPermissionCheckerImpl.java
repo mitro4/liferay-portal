@@ -281,12 +281,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
         Map<Long, List<Role>> groupIdsToRoles = new HashMap<Long, List<Role>>();
 
         roles.addAll(permissionCheckerBag.getRoles());
-        if (checkGroupMember
-                /*&& !className.equals(Group.class.getName())
-                && !className.equals(Layout.class.getName())*/) {
-            Role siteMember = RoleLocalServiceUtil.getRole(companyId, RoleConstants.SITE_MEMBER);
-            roles.add(siteMember);
-        }
 
         if (ArrayUtil.isEmpty(groupIds)) {
             groups.addAll(GroupLocalServiceUtil.getUserGroups(userId, true));
@@ -300,11 +294,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
             BooleanQuery groupsQuery = BooleanQueryFactoryUtil.create(
                     searchContext);
             for (long groupId : groupIds) {
-                if (checkGroupMember) {
-                    if (advancedPermissionChecker.isGroupMember(groupId)) {
-                        groupsQuery.addTerm(Field.GROUP_ID, groupId);
-                    }
-                }
                 if (GroupLocalServiceUtil.hasUserGroup(userId, groupId)) {
                     Group group = GroupLocalServiceUtil.getGroup(groupId);
 
@@ -328,7 +317,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
             roles.add(
                     RoleLocalServiceUtil.getRole(companyId, RoleConstants.GUEST));
         }
-
 
         for (Group group : groups) {
             PermissionCheckerBag userBag = advancedPermissionChecker.getUserBag(
@@ -355,6 +343,9 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
             List<UserGroupRole> userGroupRoles,
             Map<Long, List<Role>> groupIdsToRoles)
             throws Exception {
+
+        boolean checkGroupMember = GetterUtil.getBoolean(PropsUtil.get("security.check.private.site"),
+                false);
 
         BooleanQuery permissionQuery = BooleanQueryFactoryUtil.create(
                 searchContext);
@@ -394,15 +385,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
             }
 
             for (Group group : groups) {
-                if (advancedPermissionChecker.isGroupAdmin(
-                        group.getGroupId()) ||
-                        ResourcePermissionLocalServiceUtil.hasResourcePermission(
-                                companyId, className, ResourceConstants.SCOPE_GROUP,
-                                String.valueOf(group.getGroupId()), role.getRoleId(),
-                                ActionKeys.VIEW)) {
-
-                    groupsQuery.addTerm(Field.GROUP_ID, group.getGroupId());
-                }
 
                 if ((role.getType() != RoleConstants.TYPE_REGULAR) &&
                         ResourcePermissionLocalServiceUtil.hasResourcePermission(
@@ -432,12 +414,14 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 
             if (!ArrayUtil.isEmpty(groupIds)) {
                 for (long groupId : groupIds) {
+
                     if (ResourcePermissionLocalServiceUtil.
                             hasResourcePermission(
                                     companyId, className,
                                     ResourceConstants.SCOPE_GROUP,
                                     String.valueOf(groupId), role.getRoleId(),
-                                    ActionKeys.VIEW)) {
+                                    ActionKeys.VIEW)
+                            || checkGroupMember) {
 
                         groupsQuery.addTerm(Field.GROUP_ID, groupId);
                     }
@@ -459,7 +443,11 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
         }
 
         if (groupsQuery.hasClauses()) {
-            permissionQuery.add(groupsQuery, BooleanClauseOccur.SHOULD);
+            BooleanClauseOccur groupClause = BooleanClauseOccur.SHOULD;
+            if (checkGroupMember) {
+                groupClause = BooleanClauseOccur.MUST;
+            }
+            permissionQuery.add(groupsQuery, groupClause);
         }
 
         if (rolesQuery.hasClauses()) {
@@ -488,15 +476,11 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
     protected PermissionCheckerBag getPermissionCheckerBag(
             AdvancedPermissionChecker advancedPermissionChecker, long userId)
             throws Exception {
-        boolean checkGroupMember = GetterUtil.getBoolean(PropsUtil.get("security.check.private.site"),
-                false);
 
-        if (!advancedPermissionChecker.isSignedIn() && !checkGroupMember) {
+        if (!advancedPermissionChecker.isSignedIn()) {
             return advancedPermissionChecker.getGuestUserBag();
-        } else if (advancedPermissionChecker.isSignedIn()) {
-            return advancedPermissionChecker.getUserBag(userId, 0);
         } else {
-            return  new PermissionCheckerBagImpl();
+            return advancedPermissionChecker.getUserBag(userId, 0);
         }
     }
 
