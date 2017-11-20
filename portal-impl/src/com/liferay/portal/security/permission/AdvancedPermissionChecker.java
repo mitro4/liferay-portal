@@ -535,17 +535,15 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
                     false);
             if (checkGroupMember && !group.isUserPersonalSite()
                     && (group.getType() != GroupConstants.TYPE_SITE_OPEN && group.getType() != GroupConstants.TYPE_SITE_SYSTEM)) {
-                if (name.startsWith("com.liferay.portal.model")) {
-                    ClassName className = null;
-                    try {
-                        className = ClassNameLocalServiceUtil.getClassName(name);
-                    } catch (Exception e) {
-                    }
-                    if (Validator.isNotNull(className)) {
-                        if (!isCompanyAdmin()) {
-                            if (!isGroupMember(groupId)) {
-                                return false;
-                            }
+                ClassName className = null;
+                try {
+                    className = ClassNameLocalServiceUtil.getClassName(name);
+                } catch (Exception e) {
+                }
+                if (Validator.isNotNull(className)) {
+                    if (!isCompanyAdmin()) {
+                        if (!isGroupMember(groupId)) {
+                            return false;
                         }
                     }
                 }
