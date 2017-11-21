@@ -14,6 +14,20 @@
 
 package com.liferay.portal.service.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.RequiredLayoutException;
@@ -27,6 +41,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.lar.MissingReferences;
 import com.liferay.portal.kernel.lar.PortletDataException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntry;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntryThreadLocal;
@@ -81,21 +97,6 @@ import com.liferay.portlet.dynamicdatamapping.StructureDuplicateStructureKeyExce
 import com.liferay.portlet.mobiledevicerules.model.MDRRuleGroupInstance;
 import com.liferay.portlet.sites.util.Sites;
 import com.liferay.portlet.sites.util.SitesUtil;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Provides the local service for accessing, adding, deleting, exporting,
@@ -1764,6 +1765,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 				userId, groupId, privateLayout, parameterMap, file);
 		}
 		catch (PortalException pe) {
+			_log.error("Cannot import LAR", pe);
+			
 			Throwable cause = pe.getCause();
 
 			if (cause instanceof LocaleException) {
@@ -1773,9 +1776,11 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			throw pe;
 		}
 		catch (SystemException se) {
+			_log.error("Cannot import LAR", se);
 			throw se;
 		}
 		catch (Exception e) {
+			_log.error("Cannot import LAR", e);
 			throw new SystemException(e);
 		}
 	}
@@ -3131,5 +3136,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 	@BeanReference(type = LayoutLocalServiceHelper.class)
 	protected LayoutLocalServiceHelper layoutLocalServiceHelper;
+	
+	private static Log _log = LogFactoryUtil.getLog(
+			LayoutLocalServiceImpl.class);
 
 }
