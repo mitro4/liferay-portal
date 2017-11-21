@@ -16,6 +16,7 @@ package com.liferay.portlet.documentlibrary.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -249,20 +250,20 @@ public class DLFileEntryServiceWrapper implements DLFileEntryService,
 
 	@Override
 	public int getFileEntriesCount(long groupId, long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
 		return _dlFileEntryService.getFileEntriesCount(groupId, folderId);
 	}
 
 	@Override
 	public int getFileEntriesCount(long groupId, long folderId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
 		return _dlFileEntryService.getFileEntriesCount(groupId, folderId, status);
 	}
 
 	@Override
 	public int getFileEntriesCount(long groupId, long folderId,
 		long fileEntryTypeId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
 		return _dlFileEntryService.getFileEntriesCount(groupId, folderId,
 			fileEntryTypeId);
 	}
@@ -270,7 +271,7 @@ public class DLFileEntryServiceWrapper implements DLFileEntryService,
 	@Override
 	public int getFileEntriesCount(long groupId, long folderId,
 		java.lang.String[] mimeTypes)
-		throws com.liferay.portal.kernel.exception.SystemException {
+			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
 		return _dlFileEntryService.getFileEntriesCount(groupId, folderId,
 			mimeTypes);
 	}
@@ -307,7 +308,7 @@ public class DLFileEntryServiceWrapper implements DLFileEntryService,
 	@Override
 	public int getFoldersFileEntriesCount(long groupId,
 		java.util.List<java.lang.Long> folderIds, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
 		return _dlFileEntryService.getFoldersFileEntriesCount(groupId,
 			folderIds, status);
 	}

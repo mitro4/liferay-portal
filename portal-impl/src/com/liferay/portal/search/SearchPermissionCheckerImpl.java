@@ -17,22 +17,13 @@ package com.liferay.portal.search;
 import com.liferay.portal.NoSuchResourceException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.BooleanClauseOccur;
-import com.liferay.portal.kernel.search.BooleanQuery;
-import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
-import com.liferay.portal.kernel.search.Document;
-import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.Query;
-import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.SearchPermissionChecker;
+import com.liferay.portal.kernel.search.*;
 import com.liferay.portal.kernel.util.*;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.model.*;
 import com.liferay.portal.security.permission.*;
 import com.liferay.portal.service.*;
-import com.liferay.portal.util.*;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PropsValues;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -273,8 +264,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
             return query;
         }
 
-        boolean checkGroupMember = GetterUtil.getBoolean(PropsUtil.get("security.check.private.site"),
-                false);
+        boolean checkGroupMember = PropsValues.SECURITY_CHECK_PRIVATE_SITE;
         List<Group> groups = new UniqueList<Group>();
         List<Role> roles = new UniqueList<Role>();
         List<UserGroupRole> userGroupRoles = new UniqueList<UserGroupRole>();
@@ -344,8 +334,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
             Map<Long, List<Role>> groupIdsToRoles)
             throws Exception {
 
-        boolean checkGroupMember = GetterUtil.getBoolean(PropsUtil.get("security.check.private.site"),
-                false);
+        boolean checkGroupMember = PropsValues.SECURITY_CHECK_PRIVATE_SITE;
 
         BooleanQuery permissionQuery = BooleanQueryFactoryUtil.create(
                 searchContext);

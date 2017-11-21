@@ -17,6 +17,7 @@ package com.liferay.portlet.documentlibrary.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -239,25 +240,25 @@ public class DLFileEntryServiceUtil {
 	}
 
 	public static int getFileEntriesCount(long groupId, long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
 		return getService().getFileEntriesCount(groupId, folderId);
 	}
 
 	public static int getFileEntriesCount(long groupId, long folderId,
-		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		int status) throws com.liferay.portal.kernel.exception.SystemException, PortalException {
 		return getService().getFileEntriesCount(groupId, folderId, status);
 	}
 
 	public static int getFileEntriesCount(long groupId, long folderId,
 		long fileEntryTypeId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
 		return getService()
 				   .getFileEntriesCount(groupId, folderId, fileEntryTypeId);
 	}
 
 	public static int getFileEntriesCount(long groupId, long folderId,
 		java.lang.String[] mimeTypes)
-		throws com.liferay.portal.kernel.exception.SystemException {
+			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
 		return getService().getFileEntriesCount(groupId, folderId, mimeTypes);
 	}
 
@@ -289,7 +290,7 @@ public class DLFileEntryServiceUtil {
 
 	public static int getFoldersFileEntriesCount(long groupId,
 		java.util.List<java.lang.Long> folderIds, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
 		return getService()
 				   .getFoldersFileEntriesCount(groupId, folderIds, status);
 	}

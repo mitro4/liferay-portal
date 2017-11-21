@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.*;
 import com.liferay.portal.model.*;
 import com.liferay.portal.service.*;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
+import com.liferay.portal.util.PropsValues;
 import org.apache.commons.lang.time.StopWatch;
 
 import java.util.*;
@@ -531,8 +532,7 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
             _log.error(e, e);
         }
         if(Validator.isNotNull(group)) {
-            boolean checkGroupMember = GetterUtil.getBoolean(PropsUtil.get("security.check.private.site"),
-                    false);
+            boolean checkGroupMember = PropsValues.SECURITY_CHECK_PRIVATE_SITE;
             if (checkGroupMember && !group.isUserPersonalSite()
                     && (group.getType() != GroupConstants.TYPE_SITE_OPEN && group.getType() != GroupConstants.TYPE_SITE_SYSTEM)) {
                 ClassName className = null;

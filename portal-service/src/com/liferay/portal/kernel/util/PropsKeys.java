@@ -2835,4 +2835,6 @@ public interface PropsKeys {
 
 	public static final String YUI_COMPRESSOR_JS_VERBOSE = "yui.compressor.js.verbose";
 
+	public static final String SECURITY_CHECK_PRIVATE_SITE = "security.check.private.site";
+
 }

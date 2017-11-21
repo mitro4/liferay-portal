@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.liferay.portal.kernel.util.PropsKeys" %><%--
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
@@ -73,7 +73,7 @@ try {
 
 		throw new NoSuchModelException();
 	}
-	boolean checkGroupMember = GetterUtil.getBoolean(PropsUtil.get("security.check.private.site"),
+	boolean checkGroupMember = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.SECURITY_CHECK_PRIVATE_SITE),
                 false);
         if (checkGroupMember && !permissionChecker.hasPermission(groupId, className, classPK, ActionKeys.VIEW)) {
             throw new NoSuchModelException();

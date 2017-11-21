@@ -2136,6 +2136,8 @@ public class PropsValues {
 
 	public static final boolean YUI_COMPRESSOR_JS_VERBOSE = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.YUI_COMPRESSOR_JS_VERBOSE));
 
+	public static final boolean SECURITY_CHECK_PRIVATE_SITE = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.SECURITY_CHECK_PRIVATE_SITE));
+
 	static {
 		if (!LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED) {
 			LAYOUT_USER_PRIVATE_LAYOUTS_AUTO_CREATE = false;

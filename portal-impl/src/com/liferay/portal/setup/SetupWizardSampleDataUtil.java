@@ -233,9 +233,9 @@ public class SetupWizardSampleDataUtil {
                     try {
                         File file = new File(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + publicFile);
                         if (Validator.isNotNull(file)) {
-                            if (!publicFile.equals("public.lar")) {
+                            //if (!publicFile.equals("public.lar")) {
                                 LayoutLocalServiceUtil.importLayouts(user.getUserId(), group.getGroupId(), false, paramMap, file);
-                            }
+                            //}
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
