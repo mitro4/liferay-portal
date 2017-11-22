@@ -613,16 +613,61 @@ public class LanguageImpl implements Language, Serializable {
 
 		String value = null;
 
+		Locale locale = null;
+
+		if (pageContext != null) {
+			HttpServletRequest request =
+					(HttpServletRequest)pageContext.getRequest();
+
+			ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
+			if (themeDisplay != null) {
+				locale = themeDisplay.getLocale();
+			}
+			else {
+				locale = request.getLocale();
+
+				if (!isAvailableLocale(locale)) {
+					locale = LocaleUtil.getDefault();
+				}
+			}
+		}
+
 		try {
 			int pos = description.indexOf(CharPool.SPACE);
 
 			String x = description.substring(0, pos);
 
+			description = StringUtil.toLowerCase(
+					description.substring(pos + 1, description.length()));
+
+			if (Validator.isNotNull(locale)) {
+				if (locale.getLanguage().equals("ru")) {
+					if (description.contains("minute")) {
+						String []keys = {"minutes-vp", "minutes", "minutes-rp"};
+						description = getMinutesKeyRu(x, keys);
+					} else if (description.contains("hour")) {
+						String []keys = {"hour", "hour-rp", "hour-rpm"};
+						description = getMinutesKeyRu(x, keys);
+					} else if (description.contains("day")) {
+						String []keys = {"day", "day-rp", "day-rpm"};
+						description = getMinutesKeyRu(x, keys);
+					} else if (description.contains("week")) {
+						String []keys = {"week", "week-rp", "week-rpm"};
+						description = getMinutesKeyRu(x, keys);
+					}else if (description.contains("month")) {
+						String []keys = {"month", "month-rp", "month-rpm"};
+						description = getMinutesKeyRu(x, keys);
+					} else if (description.contains("year")) {
+						String []keys = {"year", "year-rp", "years"};
+						description = getMinutesKeyRu(x, keys);
+					}
+				}
+			}
+
 			value = x.concat(StringPool.SPACE).concat(
-				get(
-					pageContext,
-					StringUtil.toLowerCase(
-						description.substring(pos + 1, description.length()))));
+				get(pageContext, description));
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
@@ -631,6 +676,31 @@ public class LanguageImpl implements Language, Serializable {
 		}
 
 		return value;
+	}
+
+	private String getMinutesKeyRu(String minutesStr, String[] keys) {
+		int minutes = 0;
+		try {
+			minutes = Integer.parseInt(minutesStr);
+		} catch (Exception e) {
+		}
+		String result;
+
+		minutes = minutes % 100;
+		if (minutes>=11 && minutes<=19) {
+			result = keys[2];
+		} else {
+			int i = minutes % 10;
+			switch (i)
+			{
+				case (1): result = keys[0]; break;
+				case (2):
+				case (3):
+				case (4): result = keys[1]; break;
+				default: result = keys[2];
+			}
+		}
+		return result;
 	}
 
 	@Override
