@@ -70,7 +70,7 @@ public class RatingsTag extends IncludeTag {
 		_ratingsStats = null;
 		_setRatingsEntry = false;
 		_setRatingsStats = false;
-		_type = "stars";
+		_type = _DEFAULT_TYPE;
 		_url = null;
 	}
 
@@ -107,6 +107,8 @@ public class RatingsTag extends IncludeTag {
 
 	private static final int _DEFAULT_NUMBER_OF_STARS = GetterUtil.getInteger(
 		PropsUtil.get(PropsKeys.RATINGS_DEFAULT_NUMBER_OF_STARS));
+
+	private static final String _DEFAULT_TYPE = PropsUtil.get(PropsKeys.RATINGS_DEFAULT_TYPE);
 
 	private static final String _PAGE = "/html/taglib/ui/ratings/page.jsp";
 
