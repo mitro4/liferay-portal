@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.permission.GroupPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.journal.model.JournalArticle;
@@ -644,10 +643,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	 */
 	@Override
 	public List<JournalArticle> getArticles(long groupId, long folderId)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		QueryDefinition queryDefinition = new QueryDefinition(
@@ -689,10 +688,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	public List<JournalArticle> getArticles(
 			long groupId, long folderId, int start, int end,
 			OrderByComparator obc)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		QueryDefinition queryDefinition = new QueryDefinition(
@@ -735,10 +734,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	public List<JournalArticle> getArticlesByArticleId(
 			long groupId, String articleId, int start, int end,
 			OrderByComparator obc)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return journalArticlePersistence.filterFindByG_A(
@@ -757,10 +756,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	@Override
 	public List<JournalArticle> getArticlesByLayoutUuid(
 			long groupId, String layoutUuid)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return journalArticlePersistence.filterFindByG_L(groupId, layoutUuid);
@@ -803,10 +802,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	public List<JournalArticle> getArticlesByStructureId(
 			long groupId, long classNameId, String ddmStructureKey, int status,
 			int start, int end, OrderByComparator obc)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		QueryDefinition queryDefinition = new QueryDefinition(
@@ -846,10 +845,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	public List<JournalArticle> getArticlesByStructureId(
 			long groupId, String ddmStructureKey, int start, int end,
 			OrderByComparator obc)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		QueryDefinition queryDefinition = new QueryDefinition(
@@ -870,10 +869,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	 */
 	@Override
 	public int getArticlesCount(long groupId, long folderId)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return getArticlesCount(
@@ -882,10 +881,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 
 	@Override
 	public int getArticlesCount(long groupId, long folderId, int status)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		QueryDefinition queryDefinition = new QueryDefinition(status);
@@ -909,10 +908,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	 */
 	@Override
 	public int getArticlesCountByArticleId(long groupId, String articleId)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return journalArticlePersistence.filterCountByG_A(groupId, articleId);
@@ -938,10 +937,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	@Override
 	public int getArticlesCountByStructureId(
 			long groupId, long classNameId, String ddmStructureKey, int status)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return journalArticleFinder.filterCountByG_C_S(
@@ -961,10 +960,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	@Override
 	public int getArticlesCountByStructureId(
 			long groupId, String ddmStructureKey)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return getArticlesCountByStructureId(
@@ -1013,10 +1012,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	 */
 	@Override
 	public int getFoldersAndArticlesCount(long groupId, List<Long> folderIds)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return journalArticlePersistence.filterCountByG_F(
@@ -1056,7 +1055,7 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		List<Long> folderIds = new ArrayList<Long>();
@@ -1208,7 +1207,7 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		List<Long> folderIds = new ArrayList<Long>();
@@ -1610,10 +1609,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			String ddmStructureKey, String ddmTemplateKey, Date displayDateGT,
 			Date displayDateLT, int status, Date reviewDate, int start, int end,
 			OrderByComparator obc)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return journalArticleFinder.filterFindByKeywords(
@@ -1696,10 +1695,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			String ddmStructureKey, String ddmTemplateKey, Date displayDateGT,
 			Date displayDateLT, int status, Date reviewDate,
 			boolean andOperator, int start, int end, OrderByComparator obc)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		QueryDefinition queryDefinition = new QueryDefinition(
@@ -1786,10 +1785,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			String[] ddmStructureKeys, String[] ddmTemplateKeys,
 			Date displayDateGT, Date displayDateLT, int status, Date reviewDate,
 			boolean andOperator, int start, int end, OrderByComparator obc)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		QueryDefinition queryDefinition = new QueryDefinition(
@@ -1852,10 +1851,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			long classNameId, String keywords, Double version, String type,
 			String ddmStructureKey, String ddmTemplateKey, Date displayDateGT,
 			Date displayDateLT, int status, Date reviewDate)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return journalArticleFinder.filterCountByKeywords(
@@ -1922,10 +1921,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			String ddmStructureKey, String ddmTemplateKey, Date displayDateGT,
 			Date displayDateLT, int status, Date reviewDate,
 			boolean andOperator)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return journalArticleFinder.filterCountByC_G_F_C_A_V_T_D_C_T_S_T_D_R(
@@ -1993,10 +1992,10 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			String[] ddmStructureKeys, String[] ddmTemplateKeys,
 			Date displayDateGT, Date displayDateLT, int status, Date reviewDate,
 			boolean andOperator)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return journalArticleFinder.filterCountByC_G_F_C_A_V_T_D_C_T_S_T_D_R(

@@ -16,7 +16,6 @@ package com.liferay.portlet.journal.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -591,7 +590,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	@Override
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticles(
 		long groupId, long folderId)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticles(groupId, folderId);
 	}
 
@@ -623,7 +622,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticles(
 		long groupId, long folderId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticles(groupId, folderId, start,
 			end, obc);
 	}
@@ -657,7 +656,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticlesByArticleId(
 		long groupId, java.lang.String articleId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticlesByArticleId(groupId,
 			articleId, start, end, obc);
 	}
@@ -674,7 +673,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	@Override
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticlesByLayoutUuid(
 		long groupId, java.lang.String layoutUuid)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticlesByLayoutUuid(groupId,
 			layoutUuid);
 	}
@@ -717,7 +716,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 		long groupId, long classNameId, java.lang.String ddmStructureKey,
 		int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticlesByStructureId(groupId,
 			classNameId, ddmStructureKey, status, start, end, obc);
 	}
@@ -752,7 +751,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticlesByStructureId(
 		long groupId, java.lang.String ddmStructureKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticlesByStructureId(groupId,
 			ddmStructureKey, start, end, obc);
 	}
@@ -767,13 +766,13 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	*/
 	@Override
 	public int getArticlesCount(long groupId, long folderId)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticlesCount(groupId, folderId);
 	}
 
 	@Override
 	public int getArticlesCount(long groupId, long folderId, int status)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticlesCount(groupId, folderId, status);
 	}
 
@@ -789,7 +788,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	@Override
 	public int getArticlesCountByArticleId(long groupId,
 		java.lang.String articleId)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticlesCountByArticleId(groupId,
 			articleId);
 	}
@@ -814,7 +813,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	@Override
 	public int getArticlesCountByStructureId(long groupId, long classNameId,
 		java.lang.String ddmStructureKey, int status)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticlesCountByStructureId(groupId,
 			classNameId, ddmStructureKey, status);
 	}
@@ -832,7 +831,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	@Override
 	public int getArticlesCountByStructureId(long groupId,
 		java.lang.String ddmStructureKey)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticlesCountByStructureId(groupId,
 			ddmStructureKey);
 	}
@@ -873,7 +872,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	@Override
 	public int getFoldersAndArticlesCount(long groupId,
 		java.util.List<java.lang.Long> folderIds)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getFoldersAndArticlesCount(groupId,
 			folderIds);
 	}
@@ -1381,7 +1380,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 		java.lang.String ddmTemplateKey, java.util.Date displayDateGT,
 		java.util.Date displayDateLT, int status, java.util.Date reviewDate,
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.search(companyId, groupId, folderIds,
 			classNameId, keywords, version, type, ddmStructureKey,
 			ddmTemplateKey, displayDateGT, displayDateLT, status, reviewDate,
@@ -1464,7 +1463,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 		java.util.Date displayDateGT, java.util.Date displayDateLT, int status,
 		java.util.Date reviewDate, boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.search(companyId, groupId, folderIds,
 			classNameId, articleId, version, title, description, content, type,
 			ddmStructureKey, ddmTemplateKey, displayDateGT, displayDateLT,
@@ -1548,7 +1547,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 		java.util.Date displayDateLT, int status, java.util.Date reviewDate,
 		boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.search(companyId, groupId, folderIds,
 			classNameId, articleId, version, title, description, content, type,
 			ddmStructureKeys, ddmTemplateKeys, displayDateGT, displayDateLT,
@@ -1606,7 +1605,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 		java.lang.String type, java.lang.String ddmStructureKey,
 		java.lang.String ddmTemplateKey, java.util.Date displayDateGT,
 		java.util.Date displayDateLT, int status, java.util.Date reviewDate)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.searchCount(companyId, groupId,
 			folderIds, classNameId, keywords, version, type, ddmStructureKey,
 			ddmTemplateKey, displayDateGT, displayDateLT, status, reviewDate);
@@ -1671,7 +1670,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 		java.lang.String ddmStructureKey, java.lang.String ddmTemplateKey,
 		java.util.Date displayDateGT, java.util.Date displayDateLT, int status,
 		java.util.Date reviewDate, boolean andOperator)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.searchCount(companyId, groupId,
 			folderIds, classNameId, articleId, version, title, description,
 			content, type, ddmStructureKey, ddmTemplateKey, displayDateGT,
@@ -1738,7 +1737,7 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 		java.lang.String[] ddmTemplateKeys, java.util.Date displayDateGT,
 		java.util.Date displayDateLT, int status, java.util.Date reviewDate,
 		boolean andOperator)
-			throws com.liferay.portal.kernel.exception.SystemException, PortalException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.searchCount(companyId, groupId,
 			folderIds, classNameId, articleId, version, title, description,
 			content, type, ddmStructureKeys, ddmTemplateKeys, displayDateGT,

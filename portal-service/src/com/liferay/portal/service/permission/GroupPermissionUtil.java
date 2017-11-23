@@ -34,9 +34,13 @@ public class GroupPermissionUtil {
 
 	public static void check(
 			PermissionChecker permissionChecker, long groupId, String actionId)
-		throws PortalException, SystemException {
+		throws SystemException {
 
-		getGroupPermission().check(permissionChecker, groupId, actionId);
+		try {
+			getGroupPermission().check(permissionChecker, groupId, actionId);
+		} catch (PortalException pe) {
+			throw new SystemException(pe);
+		}
 	}
 
 	public static void check(

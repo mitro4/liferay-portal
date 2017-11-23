@@ -538,7 +538,7 @@ public interface JournalArticleService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticles(
 		long groupId, long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
@@ -568,7 +568,7 @@ public interface JournalArticleService extends BaseService {
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticles(
 		long groupId, long folderId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
@@ -599,7 +599,7 @@ public interface JournalArticleService extends BaseService {
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticlesByArticleId(
 		long groupId, java.lang.String articleId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the web content articles matching the group and layout UUID.
@@ -613,7 +613,7 @@ public interface JournalArticleService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticlesByLayoutUuid(
 		long groupId, java.lang.String layoutUuid)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
@@ -653,7 +653,7 @@ public interface JournalArticleService extends BaseService {
 		long groupId, long classNameId, java.lang.String ddmStructureKey,
 		int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
@@ -685,7 +685,7 @@ public interface JournalArticleService extends BaseService {
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticlesByStructureId(
 		long groupId, java.lang.String ddmStructureKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the number of web content articles matching the group and folder.
@@ -697,11 +697,11 @@ public interface JournalArticleService extends BaseService {
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCount(long groupId, long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCount(long groupId, long folderId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the number of web content articles matching the group and article
@@ -715,7 +715,7 @@ public interface JournalArticleService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCountByArticleId(long groupId,
 		java.lang.String articleId)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the number of web content articles matching the group, class name
@@ -737,7 +737,7 @@ public interface JournalArticleService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCountByStructureId(long groupId, long classNameId,
 		java.lang.String ddmStructureKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the number of web content articles matching the group, default
@@ -752,7 +752,7 @@ public interface JournalArticleService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCountByStructureId(long groupId,
 		java.lang.String ddmStructureKey)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the web content article matching the URL title that is currently
@@ -787,7 +787,7 @@ public interface JournalArticleService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFoldersAndArticlesCount(long groupId,
 		java.util.List<java.lang.Long> folderIds)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
@@ -1236,7 +1236,7 @@ public interface JournalArticleService extends BaseService {
 		java.lang.String ddmTemplateKey, java.util.Date displayDateGT,
 		java.util.Date displayDateLT, int status, java.util.Date reviewDate,
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
@@ -1314,7 +1314,7 @@ public interface JournalArticleService extends BaseService {
 		java.util.Date displayDateGT, java.util.Date displayDateLT, int status,
 		java.util.Date reviewDate, boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns an ordered range of all the web content articles matching the
@@ -1393,7 +1393,7 @@ public interface JournalArticleService extends BaseService {
 		java.util.Date displayDateLT, int status, java.util.Date reviewDate,
 		boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the number of web content articles matching the parameters,
@@ -1446,7 +1446,7 @@ public interface JournalArticleService extends BaseService {
 		java.lang.String type, java.lang.String ddmStructureKey,
 		java.lang.String ddmTemplateKey, java.util.Date displayDateGT,
 		java.util.Date displayDateLT, int status, java.util.Date reviewDate)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the number of web content articles matching the parameters,
@@ -1507,7 +1507,7 @@ public interface JournalArticleService extends BaseService {
 		java.lang.String ddmStructureKey, java.lang.String ddmTemplateKey,
 		java.util.Date displayDateGT, java.util.Date displayDateLT, int status,
 		java.util.Date reviewDate, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the number of web content articles matching the parameters,
@@ -1569,7 +1569,7 @@ public interface JournalArticleService extends BaseService {
 		java.lang.String[] ddmTemplateKeys, java.util.Date displayDateGT,
 		java.util.Date displayDateLT, int status, java.util.Date reviewDate,
 		boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException, PortalException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Subscribes the user to notifications for the web content article matching

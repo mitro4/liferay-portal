@@ -23,8 +23,10 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
+import com.liferay.portal.service.permission.GroupPermissionUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -83,6 +85,20 @@ public abstract class BaseServiceImpl implements BaseService {
 		}
 
 		return permissionChecker;
+	}
+
+	protected void checkGroupPermissions(long groupId) throws SystemException {
+		PermissionChecker permissionChecker = null;
+		try {
+			permissionChecker = getPermissionChecker();
+		} catch (PrincipalException pe) {
+			throw new SystemException(pe);
+		}
+		if (Validator.isNotNull(permissionChecker)) {
+			GroupPermissionUtil.check(permissionChecker, groupId, ActionKeys.VIEW);
+		} else {
+			throw new NullPointerException("permissionChecker is null");
+		}
 	}
 
 	public User getUser() throws PortalException, SystemException {

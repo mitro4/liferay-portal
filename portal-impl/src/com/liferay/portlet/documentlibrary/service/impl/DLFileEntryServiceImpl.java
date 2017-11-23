@@ -357,7 +357,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 
 	@Override
 	public int getFileEntriesCount(long groupId, long folderId)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		return getFileEntriesCount(
 			groupId, folderId, WorkflowConstants.STATUS_APPROVED);
@@ -365,10 +365,10 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 
 	@Override
 	public int getFileEntriesCount(long groupId, long folderId, int status)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		List<Long> folderIds = new ArrayList<Long>();
@@ -382,10 +382,10 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public int getFileEntriesCount(
 			long groupId, long folderId, long fileEntryTypeId)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return dlFileEntryPersistence.filterCountByG_F_F(
@@ -395,10 +395,10 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public int getFileEntriesCount(
 			long groupId, long folderId, String[] mimeTypes)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		List<Long> folderIds = new ArrayList<Long>();
@@ -460,10 +460,10 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public int getFoldersFileEntriesCount(
 			long groupId, List<Long> folderIds, int status)
-			throws SystemException, PortalException {
+			throws SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		QueryDefinition queryDefinition = new QueryDefinition(status);
@@ -495,7 +495,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		List<Long> folderIds = dlFolderService.getFolderIds(
@@ -534,7 +534,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		List<Long> repositoryIds = new ArrayList<Long>();
@@ -570,7 +570,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		List<Long> folderIds = dlFolderService.getFolderIds(
@@ -606,7 +606,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		List<Long> repositoryIds = new ArrayList<Long>();
@@ -712,7 +712,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+			checkGroupPermissions(groupId);
 		}
 
 		return dlFileEntryLocalService.search(
