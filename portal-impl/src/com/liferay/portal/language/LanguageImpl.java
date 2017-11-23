@@ -624,8 +624,7 @@ public class LanguageImpl implements Language, Serializable {
 
 			if (themeDisplay != null) {
 				locale = themeDisplay.getLocale();
-			}
-			else {
+			} else {
 				locale = request.getLocale();
 
 				if (!isAvailableLocale(locale)) {
@@ -646,22 +645,22 @@ public class LanguageImpl implements Language, Serializable {
 				if (locale.getLanguage().equals("ru")) {
 					if (description.contains("minute")) {
 						String []keys = {"minutes-vp", "minutes", "minutes-rp"};
-						description = getMinutesKeyRu(x, keys);
+						description = getTimeKeyRu(x, keys);
 					} else if (description.contains("hour")) {
 						String []keys = {"hour", "hour-rp", "hour-rpm"};
-						description = getMinutesKeyRu(x, keys);
+						description = getTimeKeyRu(x, keys);
 					} else if (description.contains("day")) {
 						String []keys = {"day", "day-rp", "day-rpm"};
-						description = getMinutesKeyRu(x, keys);
+						description = getTimeKeyRu(x, keys);
 					} else if (description.contains("week")) {
 						String []keys = {"week", "week-rp", "week-rpm"};
-						description = getMinutesKeyRu(x, keys);
+						description = getTimeKeyRu(x, keys);
 					}else if (description.contains("month")) {
 						String []keys = {"month", "month-rp", "month-rpm"};
-						description = getMinutesKeyRu(x, keys);
+						description = getTimeKeyRu(x, keys);
 					} else if (description.contains("year")) {
 						String []keys = {"year", "year-rp", "years"};
-						description = getMinutesKeyRu(x, keys);
+						description = getTimeKeyRu(x, keys);
 					}
 				}
 			}
@@ -678,11 +677,12 @@ public class LanguageImpl implements Language, Serializable {
 		return value;
 	}
 
-	private String getMinutesKeyRu(String minutesStr, String[] keys) {
+	private String getTimeKeyRu(String minutesStr, String[] keys) {
 		int minutes = 0;
 		try {
 			minutes = Integer.parseInt(minutesStr);
 		} catch (Exception e) {
+			_log.error(e.getMessage());
 		}
 		String result;
 
