@@ -367,9 +367,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	public int getFileEntriesCount(long groupId, long folderId, int status)
 			throws SystemException {
 
-		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			checkGroupPermissions(groupId);
-		}
+		checkGroupPermissions(groupId);
 
 		List<Long> folderIds = new ArrayList<Long>();
 
@@ -384,9 +382,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			long groupId, long folderId, long fileEntryTypeId)
 			throws SystemException {
 
-		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			checkGroupPermissions(groupId);
-		}
+		checkGroupPermissions(groupId);
 
 		return dlFileEntryPersistence.filterCountByG_F_F(
 			groupId, folderId, fileEntryTypeId);
@@ -397,9 +393,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			long groupId, long folderId, String[] mimeTypes)
 			throws SystemException {
 
-		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			checkGroupPermissions(groupId);
-		}
+		checkGroupPermissions(groupId);
 
 		List<Long> folderIds = new ArrayList<Long>();
 
@@ -462,9 +456,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			long groupId, List<Long> folderIds, int status)
 			throws SystemException {
 
-		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			checkGroupPermissions(groupId);
-		}
+		checkGroupPermissions(groupId);
 
 		QueryDefinition queryDefinition = new QueryDefinition(status);
 
@@ -494,9 +486,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			OrderByComparator obc)
 		throws PortalException, SystemException {
 
-		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			checkGroupPermissions(groupId);
-		}
+		checkGroupPermissions(groupId);
 
 		List<Long> folderIds = dlFolderService.getFolderIds(
 			groupId, rootFolderId);
@@ -533,9 +523,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			OrderByComparator obc)
 		throws PortalException, SystemException {
 
-		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			checkGroupPermissions(groupId);
-		}
+		checkGroupPermissions(groupId);
 
 		List<Long> repositoryIds = new ArrayList<Long>();
 
@@ -569,9 +557,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			long groupId, long userId, long rootFolderId)
 		throws PortalException, SystemException {
 
-		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			checkGroupPermissions(groupId);
-		}
+		checkGroupPermissions(groupId);
 
 		List<Long> folderIds = dlFolderService.getFolderIds(
 			groupId, rootFolderId);
@@ -605,9 +591,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			String[] mimeTypes, int status)
 		throws PortalException, SystemException {
 
-		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			checkGroupPermissions(groupId);
-		}
+		checkGroupPermissions(groupId);
 
 		List<Long> repositoryIds = new ArrayList<Long>();
 
@@ -711,9 +695,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			long groupId, long creatorUserId, int status, int start, int end)
 		throws PortalException, SystemException {
 
-		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
-			checkGroupPermissions(groupId);
-		}
+		checkGroupPermissions(groupId);
 
 		return dlFileEntryLocalService.search(
 			groupId, getUserId(), creatorUserId, status, start, end);

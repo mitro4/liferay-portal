@@ -16,9 +16,7 @@ package com.liferay.portal.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.*;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -87,17 +85,26 @@ public abstract class BaseServiceImpl implements BaseService {
 		return permissionChecker;
 	}
 
+	/**
+	 * If param security.check.private.site=true (default - false),
+	 *  then check permission for Group to view.
+	 *
+	 * @param  groupId the primary key of the group
+	 * @throws SystemException if a system exception occurred
+	 */
 	protected void checkGroupPermissions(long groupId) throws SystemException {
-		PermissionChecker permissionChecker = null;
-		try {
-			permissionChecker = getPermissionChecker();
-		} catch (PrincipalException pe) {
-			throw new SystemException(pe);
-		}
-		if (Validator.isNotNull(permissionChecker)) {
-			GroupPermissionUtil.check(permissionChecker, groupId, ActionKeys.VIEW);
-		} else {
-			throw new NullPointerException("permissionChecker is null");
+		if (GetterUtil.getBoolean(PropsUtil.get(PropsKeys.SECURITY_CHECK_PRIVATE_SITE))) {
+			PermissionChecker permissionChecker = null;
+			try {
+				permissionChecker = getPermissionChecker();
+			} catch (PrincipalException pe) {
+				throw new SystemException(pe);
+			}
+			if (Validator.isNotNull(permissionChecker)) {
+				GroupPermissionUtil.check(permissionChecker, groupId, ActionKeys.VIEW);
+			} else {
+				throw new NullPointerException("permissionChecker is null");
+			}
 		}
 	}
 
