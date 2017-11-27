@@ -28,6 +28,7 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.permission.GroupPermissionUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
@@ -356,7 +357,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 
 	@Override
 	public int getFileEntriesCount(long groupId, long folderId)
-		throws SystemException {
+			throws SystemException {
 
 		return getFileEntriesCount(
 			groupId, folderId, WorkflowConstants.STATUS_APPROVED);
@@ -364,7 +365,9 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 
 	@Override
 	public int getFileEntriesCount(long groupId, long folderId, int status)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		List<Long> folderIds = new ArrayList<Long>();
 
@@ -377,7 +380,9 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public int getFileEntriesCount(
 			long groupId, long folderId, long fileEntryTypeId)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return dlFileEntryPersistence.filterCountByG_F_F(
 			groupId, folderId, fileEntryTypeId);
@@ -386,7 +391,9 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public int getFileEntriesCount(
 			long groupId, long folderId, String[] mimeTypes)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		List<Long> folderIds = new ArrayList<Long>();
 
@@ -447,7 +454,9 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 	@Override
 	public int getFoldersFileEntriesCount(
 			long groupId, List<Long> folderIds, int status)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		QueryDefinition queryDefinition = new QueryDefinition(status);
 
@@ -476,6 +485,8 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			long groupId, long userId, long rootFolderId, int start, int end,
 			OrderByComparator obc)
 		throws PortalException, SystemException {
+
+		checkGroupPermissions(groupId);
 
 		List<Long> folderIds = dlFolderService.getFolderIds(
 			groupId, rootFolderId);
@@ -512,6 +523,8 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			OrderByComparator obc)
 		throws PortalException, SystemException {
 
+		checkGroupPermissions(groupId);
+
 		List<Long> repositoryIds = new ArrayList<Long>();
 
 		if (repositoryId != 0) {
@@ -544,6 +557,8 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			long groupId, long userId, long rootFolderId)
 		throws PortalException, SystemException {
 
+		checkGroupPermissions(groupId);
+
 		List<Long> folderIds = dlFolderService.getFolderIds(
 			groupId, rootFolderId);
 
@@ -575,6 +590,8 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			long groupId, long userId, long repositoryId, long rootFolderId,
 			String[] mimeTypes, int status)
 		throws PortalException, SystemException {
+
+		checkGroupPermissions(groupId);
 
 		List<Long> repositoryIds = new ArrayList<Long>();
 
@@ -678,6 +695,8 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			long groupId, long creatorUserId, int status, int start, int end)
 		throws PortalException, SystemException {
 
+		checkGroupPermissions(groupId);
+
 		return dlFileEntryLocalService.search(
 			groupId, getUserId(), creatorUserId, status, start, end);
 	}
@@ -687,6 +706,10 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			long groupId, long creatorUserId, long folderId, String[] mimeTypes,
 			int status, int start, int end)
 		throws PortalException, SystemException {
+
+		if (PropsValues.SECURITY_CHECK_PRIVATE_SITE) {
+			GroupPermissionUtil.check(getPermissionChecker(), groupId, ActionKeys.VIEW);
+		}
 
 		return dlFileEntryLocalService.search(
 			groupId, getUserId(), creatorUserId, folderId, mimeTypes, status,

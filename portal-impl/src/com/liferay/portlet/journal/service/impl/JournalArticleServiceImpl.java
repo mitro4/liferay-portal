@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleConstants;
 import com.liferay.portlet.journal.model.JournalFolderConstants;
@@ -34,13 +35,7 @@ import com.liferay.portlet.journal.service.permission.JournalPermission;
 
 import java.io.File;
 import java.io.Serializable;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Provides the remote service for accessing, adding, deleting, and updating web
@@ -648,7 +643,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	 */
 	@Override
 	public List<JournalArticle> getArticles(long groupId, long folderId)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		QueryDefinition queryDefinition = new QueryDefinition(
 			WorkflowConstants.STATUS_ANY);
@@ -689,7 +686,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	public List<JournalArticle> getArticles(
 			long groupId, long folderId, int start, int end,
 			OrderByComparator obc)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		QueryDefinition queryDefinition = new QueryDefinition(
 			WorkflowConstants.STATUS_ANY, start, end, obc);
@@ -731,7 +730,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	public List<JournalArticle> getArticlesByArticleId(
 			long groupId, String articleId, int start, int end,
 			OrderByComparator obc)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return journalArticlePersistence.filterFindByG_A(
 			groupId, articleId, start, end, obc);
@@ -749,7 +750,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	@Override
 	public List<JournalArticle> getArticlesByLayoutUuid(
 			long groupId, String layoutUuid)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return journalArticlePersistence.filterFindByG_L(groupId, layoutUuid);
 	}
@@ -791,7 +794,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	public List<JournalArticle> getArticlesByStructureId(
 			long groupId, long classNameId, String ddmStructureKey, int status,
 			int start, int end, OrderByComparator obc)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		QueryDefinition queryDefinition = new QueryDefinition(
 			status, start, end, obc);
@@ -830,7 +835,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	public List<JournalArticle> getArticlesByStructureId(
 			long groupId, String ddmStructureKey, int start, int end,
 			OrderByComparator obc)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		QueryDefinition queryDefinition = new QueryDefinition(
 			WorkflowConstants.STATUS_ANY, start, end, obc);
@@ -850,7 +857,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	 */
 	@Override
 	public int getArticlesCount(long groupId, long folderId)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return getArticlesCount(
 			groupId, folderId, WorkflowConstants.STATUS_ANY);
@@ -858,7 +867,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 
 	@Override
 	public int getArticlesCount(long groupId, long folderId, int status)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		QueryDefinition queryDefinition = new QueryDefinition(status);
 
@@ -881,7 +892,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	 */
 	@Override
 	public int getArticlesCountByArticleId(long groupId, String articleId)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return journalArticlePersistence.filterCountByG_A(groupId, articleId);
 	}
@@ -906,7 +919,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	@Override
 	public int getArticlesCountByStructureId(
 			long groupId, long classNameId, String ddmStructureKey, int status)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return journalArticleFinder.filterCountByG_C_S(
 			groupId, classNameId, ddmStructureKey, new QueryDefinition(status));
@@ -925,7 +940,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	@Override
 	public int getArticlesCountByStructureId(
 			long groupId, String ddmStructureKey)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return getArticlesCountByStructureId(
 			groupId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
@@ -973,7 +990,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	 */
 	@Override
 	public int getFoldersAndArticlesCount(long groupId, List<Long> folderIds)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return journalArticlePersistence.filterCountByG_F(
 			groupId,
@@ -1010,6 +1029,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			boolean includeOwner, int start, int end,
 			OrderByComparator orderByComparator)
 		throws PortalException, SystemException {
+
+		checkGroupPermissions(groupId);
 
 		List<Long> folderIds = new ArrayList<Long>();
 
@@ -1158,6 +1179,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			long groupId, long userId, long rootFolderId, int status,
 			boolean includeOwner)
 		throws PortalException, SystemException {
+
+		checkGroupPermissions(groupId);
 
 		List<Long> folderIds = new ArrayList<Long>();
 
@@ -1558,7 +1581,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			String ddmStructureKey, String ddmTemplateKey, Date displayDateGT,
 			Date displayDateLT, int status, Date reviewDate, int start, int end,
 			OrderByComparator obc)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return journalArticleFinder.filterFindByKeywords(
 			companyId, groupId, folderIds, classNameId, keywords, version, type,
@@ -1640,7 +1665,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			String ddmStructureKey, String ddmTemplateKey, Date displayDateGT,
 			Date displayDateLT, int status, Date reviewDate,
 			boolean andOperator, int start, int end, OrderByComparator obc)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		QueryDefinition queryDefinition = new QueryDefinition(
 			status, start, end, obc);
@@ -1726,7 +1753,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			String[] ddmStructureKeys, String[] ddmTemplateKeys,
 			Date displayDateGT, Date displayDateLT, int status, Date reviewDate,
 			boolean andOperator, int start, int end, OrderByComparator obc)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		QueryDefinition queryDefinition = new QueryDefinition(
 			status, start, end, obc);
@@ -1788,7 +1817,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			long classNameId, String keywords, Double version, String type,
 			String ddmStructureKey, String ddmTemplateKey, Date displayDateGT,
 			Date displayDateLT, int status, Date reviewDate)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return journalArticleFinder.filterCountByKeywords(
 			companyId, groupId, folderIds, classNameId, keywords, version, type,
@@ -1854,7 +1885,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			String ddmStructureKey, String ddmTemplateKey, Date displayDateGT,
 			Date displayDateLT, int status, Date reviewDate,
 			boolean andOperator)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return journalArticleFinder.filterCountByC_G_F_C_A_V_T_D_C_T_S_T_D_R(
 			companyId, groupId, folderIds, classNameId, articleId, version,
@@ -1921,7 +1954,9 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			String[] ddmStructureKeys, String[] ddmTemplateKeys,
 			Date displayDateGT, Date displayDateLT, int status, Date reviewDate,
 			boolean andOperator)
-		throws SystemException {
+			throws SystemException {
+
+		checkGroupPermissions(groupId);
 
 		return journalArticleFinder.filterCountByC_G_F_C_A_V_T_D_C_T_S_T_D_R(
 			companyId, groupId, folderIds, classNameId, articleId, version,

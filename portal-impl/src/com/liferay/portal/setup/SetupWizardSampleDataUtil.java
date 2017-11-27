@@ -14,212 +14,360 @@
 
 package com.liferay.portal.setup;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
+import com.liferay.portal.kernel.lar.UserIdStrategy;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
-import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.Account;
-import com.liferay.portal.model.Company;
-import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.LayoutConstants;
-import com.liferay.portal.model.LayoutTypePortlet;
-import com.liferay.portal.model.ListTypeConstants;
-import com.liferay.portal.model.Organization;
-import com.liferay.portal.model.OrganizationConstants;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.AccountLocalServiceUtil;
-import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.OrganizationLocalServiceUtil;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortletKeys;
-
-import java.util.Calendar;
-
+import com.liferay.portal.kernel.util.*;
+import com.liferay.portal.model.*;
+import com.liferay.portal.service.*;
+import com.liferay.portal.util.PortalInstances;
+import com.liferay.portal.util.PropsValues;
 import org.apache.commons.lang.time.StopWatch;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * @author Shinn Lok
  */
 public class SetupWizardSampleDataUtil {
 
-	public static void addSampleData(long companyId) throws Exception {
-		StopWatch stopWatch = new StopWatch();
+    public static void addSampleData(long companyId) throws Exception {
+        StopWatch stopWatch = new StopWatch();
 
-		stopWatch.start();
+        stopWatch.start();
 
-		if (_log.isInfoEnabled()) {
-			_log.info("Adding sample data");
-		}
+        if (_log.isInfoEnabled()) {
+            _log.info("Adding sample data");
+        }
 
-		Company company = CompanyLocalServiceUtil.getCompanyById(companyId);
+        Company company = CompanyLocalServiceUtil.getCompanyById(companyId);
 
-		Account account = company.getAccount();
+        Account account = company.getAccount();
 
-		account.setName("Liferay");
-		account.setLegalName("Liferay, Inc");
+        account.setName("Liferay");
+        account.setLegalName("Liferay, Inc");
 
-		AccountLocalServiceUtil.updateAccount(account);
+        AccountLocalServiceUtil.updateAccount(account);
 
-		User defaultUser = company.getDefaultUser();
+        User defaultUser = company.getDefaultUser();
 
-		Organization organization =
-			OrganizationLocalServiceUtil.addOrganization(
-				defaultUser.getUserId(),
-				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
-				"ООО Ромашка", true);
+        Organization organization =
+                OrganizationLocalServiceUtil.addOrganization(
+                        defaultUser.getUserId(),
+                        OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
+                        "ООО Ромашка", true);
 
-		GroupLocalServiceUtil.updateFriendlyURL(
-			organization.getGroupId(), "/romashka");
+        GroupLocalServiceUtil.updateFriendlyURL(
+                organization.getGroupId(), "/romashka");
 
-		Layout extranetLayout = LayoutLocalServiceUtil.addLayout(
-			defaultUser.getUserId(), organization.getGroupId(), false,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "ООО Ромашка, внешний сайт",
-			null, null, LayoutConstants.TYPE_PORTLET, false, "/extranet",
-			new ServiceContext());
+        User user = UserLocalServiceUtil.fetchUserByEmailAddress(
+                company.getCompanyId(), "admin@liferay.com");
 
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)extranetLayout.getLayoutType();
+        if (user == null) {
+            user = UserLocalServiceUtil.addDefaultAdminUser(
+                    companyId, "admin", "admin@liferay.com",
+                    LocaleUtil.getDefault(), "Вася", StringPool.BLANK, "Пупкин");
+        }
+        else {
+            user.setScreenName("admin");
+            user.setGreeting("Добро пожаловать, Вася Пупкин!");
+            user.setFirstName("Вася");
+            user.setLastName("Пупкин");
+        }
 
-		layoutTypePortlet.addPortletId(
-			0, PortletKeys.SEARCH, "column-1", -1, false);
-		layoutTypePortlet.addPortletId(
-			0, PortletKeys.MESSAGE_BOARDS, "column-2", -1, false);
+        UserLocalServiceUtil.addGroupUser(organization.getGroupId(), user.getUserId());
 
-		LayoutLocalServiceUtil.updateLayout(
-			extranetLayout.getGroupId(), false, extranetLayout.getLayoutId(),
-			extranetLayout.getTypeSettings());
+        user.setPasswordReset(false);
 
-		Layout intranetLayout = LayoutLocalServiceUtil.addLayout(
-			defaultUser.getUserId(), organization.getGroupId(), true,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "ООО Ромашка, внутренний сайт",
-			null, null, LayoutConstants.TYPE_PORTLET, false, "/intranet",
-			new ServiceContext());
+        UserLocalServiceUtil.updateUser(user);
 
-		layoutTypePortlet = (LayoutTypePortlet)intranetLayout.getLayoutType();
+        OrganizationLocalServiceUtil.addUserOrganization(
+                user.getUserId(), organization);
 
-		layoutTypePortlet.addPortletId(
-			0, PortletKeys.SEARCH, "column-1", -1, false);
-		layoutTypePortlet.addPortletId(
-			0, PortletKeys.MESSAGE_BOARDS, "column-2", -1, false);
+        addOrganizations(user, organization);
+        addUsers(companyId, organization);
+        importSampleData(companyId);
 
-		LayoutLocalServiceUtil.updateLayout(
-			intranetLayout.getGroupId(), true, intranetLayout.getLayoutId(),
-			intranetLayout.getTypeSettings());
+        if (_log.isInfoEnabled()) {
+            _log.info("Finished adding data in " + stopWatch.getTime() + " ms");
+        }
+    }
 
-		User user = UserLocalServiceUtil.fetchUserByEmailAddress(
-			company.getCompanyId(), "admin@liferay.com");
+    public static Map<String, String[]> initParamMap(boolean addSampleData) {
+        Map<String, String[]> parameterMap = new HashMap<String, String[]>();
 
-		if (user == null) {
-			user = UserLocalServiceUtil.addDefaultAdminUser(
-				companyId, "admin", "admin@liferay.com",
-				LocaleUtil.getDefault(), "Вася", StringPool.BLANK, "Пупкин");
-		}
-		else {
-			user.setScreenName("admin");
-			user.setGreeting("Добро пожаловать, Вася Пупкин!");
-			user.setFirstName("Вася");
-			user.setLastName("Пупкин");
-		}
+        if (addSampleData) {
+            parameterMap.put(
+                    PortletDataHandlerKeys.CATEGORIES,
+                    new String[] {Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PERMISSIONS,
+                    new String[] {Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_CONFIGURATION,
+                    new String[] {Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_DATA,
+                    new String[] {Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
+                    new String[] {Boolean.TRUE.toString()});
 
-		user.setPasswordReset(false);
+        } else {
+            parameterMap.put(
+                    PortletDataHandlerKeys.LOGO,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.CATEGORIES,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.COMMENTS,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.RATINGS,
+                    new String[]{Boolean.FALSE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PERMISSIONS,
+                    new String[]{Boolean.FALSE.toString()});
 
-		UserLocalServiceUtil.updateUser(user);
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_CONFIGURATION,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_DATA,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_DATA_ALL,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_SETUP,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_SETUP_ALL,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS,
+                    new String[]{Boolean.FALSE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS_ALL,
+                    new String[]{Boolean.FALSE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_USER_PREFERENCES,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.PORTLET_USER_PREFERENCES_ALL,
+                    new String[]{Boolean.TRUE.toString()});
 
-		OrganizationLocalServiceUtil.addUserOrganization(
-			user.getUserId(), organization);
+            parameterMap.put(
+                    PortletDataHandlerKeys.PUBLIC_LAYOUT_PERMISSIONS,
+                    new String[]{Boolean.FALSE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.LAYOUT_SET_SETTINGS,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE,
+                    new String[]{PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_NAME});
 
-		addOrganizations(defaultUser, organization);
+            parameterMap.put(
+                    PortletDataHandlerKeys.DATA_STRATEGY,
+                    new String[]{PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE});
+            parameterMap.put(
+                    PortletDataHandlerKeys.THEME_REFERENCE,
+                    new String[]{Boolean.TRUE.toString()});
+            parameterMap.put(
+                    PortletDataHandlerKeys.USER_ID_STRATEGY,
+                    new String[]{UserIdStrategy.CURRENT_USER_ID});
+        }
 
-		if (_log.isInfoEnabled()) {
-			_log.info("Finished adding data in " + stopWatch.getTime() + " ms");
-		}
-	}
+        return parameterMap;
+    }
 
-	protected static void addOrganizations(
-			User defaultUser, Organization parentOrganization)
-		throws Exception {
+    public static void importSampleData(long companyId) throws SystemException, PortalException {
 
-		for (Object[] organizationArray : _ORGANIZATION_ARRAYS) {
-			String name = "ООО Ромашка " + organizationArray[0];
-			long regionId = (Long)organizationArray[1];
-			long countryId = (Long)organizationArray[2];
-			String type = (String)organizationArray[3];
+        Company company = CompanyLocalServiceUtil.getCompanyById(companyId);
 
-			Organization organization =
-				OrganizationLocalServiceUtil.addOrganization(
-					defaultUser.getUserId(),
-					parentOrganization.getOrganizationId(), name, type,
-					regionId, countryId,
-					ListTypeConstants.ORGANIZATION_STATUS_DEFAULT,
-					StringPool.BLANK, true, null);
+        User user = UserLocalServiceUtil.fetchUserByEmailAddress(
+                company.getCompanyId(), "admin@liferay.com");
 
-			GroupLocalServiceUtil.updateFriendlyURL(
-				organization.getGroupId(),
-				FriendlyURLNormalizerUtil.normalize(
-					StringPool.SLASH + organizationArray[0]));
+        Map<String, String[]> paramMap = initParamMap(Boolean.FALSE);
 
-			if (organizationArray.length <= 4) {
-				continue;
-			}
+        List<Group> companyGroups = GroupLocalServiceUtil.getCompanyGroups(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+        for (Group group : companyGroups) {
+            if (group.isSite() && !group.isCompany()) {
+                String filePrefix = StringPool.BLANK;
+                if (!group.getFriendlyURL().equals("/guest")) {
+                    filePrefix = StringUtil.replace(group.getFriendlyURL(), "/", StringPool.BLANK) + StringPool.UNDERLINE;
+                }
+                String privateFile = filePrefix + "private.lar";
+                if (FileUtil.exists(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + privateFile)) {
+                    _log.info("file " + privateFile + " exist");
+                    try {
+                        File file = new File(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + privateFile);
+                        if (Validator.isNotNull(file)) {
+                            LayoutLocalServiceUtil.importLayouts(user.getUserId(), group.getGroupId(), true, paramMap, file);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    _log.warn("file " + privateFile + " not exist");
+                }
+                String publicFile = filePrefix + "public.lar";
+                if (FileUtil.exists(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + publicFile)) {
+                    _log.info("file " + publicFile + " exist");
+                    try {
+                        File file = new File(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + publicFile);
+                        if (Validator.isNotNull(file)) {
+                            //if (!publicFile.equals("public.lar")) {
+                                LayoutLocalServiceUtil.importLayouts(user.getUserId(), group.getGroupId(), false, paramMap, file);
+                            //}
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    _log.warn("file " + publicFile + " not exist");
+                }
+            }
+        }
+    }
 
-			String organizationPrefix = (String)organizationArray[4];
+    protected static void addUsers(long companyId, Organization parentOrganization) {
+        if (FileUtil.exists(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + "users.json")) {
+            File usersJsonFile = new File(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + "users.json");
+            try {
+                String usersStr = FileUtil.read(usersJsonFile);
+                JSONArray usersArray = JSONFactoryUtil.createJSONArray(usersStr);
+                for (int i = 0; i < usersArray.length(); i++) {
+                    JSONObject curUser = usersArray.getJSONObject(i);
+                    long[] groupIds;
+                    long[] organizationIds;
 
-			long[] groupIds = {organization.getGroupId()};
-			long[] organizationIds = {
-				parentOrganization.getOrganizationId(),
-				organization.getOrganizationId()
-			};
+                    List<Group> groups = new ArrayList<Group>();
+                    List<Organization> organizations = new ArrayList<Organization>();
+                    organizations.add(parentOrganization);
+                    if (curUser.has("orgs")) {
+                        JSONArray orgs = curUser.getJSONArray("orgs");
+                        for (int j = 0; j < orgs.length(); j++) {
+                            Group group = null;
+                            try {
+                                group = GroupLocalServiceUtil.getFriendlyURLGroup(companyId, StringPool.SLASH + orgs.getString(j));
+                            } catch (Exception e) {}
+                            if (Validator.isNotNull(group)) {
+                                groups.add(group);
+                            }
+                        }
+                    }
+                    groupIds = new long[groups.size()];
+                    for (int g = 0; g < groups.size(); g++) {
+                        groupIds[g] = groups.get(g).getGroupId();
+                        Organization organization = null;
+                        try {
+                            organization = OrganizationLocalServiceUtil.getOrganization(groups.get(g).getOrganizationId());
+                        } catch (Exception e) {}
+                        if (Validator.isNotNull(organization)) {
+                            organizations.add(organization);
+                        }
+                    }
+                    organizationIds = new long[organizations.size()];
+                    for (int o = 0; o < organizations.size(); o++) {
+                        organizationIds[o] = organizations.get(o).getOrganizationId();
+                    }
 
-			for (int i = 1; i <= 3; i++) {
-				String screenName = organizationPrefix + i;
+                    User user = UserLocalServiceUtil.addUser(
+                            0, companyId, false, "test", "test", false,
+                            curUser.getString("screenName"), curUser.getString("emailAddress"), 0, null, LocaleUtil.getDefault(),
+                            curUser.getString("firstName"), curUser.getString("middleName"), curUser.getString("lastName"), 0, 0, true, Calendar.JANUARY, 1,
+                            1970, curUser.getString("jobTitle"), groupIds, organizationIds, null, null, false,
+                            new ServiceContext());
+                    updateUserLogo(user);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            _log.warn("file users.json not exist");
+        }
+    }
 
-				StringBundler sb = new StringBundler(4);
+    public static void updateUserLogo(User user) {
+        if (FileUtil.exists(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + user.getScreenName() + ".jpg")) {
+            File portrait = new File(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + user.getScreenName() + ".jpg");
+            if (Validator.isNotNull(portrait)) {
+                try {
+                    UserLocalServiceUtil.updatePortrait(user.getUserId(), FileUtil.getBytes(portrait));
+                } catch (PortalException | SystemException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
-				sb.append("test.");
-				sb.append(organizationPrefix);
-				sb.append(StringPool.PERIOD);
-				sb.append(i);
-				sb.append("@liferay.ru");
+    protected static void addOrganizations(
+            User defaultUser, Organization parentOrganization)
+             {
 
-				String emailAddress = sb.toString();
+        for (Object[] organizationArray : _ORGANIZATION_ARRAYS) {
+            String name = "ООО Ромашка " + organizationArray[0];
+            long regionId = (Long)organizationArray[1];
+            long countryId = (Long)organizationArray[2];
+            String type = (String)organizationArray[3];
 
-				String lastName = organizationPrefix + StringPool.SPACE + i;
+            Organization organization = null;
+            try {
+                organization = OrganizationLocalServiceUtil.getOrganization(defaultUser.getCompanyId(), name);
+            } catch (Exception e) {}
 
-				User user = UserLocalServiceUtil.addUser(
-					0, defaultUser.getCompanyId(), false, "test", "test", false,
-					screenName, emailAddress, 0, null, LocaleUtil.getDefault(),
-					"Иван", "Иванович", lastName, 0, 0, true, Calendar.JANUARY, 1,
-					1970, null, groupIds, organizationIds, null, null, false,
-					new ServiceContext());
+            try {
+                if (Validator.isNull(organization)) {
+                    organization =
+                            OrganizationLocalServiceUtil.addOrganization(
+                                    defaultUser.getUserId(),
+                                    parentOrganization.getOrganizationId(), name, type,
+                                    regionId, countryId,
+                                    ListTypeConstants.ORGANIZATION_STATUS_DEFAULT,
+                                    StringPool.BLANK, true, null);
 
-				user.setPasswordReset(false);
-				user.setAgreedToTermsOfUse(true);
+                    GroupLocalServiceUtil.updateFriendlyURL(
+                            organization.getGroupId(),
+                            FriendlyURLNormalizerUtil.normalize(
+                                    StringPool.SLASH + organizationArray[4]));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-				UserLocalServiceUtil.updateUser(user);
-			}
-		}
-	}
+    private static Log _log = LogFactoryUtil.getLog(
+            SetupWizardSampleDataUtil.class);
 
-	private static Log _log = LogFactoryUtil.getLog(
-		SetupWizardSampleDataUtil.class);
-
-	private static Object[][] _ORGANIZATION_ARRAYS = {
-		{
-			"Москва ", 13001L, 13L, OrganizationConstants.TYPE_LOCATION, "MSK"
-		},
-		{
-			"Санкт-Петербург", 13002L, 13L,
-			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
-		},
-		{
-			"Новосибирск", 13049L, 13L,
-			OrganizationConstants.TYPE_REGULAR_ORGANIZATION
-		},
-	};
-
+    private static Object[][] _ORGANIZATION_ARRAYS = {
+            {
+                    "Москва ", 13001L, 13L, OrganizationConstants.TYPE_LOCATION, "moskva"
+            },
+            {
+                    "Санкт-Петербург", 13002L, 13L,
+                    OrganizationConstants.TYPE_REGULAR_ORGANIZATION, "sankt-peterburg"
+            },
+            {
+                    "Новосибирск", 13049L, 13L,
+                    OrganizationConstants.TYPE_REGULAR_ORGANIZATION, "novosibirsk"
+            },
+    };
 }
