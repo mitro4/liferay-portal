@@ -31,6 +31,8 @@ AUI.add(
 
 		var STR_STRINGS = 'strings';
 
+		var LOCALE_RU = 'ru_RU';
+
 		var Pagination = A.Component.create(
 			{
 				ATTRS: {
@@ -76,13 +78,13 @@ AUI.add(
 							return A.merge(
 								value,
 								{
-									items: Liferay.Language.get('items'),
+									items: themeDisplay.getLanguageId() == LOCALE_RU ? '' : Liferay.Language.get('items'),
 									next: Liferay.Language.get('next'),
 									of: Liferay.Language.get('of'),
-									page: Liferay.Language.get('page'),
+									page: themeDisplay.getLanguageId() == LOCALE_RU ? Liferay.Language.get('page-dp') : Liferay.Language.get('page'),
 									per: Liferay.Language.get('per'),
 									prev: Liferay.Language.get('previous'),
-									results: Liferay.Language.get('results'),
+									results: themeDisplay.getLanguageId() == LOCALE_RU ? '' : Liferay.Language.get('results'),
 									showing: Liferay.Language.get('showing')
 								}
 							);
