@@ -68,5 +68,20 @@
 			<wap-template-path>/layouttpl/custom/2_2_columns.wap.tpl</wap-template-path>
 			<thumbnail-path>/layouttpl/custom/2_2_columns.png</thumbnail-path>
 		</layout-template>
+		<layout-template id="20_60_20">
+			<template-path>/layouttpl/custom/20_60_20.tpl</template-path>
+			<wap-template-path>/layouttpl/custom/20_60_20.wap.tpl</wap-template-path>
+			<thumbnail-path>/layouttpl/custom/20_60_20.png</thumbnail-path>
+		</layout-template>
+		<layout-template id="20_80">
+			<template-path>/layouttpl/custom/20_80.tpl</template-path>
+			<wap-template-path>/layouttpl/custom/20_80.wap.tpl</wap-template-path>
+			<thumbnail-path>/layouttpl/custom/20_80.png</thumbnail-path>
+		</layout-template>
+		<layout-template id="3_1">
+			<template-path>/layouttpl/custom/3_1_columns.tpl</template-path>
+			<wap-template-path>/layouttpl/custom/3_1_columns.wap.tpl</wap-template-path>
+			<thumbnail-path>/layouttpl/custom/3_1_columns.png</thumbnail-path>
+		</layout-template>
 	</custom>
 </layout-templates>
