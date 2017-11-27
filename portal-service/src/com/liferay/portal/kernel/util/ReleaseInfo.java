@@ -109,6 +109,8 @@ public class ReleaseInfo {
 	
 	public static final int RELEASE_6_2_5_6_BUILD_NUMBER = 62056;
 
+	public static final int RELEASE_6_2_5_7_BUILD_NUMBER = 62057;
+
 	public static final Date getBuildDate() {
 		DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
 
@@ -164,7 +166,7 @@ public class ReleaseInfo {
 
 	private static final String _CODE_NAME = "Lomonosov";
 
-	private static final String _DATE = "April 26, 2017";
+	private static final String _DATE = "December 1, 2017";
 
 	private static final String _NAME = "Liferay Portal Russian Edition";
 
@@ -178,9 +180,9 @@ public class ReleaseInfo {
 
 	private static final String _VENDOR = "Liferay, Inc.";
 
-	private static final String _VERSION = "6.2.5.6";
+	private static final String _VERSION = "6.2.5.7";
 
-	private static final String _VERSION_DISPLAY_NAME = "6.2 RE GA6 SP6";
+	private static final String _VERSION_DISPLAY_NAME = "6.2 RE GA6 SP7";
 
 	private static String _releaseInfo;
 	private static String _serverInfo;
