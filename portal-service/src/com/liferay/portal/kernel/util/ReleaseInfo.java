@@ -160,7 +160,7 @@ public class ReleaseInfo {
 		return _VERSION;
 	}
 
-	private static final String _BUILD = "62056";
+	private static final String _BUILD = "62057";
 
 	private static final int _BUILD_NUMBER = GetterUtil.getInteger(_BUILD);
 
