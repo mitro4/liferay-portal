@@ -510,9 +510,11 @@ if (hints != null) {
 
 			<c:if test="<%= !localized %>">
 				<c:if test="<%= autoFocus %>">
-					<aui:script>
-						Liferay.Util.focusFormField('#<%= namespace %><%= id %>');
-					</aui:script>
+					<script type="text/javascript">
+                        setTimeout(function() {
+                            document.getElementById('<%= namespace %><%= id %>').focus();
+                        }, 500);
+					</script>
 				</c:if>
 
 				<aui:script use="aui-char-counter">
