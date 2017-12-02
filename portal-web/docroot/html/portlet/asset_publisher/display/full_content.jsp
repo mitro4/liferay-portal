@@ -187,7 +187,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 				<%
 				String assetEntryClassName = assetEntry.getClassName();
 
-				String ratingsType = "stars";
+				String ratingsType = GetterUtil.getString(PropsUtil.get(PropsKeys.RATINGS_DEFAULT_TYPE), "stars");
 
 				if (assetEntryClassName.equals(MBDiscussion.class.getName()) || assetEntryClassName.equals(MBMessage.class.getName())) {
 					ratingsType = "thumbs";
