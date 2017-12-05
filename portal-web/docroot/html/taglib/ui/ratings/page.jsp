@@ -121,11 +121,12 @@ if (ratingsEntry != null) {
 										0
 									</c:when>
 									<c:otherwise>
-										<%= (ratingsStats.getAverageScore() > 0) ? "+" : StringPool.BLANK %><%= (int)ratingsStats.getTotalScore() %>
+										<%= (ratingsStats.getAverageScore() > 0 && !type.equals("thumbs")) ? "+" : StringPool.BLANK %><%= (int)ratingsStats.getTotalScore() %>
 									</c:otherwise>
 								</c:choose>
-
+								<% if (!type.equals("thumbs")) {%>
 								<%= StringPool.SPACE %>(<%= ratingsStats.getTotalEntries() %> <liferay-ui:message key='<%= (ratingsStats.getTotalEntries() == 1) ? "vote" : "votes" %>' />)
+								<% } %>
 							</div>
 
 							<c:choose>
