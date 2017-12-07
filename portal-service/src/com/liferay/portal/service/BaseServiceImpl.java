@@ -98,7 +98,11 @@ public abstract class BaseServiceImpl implements BaseService {
 			try {
 				permissionChecker = getPermissionChecker();
 			} catch (PrincipalException pe) {
-				throw new SystemException(pe);
+				if (pe.getMessage().equals("PermissionChecker not initialized")) {
+					return;
+				} else {
+					throw new SystemException(pe);
+				}
 			}
 			if (Validator.isNotNull(permissionChecker)) {
 				GroupPermissionUtil.check(permissionChecker, groupId, ActionKeys.VIEW);

@@ -80,6 +80,10 @@ AUI.add(
 							voteLabel = Liferay.Language.get('votes');
 						}
 
+						if (instance.get('type') == 'thumbs') {
+							TPL_LABEL_SCORE = '{totalEntries}';
+						}
+
 						return Lang.sub(
 							TPL_LABEL_SCORE,
 							{
