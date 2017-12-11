@@ -2948,6 +2948,13 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		<attribute>
+			<description>Use Ajax Pagination. Set true for ajax pagination.</description>
+			<name>ajaxPagination</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
 	</tag>
 	<tag>
 		<description>Creates a collapsible panel for housing content.</description>
@@ -3957,6 +3964,13 @@
 			<name>type</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Use Ajax Pagination. Set true for ajax pagination.</description>
+			<name>ajaxPagination</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
 		</attribute>
 	</tag>
 	<tag>

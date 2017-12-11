@@ -89,6 +89,8 @@ public class PageIteratorTag extends IncludeTag {
 		}
 	}
 
+	public void setAjaxPagination(boolean ajaxPagination) { _ajaxPagination = ajaxPagination; }
+
 	@Override
 	protected void cleanUp() {
 		_cur = 0;
@@ -106,6 +108,7 @@ public class PageIteratorTag extends IncludeTag {
 		_type = "regular";
 		_url = null;
 		_urlAnchor = null;
+		_ajaxPagination = false;
 	}
 
 	@Override
@@ -150,6 +153,7 @@ public class PageIteratorTag extends IncludeTag {
 		request.setAttribute("liferay-ui:page-iterator:type", _type);
 		request.setAttribute("liferay-ui:page-iterator:url", _url);
 		request.setAttribute("liferay-ui:page-iterator:urlAnchor", _urlAnchor);
+		request.setAttribute("liferay-ui:page-iterator:ajaxPagination", _ajaxPagination);
 	}
 
 	private static final String _END_PAGE =
@@ -174,5 +178,6 @@ public class PageIteratorTag extends IncludeTag {
 	private String _type = "regular";
 	private String _url;
 	private String _urlAnchor;
+	private boolean _ajaxPagination = false;
 
 }

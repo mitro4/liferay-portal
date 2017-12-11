@@ -206,6 +206,7 @@ if (portletName.equals(PortletKeys.RECENT_CONTENT)) {
 }
 
 String paginationType = GetterUtil.getString(portletPreferences.getValue("paginationType", "none"));
+boolean ajaxPagination = GetterUtil.getBoolean(portletPreferences.getValue("ajaxPagination", null), false);
 
 assetEntryQuery.setPaginationType(paginationType);
 
