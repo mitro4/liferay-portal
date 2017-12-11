@@ -29,11 +29,14 @@ public class SearchPaginatorTag<R> extends SearchFormTag<R> {
 		_type = type;
 	}
 
+	public void setAjaxPagination(boolean ajaxPagination) { _ajaxPagination = ajaxPagination; }
+
 	@Override
 	protected void cleanUp() {
 		super.cleanUp();
 
 		_type = "regular";
+		_ajaxPagination = false;
 	}
 
 	@Override
@@ -47,6 +50,7 @@ public class SearchPaginatorTag<R> extends SearchFormTag<R> {
 
 		request.setAttribute("liferay-ui:search:id", _id);
 		request.setAttribute("liferay-ui:search:type", _type);
+		request.setAttribute("liferay-ui:search:ajaxPagination", _ajaxPagination);
 	}
 
 	private static final String _PAGE =
@@ -54,5 +58,6 @@ public class SearchPaginatorTag<R> extends SearchFormTag<R> {
 
 	private String _id;
 	private String _type = "regular";
+	private boolean _ajaxPagination = false;
 
 }

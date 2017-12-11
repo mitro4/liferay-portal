@@ -32,6 +32,7 @@ String type = (String)request.getAttribute("liferay-ui:page-iterator:type");
 String url = (String)request.getAttribute("liferay-ui:page-iterator:url");
 String urlAnchor = (String)request.getAttribute("liferay-ui:page-iterator:urlAnchor");
 int pages = GetterUtil.getInteger((String)request.getAttribute("liferay-ui:page-iterator:pages"));
+boolean ajaxPagination = GetterUtil.getBoolean((Boolean)request.getAttribute("liferay-ui:page-iterator:ajaxPagination"), false);
 
 if (Validator.isNull(id)) {
 	id = PortalUtil.generateRandomKey(request, "taglib-page-iterator");
@@ -123,7 +124,7 @@ NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
 
 <c:if test="<%= (total > delta) || (total > PropsValues.SEARCH_CONTAINER_PAGE_DELTA_VALUES[0]) %>">
 	<div class="clearfix lfr-pagination">
-		<c:if test='<%= type.equals("regular") %>'>
+		<c:if test='<%= type.equals("regular") && !ajaxPagination %>'>
 			<c:if test="<%= PropsValues.SEARCH_CONTAINER_PAGE_DELTA_VALUES.length > 0 %>">
 				<div class="lfr-pagination-config">
 					<div class="lfr-pagination-page-selector">
@@ -269,6 +270,48 @@ NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
 
 <c:if test='<%= type.equals("approximate") || type.equals("more") || type.equals("regular") || (type.equals("article") && (total > resultRowsSize)) %>'>
 	</div>
+</c:if>
+
+<c:if test='<%=ajaxPagination%>'>
+	<script type="text/javascript">
+        YUI().use('node','node-event-delegate','event-key','aui-io-request', function(Y){
+
+            var portletBody = Y.one('#p_p_id<portlet:namespace/> .portlet-body');
+            var ajaxFilterSelector = 'div:not(.lfr-meta-actions):not(.subscribe-action)';
+
+            portletBody.delegate('click', handleLinkClick, '.lfr-pagination-buttons a');
+
+            function handleLinkClick(e) {
+                var ajaxUrl = e.target.get('href');
+                
+                if (ajaxUrl.indexOf('http') == 0) {
+                    if (portletBody) {
+                        e.preventDefault();
+                        Y.io.request(ajaxUrl, {
+                            method: 'POST',
+                            on: {
+                                success: function () {
+                                    var portletBodyResponse = this.get('responseData');
+                                    portletBodyResponse = Y.Node.create(portletBodyResponse).one('#p_p_id<portlet:namespace/> .portlet-body');
+                                    var curChildren = portletBody.get('children');
+                                    curChildren = curChildren.filter(ajaxFilterSelector);
+                                    curChildren.remove(true);
+                                    var newChildren = portletBodyResponse.get('children');
+                                    newChildren = newChildren.filter(ajaxFilterSelector);
+                                    portletBody.append(newChildren);
+                                }
+                            }
+                        });
+                    } else {
+                        console.error("Can't find '#p_p_id<portlet:namespace/> .portlet-body' for ajax");
+                    }
+                } else {
+                    console.warn('Maybe url is incorrect: ' + ajaxUrl);
+				}
+            };
+
+        });
+	</script>
 </c:if>
 
 <%!

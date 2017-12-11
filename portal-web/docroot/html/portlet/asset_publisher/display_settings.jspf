@@ -72,6 +72,8 @@
 		<aui:option label="regular" selected='<%= paginationType.equals("regular") %>' />
 	</aui:select>
 
+	<aui:input name="preferences--ajaxPagination--" type="checkbox" value="<%=ajaxPagination%>"/>
+
 	<c:if test="<%= !PropsValues.ASSET_PUBLISHER_SEARCH_WITH_INDEX %>">
 		<c:if test='<%= selectionStyle.equals("dynamic") %>'>
 			<aui:input label="exclude-assets-with-0-views" name="preferences--excludeZeroViewCount--" type="checkbox" value="<%= excludeZeroViewCount %>" />
@@ -208,6 +210,7 @@
 
 <aui:script use="aui-base">
 	var selectDisplayStyle = A.one('#<portlet:namespace />displayStyle');
+	var selectPaginationType = A.one('#<portlet:namespace />paginationType');
 
 	function showHiddenFields () {
 		var assetLinkBehavior = A.one('.asset-link-behavior');
@@ -253,6 +256,26 @@
 
 	if (selectDisplayStyle) {
 		selectDisplayStyle.on('change', showHiddenFields);
+	}
+
+	function showHiddenAjax() {
+		var ajaxPagination = A.one('#<portlet:namespace />ajaxPagination');
+
+		if (ajaxPagination) {
+			ajaxPagination.get('parentNode').hide();
+		}
+		if (selectPaginationType) {
+			var paginationType = selectPaginationType.val();
+			if (paginationType != 'none') {
+				ajaxPagination.get('parentNode').show();
+			}
+		}
+	}
+
+	showHiddenAjax();
+
+	if (selectPaginationType) {
+		selectPaginationType.on('change', showHiddenAjax);
 	}
 
 	Liferay.Util.toggleBoxes('<portlet:namespace />enableSocialBookmarksCheckbox','<portlet:namespace />socialBookmarksOptions');

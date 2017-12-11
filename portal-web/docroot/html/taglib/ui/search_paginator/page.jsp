@@ -38,6 +38,8 @@ if (iteratorURL != null) {
 
 	url = HttpUtil.removeParameter(iteratorURL.toString(), namespace + searchContainer.getCurParam());
 }
+
+boolean ajaxPagination = GetterUtil.getBoolean((Boolean)request.getAttribute("liferay-ui:search:ajaxPagination"), false);
 %>
 
 <c:choose>
@@ -53,6 +55,7 @@ if (iteratorURL != null) {
 			total="<%= searchContainer.getTotal() %>"
 			type="<%= type %>"
 			url="<%= url %>"
+			ajaxPagination="<%=ajaxPagination%>"
 		/>
 	</c:when>
 	<c:when test="<%= Validator.isNotNull(searchContainer.getEmptyResultsMessage()) %>">
