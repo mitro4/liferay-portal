@@ -517,6 +517,16 @@ public class AssetPublisherPortletDataHandler
 								"sharing content with child sites");
 				}
 			}
+			catch (NullPointerException npe) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+							"Ignoring scope " + newValue + " because the NPE for " +
+							"oldValue:  " + oldValue +
+							", companyGroupId: " + companyGroupId +
+							", layout: " + layout.getName());
+					_log.warn(npe);
+				}
+			}
 		}
 
 		portletPreferences.setValues(

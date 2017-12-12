@@ -53,8 +53,8 @@ public class SetupWizardSampleDataUtil {
 
         Account account = company.getAccount();
 
-        account.setName("Liferay");
-        account.setLegalName("Liferay, Inc");
+        account.setName(PropsValues.COMPANY_DEFAULT_NAME);
+        account.setLegalName(PropsValues.COMPANY_DEFAULT_NAME + ", Inc");
 
         AccountLocalServiceUtil.updateAccount(account);
 
@@ -64,10 +64,10 @@ public class SetupWizardSampleDataUtil {
                 OrganizationLocalServiceUtil.addOrganization(
                         defaultUser.getUserId(),
                         OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
-                        "ООО Ромашка", true);
+                        PropsValues.COMPANY_DEFAULT_NAME, true);
 
         GroupLocalServiceUtil.updateFriendlyURL(
-                organization.getGroupId(), "/romashka");
+                organization.getGroupId(), "/" + PropsValues.COMPANY_DEFAULT_NAME.toLowerCase());
 
         User user = UserLocalServiceUtil.fetchUserByEmailAddress(
                 company.getCompanyId(), "admin@liferay.com");
@@ -306,14 +306,20 @@ public class SetupWizardSampleDataUtil {
     }
 
     public static void updateUserLogo(User user) {
-        if (FileUtil.exists(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + user.getScreenName() + ".jpg")) {
-            File portrait = new File(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + user.getScreenName() + ".jpg");
-            if (Validator.isNotNull(portrait)) {
-                try {
-                    UserLocalServiceUtil.updatePortrait(user.getUserId(), FileUtil.getBytes(portrait));
-                } catch (PortalException | SystemException | IOException e) {
-                    e.printStackTrace();
-                }
+        File portrait = null;
+        String fileName = PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + user.getScreenName();
+        if (FileUtil.exists(fileName + ".jpg")) {
+            portrait = new File(fileName + ".jpg");
+        } else if (FileUtil.exists(fileName + ".jpeg")) {
+            portrait = new File(fileName + ".jpeg");
+        } else if (FileUtil.exists(fileName + ".png")) {
+            portrait = new File(fileName + ".png");
+        }
+        if (Validator.isNotNull(portrait)) {
+            try {
+                UserLocalServiceUtil.updatePortrait(user.getUserId(), FileUtil.getBytes(portrait));
+            } catch (PortalException | SystemException | IOException e) {
+                _log.error(e.getMessage());
             }
         }
     }
@@ -323,7 +329,7 @@ public class SetupWizardSampleDataUtil {
              {
 
         for (Object[] organizationArray : _ORGANIZATION_ARRAYS) {
-            String name = "ООО Ромашка " + organizationArray[0];
+            String name = (String) organizationArray[0];
             long regionId = (Long)organizationArray[1];
             long countryId = (Long)organizationArray[2];
             String type = (String)organizationArray[3];
@@ -359,14 +365,14 @@ public class SetupWizardSampleDataUtil {
 
     private static Object[][] _ORGANIZATION_ARRAYS = {
             {
-                    "Москва ", 13001L, 13L, OrganizationConstants.TYPE_LOCATION, "moskva"
+                    "Московский офис", 13001L, 13L, OrganizationConstants.TYPE_LOCATION, "moskva"
             },
             {
-                    "Санкт-Петербург", 13002L, 13L,
+                    "Офис в Санкт-Петербурге", 13002L, 13L,
                     OrganizationConstants.TYPE_REGULAR_ORGANIZATION, "sankt-peterburg"
             },
             {
-                    "Новосибирск", 13049L, 13L,
+                    "Новосибирский офис", 13049L, 13L,
                     OrganizationConstants.TYPE_REGULAR_ORGANIZATION, "novosibirsk"
             },
     };
