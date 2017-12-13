@@ -47,9 +47,10 @@
 
 	<aui:input cssClass="hidden-field show-context-link" name="preferences--showContextLink--" type="checkbox" value="<%= showContextLink %>" />
 
-	<aui:select cssClass="hidden-field asset-link-behavior" name="preferences--assetLinkBehavior--">
+	<aui:select cssClass="hidden-field asset-link-behavior" name="preferences--assetLinkBehavior--" helpMessage="ajax-load-help">
 		<aui:option label="show-full-content" selected='<%= assetLinkBehavior.equals("showFullContent") %>' value="showFullContent" />
 		<aui:option label="view-in-context" selected='<%= assetLinkBehavior.equals("viewInPortlet") %>' value="viewInPortlet" />
+		<aui:option label="show-full-content-ajax" selected='<%= assetLinkBehavior.equals("showFullContentAjax") %>' value="showFullContentAjax" />
 	</aui:select>
 
 	<aui:select helpMessage="number-of-items-to-display-help" label="number-of-items-to-display" name="preferences--pageDelta--">
