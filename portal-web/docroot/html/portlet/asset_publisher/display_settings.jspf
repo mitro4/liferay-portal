@@ -53,6 +53,8 @@
 		<aui:option label="show-full-content-ajax" selected='<%= assetLinkBehavior.equals("showFullContentAjax") %>' value="showFullContentAjax" />
 	</aui:select>
 
+	<aui:input name="preferences--ajaxNamespace--" type="text" value="<%=ajaxNamespace%>"/>
+
 	<aui:select helpMessage="number-of-items-to-display-help" label="number-of-items-to-display" name="preferences--pageDelta--">
 
 		<%
@@ -212,6 +214,7 @@
 <aui:script use="aui-base">
 	var selectDisplayStyle = A.one('#<portlet:namespace />displayStyle');
 	var selectPaginationType = A.one('#<portlet:namespace />paginationType');
+	var selectAssetLinkBehavior = A.one('#<portlet:namespace />assetLinkBehavior');
 
 	function showHiddenFields () {
 		var assetLinkBehavior = A.one('.asset-link-behavior');
@@ -277,6 +280,26 @@
 
 	if (selectPaginationType) {
 		selectPaginationType.on('change', showHiddenAjax);
+	}
+
+	function showHiddenAjaxBehavior() {
+	    var ajaxNamespace = A.one('#<portlet:namespace />ajaxNamespace');
+
+	    if (ajaxNamespace) {
+	        ajaxNamespace.get('parentNode').hide();
+	    }
+	    if (selectAssetLinkBehavior) {
+	        selectDisplayStyleVal = selectAssetLinkBehavior.val();
+	        if (selectDisplayStyleVal == 'showFullContentAjax') {
+	            ajaxNamespace.get('parentNode').show();
+	        }
+	    }
+	}
+
+	showHiddenAjaxBehavior();
+
+	if (selectAssetLinkBehavior) {
+	    selectAssetLinkBehavior.on('change', showHiddenAjaxBehavior);
 	}
 
 	Liferay.Util.toggleBoxes('<portlet:namespace />enableSocialBookmarksCheckbox','<portlet:namespace />socialBookmarksOptions');
