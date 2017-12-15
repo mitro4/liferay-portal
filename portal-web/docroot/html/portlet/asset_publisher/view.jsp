@@ -188,22 +188,32 @@ contextObjects.put(PortletDisplayTemplateConstants.ASSET_PUBLISHER_HELPER, Asset
 	<script type="text/javascript">
         YUI().use('node','node-event-delegate','event-key','aui-io-request', function(Y){
 
-            var portletBody = Y.one('#p_p_id<portlet:namespace/> .portlet-body');
+            var curNamespace = '<portlet:namespace/>';
+            var portletBody = Y.one('#p_p_id' + curNamespace + ' .portlet-body');
             var ajaxFilterSelector = ':not(.lfr-meta-actions):not(.subscribe-action)';
+            var ajaxNamespace = '';
+            <c:if test='<%= !ajaxNamespace.isEmpty() %>'>
+                ajaxNamespace = '<%=ajaxNamespace%>';
+            </c:if>
 
-            portletBody.delegate('click', handleLinkClick, '.title-list a');
-            portletBody.delegate('click', handleLinkClick, 'td.table-cell a');
-            portletBody.delegate('click', handleLinkClick, '.asset-title a');
-            portletBody.delegate('click', handleLinkClick, '.asset-more a');
-            portletBody.delegate('click', handleLinkClick, '.header-back-to a');
-            portletBody.delegate('click', handleLinkClick, 'a.ajax-view');
+            portletBody.delegate('click', handleLinkClick, '.title-list a,td.table-cell a,.asset-title a,.asset-more a,.header-back-to a,.ajax-view');
 
             function handleLinkClick(e) {
-                var ajaxUrl = e.target.get('href');
+                var targetElement = e.target;
+                if (targetElement && targetElement.get('tagName') !== 'A') {
+                    do {
+                        targetElement = targetElement.get('parentNode');
+                    } while (targetElement && targetElement.get('tagName') !== 'A');
+                }
+                var ajaxUrl = targetElement.get('href');
 
-                if (ajaxUrl.indexOf('http') == 0) {
+                if (ajaxUrl && ajaxUrl.indexOf('http') == 0) {
                     if (portletBody) {
                         e.preventDefault();
+                        var hasBackClass = e.target.hasClass('header-back-to') || e.target.hasClass('previous-level');
+                        if (!hasBackClass) {
+                            ajaxUrl = ajaxUrl + '?redirect=' + window.location.href;
+                        }
                         Y.io.request(ajaxUrl, {
                             method: 'POST',
                             on: {
@@ -211,15 +221,18 @@ contextObjects.put(PortletDisplayTemplateConstants.ASSET_PUBLISHER_HELPER, Asset
                                     var portletBodyResponse = this.get('responseData');
                                     portletBodyResponse = Y.Node.create(portletBodyResponse);
                                     var pageTitle = null;
-                                    try {
+                                    if (ajaxNamespace == '') {
                                         pageTitle = portletBodyResponse.one('title').getContent();
-                                    } catch (err) {
-                                        console.error(err);
 									}
-                                    portletBodyResponse = portletBodyResponse.one('#p_p_id<portlet:namespace/> .portlet-body');
+									if (ajaxNamespace != '' && !hasBackClass) {
+                                        portletBodyResponse = portletBodyResponse.one('#p_p_id' + ajaxNamespace + ' .portlet-body');
+									} else {
+                                        portletBodyResponse = portletBodyResponse.one('#p_p_id' + curNamespace + ' .portlet-body');
+									}
                                     var curChildren = portletBody.get('children');
                                     curChildren = curChildren.filter(ajaxFilterSelector);
                                     curChildren.remove(true);
+                                    window.ajaxResponseBody = portletBodyResponse;
                                     var newChildren = portletBodyResponse.get('children');
                                     newChildren = newChildren.filter(ajaxFilterSelector);
                                     portletBody.append(newChildren);
@@ -230,11 +243,7 @@ contextObjects.put(PortletDisplayTemplateConstants.ASSET_PUBLISHER_HELPER, Asset
 									}
 									if (pageTitle) {
                                         var curTitle = null;
-                                        try {
-                                            curTitle = Y.one('title');
-                                        } catch (err) {
-                                            console.error(err);
-										}
+                                        curTitle = Y.one('title');
                                         curTitle.setContent(pageTitle);
 									}
                                 }
