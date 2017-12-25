@@ -41,7 +41,14 @@ public class UpgradeNameSize extends UpgradeProcess {
                 + " column friendlyURL " + (DB.TYPE_POSTGRESQL.equals(db.getType()) ? "type" : "" ) + " varchar(1024)";
 
         log.debug(query);
-        runSQL(query);
+        
+        try {
+            runSQL(query);
+        } catch (Exception ex) {
+            // log errors but ignore them
+            log.warn("Cannot upgrade names: " + ex.getMessage());
+            log.debug("Cannot upgrade names", ex);
+        }
     }
 
 }
