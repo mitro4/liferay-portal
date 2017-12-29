@@ -166,7 +166,7 @@ public class ReleaseInfo {
 
 	private static final String _CODE_NAME = "Lomonosov";
 
-	private static final String _DATE = "December 1, 2017";
+	private static final String _DATE = "December 29, 2017";
 
 	private static final String _NAME = "Liferay Portal Russian Edition";
 
