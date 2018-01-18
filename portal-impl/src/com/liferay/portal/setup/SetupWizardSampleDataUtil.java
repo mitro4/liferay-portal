@@ -95,7 +95,7 @@ public class SetupWizardSampleDataUtil {
 
         addOrganizations(user, organization);
         addUsers(companyId, organization);
-        importSampleData(companyId);
+        importSampleData(companyId, false);
 
         if (_log.isInfoEnabled()) {
             _log.info("Finished adding data in " + stopWatch.getTime() + " ms");
@@ -197,7 +197,7 @@ public class SetupWizardSampleDataUtil {
         return parameterMap;
     }
 
-    public static void importSampleData(long companyId) throws SystemException, PortalException {
+    public static void importSampleData(long companyId, boolean defaultData) throws SystemException, PortalException {
 
         Company company = CompanyLocalServiceUtil.getCompanyById(companyId);
 
@@ -213,7 +213,11 @@ public class SetupWizardSampleDataUtil {
                 if (!group.getFriendlyURL().equals("/guest")) {
                     filePrefix = StringUtil.replace(group.getFriendlyURL(), "/", StringPool.BLANK) + StringPool.UNDERLINE;
                 }
-                String privateFile = filePrefix + "private.lar";
+                String privateFileName = "private.lar";
+                if (defaultData) {
+                    privateFileName = "default_" + privateFileName;
+                }
+                String privateFile = filePrefix + privateFileName;
                 if (FileUtil.exists(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + privateFile)) {
                     _log.info("file " + privateFile + " exist");
                     try {
@@ -227,21 +231,25 @@ public class SetupWizardSampleDataUtil {
                 } else {
                     _log.warn("file " + privateFile + " not exist");
                 }
-                String publicFile = filePrefix + "public.lar";
-                if (FileUtil.exists(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + publicFile)) {
-                    _log.info("file " + publicFile + " exist");
-                    try {
-                        File file = new File(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + publicFile);
-                        if (Validator.isNotNull(file)) {
-                            //if (!publicFile.equals("public.lar")) {
+                String publicFileName = "public.lar";
+                if (defaultData) {
+                    publicFileName = "default_" + publicFileName;
+                }
+                String publicFile = filePrefix + publicFileName;
+                if (!publicFile.equals("public.lar")) {
+                    if (FileUtil.exists(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + publicFile)) {
+                        _log.info("file " + publicFile + " exist");
+                        try {
+                            File file = new File(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + publicFile);
+                            if (Validator.isNotNull(file)) {
                                 LayoutLocalServiceUtil.importLayouts(user.getUserId(), group.getGroupId(), false, paramMap, file);
-                            //}
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    } else {
+                        _log.warn("file " + publicFile + " not exist");
                     }
-                } else {
-                    _log.warn("file " + publicFile + " not exist");
                 }
             }
         }

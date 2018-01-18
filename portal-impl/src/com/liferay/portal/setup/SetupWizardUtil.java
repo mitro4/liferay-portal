@@ -203,9 +203,11 @@ public class SetupWizardUtil {
                 WebKeys.SETUP_WIZARD_PROPERTIES_FILE_CREATED,
                 _writePropertiesFile(unicodeProperties));
 
+        long companyId = PortalInstances.getDefaultCompanyId();
         if (ParamUtil.getBoolean(request, "addSampleData")) {
-            long companyId = PortalInstances.getDefaultCompanyId();
             SetupWizardSampleDataUtil.addSampleData(companyId);
+        } else {
+            SetupWizardSampleDataUtil.importSampleData(companyId, true);
         }
     }
 
