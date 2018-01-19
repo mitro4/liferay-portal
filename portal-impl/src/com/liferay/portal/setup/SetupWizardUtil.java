@@ -206,9 +206,8 @@ public class SetupWizardUtil {
         long companyId = PortalInstances.getDefaultCompanyId();
         if (ParamUtil.getBoolean(request, "addSampleData")) {
             SetupWizardSampleDataUtil.addSampleData(companyId);
-        } else {
-            SetupWizardSampleDataUtil.importSampleData(companyId, true);
         }
+        SetupWizardSampleDataUtil.importSampleData(companyId, true);
     }
 
     private static String _getParameter(
