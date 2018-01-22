@@ -64,7 +64,7 @@ public class SetupWizardSampleDataUtil {
                 OrganizationLocalServiceUtil.addOrganization(
                         defaultUser.getUserId(),
                         OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
-                        PropsValues.COMPANY_DEFAULT_NAME, true);
+                        PropsValues.COMPANY_DEFAULT_NAME + " Demo", true);
 
         GroupLocalServiceUtil.updateFriendlyURL(
                 organization.getGroupId(), "/" + PropsValues.COMPANY_DEFAULT_NAME.toLowerCase());
@@ -96,6 +96,7 @@ public class SetupWizardSampleDataUtil {
         addOrganizations(user, organization);
         addUsers(companyId, organization);
         importSampleData(companyId, false);
+        importSampleData(companyId, true);
 
         if (_log.isInfoEnabled()) {
             _log.info("Finished adding data in " + stopWatch.getTime() + " ms");
@@ -373,14 +374,14 @@ public class SetupWizardSampleDataUtil {
 
     private static Object[][] _ORGANIZATION_ARRAYS = {
             {
-                    "Московский офис", 13001L, 13L, OrganizationConstants.TYPE_LOCATION, "moskva"
+                    PropsValues.COMPANY_DEFAULT_NAME + " Demo Московский офис", 13001L, 13L, OrganizationConstants.TYPE_LOCATION, "moskva"
             },
             {
-                    "Офис в Санкт-Петербурге", 13002L, 13L,
+                    PropsValues.COMPANY_DEFAULT_NAME + " Demo Офис в Санкт-Петербурге", 13002L, 13L,
                     OrganizationConstants.TYPE_REGULAR_ORGANIZATION, "sankt-peterburg"
             },
             {
-                    "Новосибирский офис", 13049L, 13L,
+                    PropsValues.COMPANY_DEFAULT_NAME + " Demo Новосибирский офис", 13049L, 13L,
                     OrganizationConstants.TYPE_REGULAR_ORGANIZATION, "novosibirsk"
             },
     };

@@ -207,7 +207,6 @@ public class SetupWizardUtil {
         if (ParamUtil.getBoolean(request, "addSampleData")) {
             SetupWizardSampleDataUtil.addSampleData(companyId);
         }
-        SetupWizardSampleDataUtil.importSampleData(companyId, true);
     }
 
     private static String _getParameter(
