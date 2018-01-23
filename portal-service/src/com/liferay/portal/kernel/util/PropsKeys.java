@@ -567,6 +567,8 @@ public interface PropsKeys {
 
 	public static final String DEFAULT_GUEST_PUBLIC_LAYOUTS_LAR = "default.guest.public.layouts.lar";
 
+	public static final String DEFAULT_GUEST_PRIVATE_LAYOUTS_LAR = "default.guest.private.layouts.lar";
+
 	public static final String DEFAULT_LANDING_PAGE_PATH = "default.landing.page.path";
 
 	public static final String DEFAULT_LAYOUT_TEMPLATE_ID = "default.layout.template.id";
