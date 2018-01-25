@@ -67,7 +67,9 @@ public class SetupWizardSampleDataUtil {
                         PropsValues.COMPANY_DEFAULT_NAME + " Demo", true);
 
         GroupLocalServiceUtil.updateFriendlyURL(
-                organization.getGroupId(), "/" + PropsValues.COMPANY_DEFAULT_NAME.toLowerCase());
+                organization.getGroupId(), "/"
+                        + StringUtil.replace(PropsValues.COMPANY_DEFAULT_NAME.toLowerCase(), StringPool.BLANK, StringPool.MINUS)
+                        + "-demo");
 
         User user = UserLocalServiceUtil.fetchUserByEmailAddress(
                 company.getCompanyId(), "admin@liferay.com");
