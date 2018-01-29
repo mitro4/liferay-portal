@@ -621,7 +621,7 @@ AUI.add(
 							var structureField;
 
 							if (required) {
-								label += ' (' + Liferay.Language.get('required') + ')';
+								label += ' ' + Liferay.Language.get('required-field');
 							}
 
 							label = A.Escape.html(label);
