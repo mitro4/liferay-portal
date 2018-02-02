@@ -5,13 +5,13 @@
 <#if fieldStructure.multiple?? && (fieldStructure.multiple == "true")>
 	<#assign multiple = true>
 </#if>
-
+<#assign label = escape(label)>
 <#if required>
-	<#assign label = label + " " + languageUtil.get(requestedLocale, "required-field")>
+	<#assign label = label + ' <span class="label-required">' + languageUtil.get(requestedLocale, "required-field") + '</span>'>
 </#if>
 
 <@aui["field-wrapper"] data=data>
-	<@aui.select cssClass=cssClass helpMessage=escape(fieldStructure.tip) label=escape(label) multiple=multiple name=namespacedFieldName>
+	<@aui.select cssClass=cssClass helpMessage=escape(fieldStructure.tip) label=label multiple=multiple name=namespacedFieldName>
 		${fieldStructure.children}
 	</@aui.select>
 </@>
