@@ -98,7 +98,6 @@ public class SetupWizardSampleDataUtil {
         addOrganizations(user, organization);
         addUsers(companyId, organization);
         importSampleData(companyId, false);
-        importSampleData(companyId, true);
 
         if (_log.isInfoEnabled()) {
             _log.info("Finished adding data in " + stopWatch.getTime() + " ms");
@@ -202,6 +201,14 @@ public class SetupWizardSampleDataUtil {
 
     public static void importSampleData(long companyId, boolean defaultData) throws SystemException, PortalException {
 
+
+        StopWatch stopWatch = new StopWatch();
+
+        stopWatch.start();
+
+        if (_log.isInfoEnabled()) {
+            _log.info("Start import lar files for default: " + defaultData);
+        }
         Company company = CompanyLocalServiceUtil.getCompanyById(companyId);
 
         User user = UserLocalServiceUtil.fetchUserByEmailAddress(
@@ -255,6 +262,9 @@ public class SetupWizardSampleDataUtil {
                     }
                 }
             }
+        }
+        if (_log.isInfoEnabled()) {
+            _log.info("Finished import lar in " + stopWatch.getTime() + " ms");
         }
     }
 

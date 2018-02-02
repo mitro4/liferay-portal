@@ -43,6 +43,7 @@ import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.util.PropsUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.WebKeys;
+import org.apache.commons.lang.time.StopWatch;
 import org.apache.struts.Globals;
 
 import javax.servlet.http.HttpServletRequest;
@@ -207,6 +208,7 @@ public class SetupWizardUtil {
         if (ParamUtil.getBoolean(request, "addSampleData")) {
             SetupWizardSampleDataUtil.addSampleData(companyId);
         }
+        SetupWizardSampleDataUtil.importSampleData(companyId, true);
     }
 
     private static String _getParameter(
