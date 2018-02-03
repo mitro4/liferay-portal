@@ -29,6 +29,11 @@ import com.liferay.portal.model.*;
 import com.liferay.portal.service.*;
 import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.util.PropsValues;
+import com.liferay.portlet.expando.model.ExpandoColumn;
+import com.liferay.portlet.expando.model.ExpandoColumnConstants;
+import com.liferay.portlet.expando.model.ExpandoTable;
+import com.liferay.portlet.expando.model.ExpandoTableConstants;
+import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import org.apache.commons.lang.time.StopWatch;
 
 import java.io.File;
@@ -65,6 +70,7 @@ public class SetupWizardSampleDataUtil {
                         defaultUser.getUserId(),
                         OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
                         PropsValues.COMPANY_DEFAULT_NAME + " Demo", true);
+        createDemoExpandoOrg(organization);
 
         GroupLocalServiceUtil.updateFriendlyURL(
                 organization.getGroupId(), "/"
@@ -139,7 +145,7 @@ public class SetupWizardSampleDataUtil {
                     new String[]{Boolean.FALSE.toString()});
             parameterMap.put(
                     PortletDataHandlerKeys.PERMISSIONS,
-                    new String[]{Boolean.FALSE.toString()});
+                    new String[]{Boolean.TRUE.toString()});
 
             parameterMap.put(
                     PortletDataHandlerKeys.PORTLET_CONFIGURATION,
@@ -375,10 +381,15 @@ public class SetupWizardSampleDataUtil {
                             FriendlyURLNormalizerUtil.normalize(
                                     StringPool.SLASH + organizationArray[4]));
                 }
+                createDemoExpandoOrg(organization);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static void createDemoExpandoOrg(Organization organization) throws PortalException {
+        organization.getExpandoBridge().addAttribute("demo", ExpandoColumnConstants.BOOLEAN, Boolean.TRUE, false);
     }
 
     private static Log _log = LogFactoryUtil.getLog(
