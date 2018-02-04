@@ -29,6 +29,7 @@ import com.liferay.portal.model.*;
 import com.liferay.portal.service.*;
 import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.util.PropsValues;
+import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
@@ -102,7 +103,8 @@ public class SetupWizardSampleDataUtil {
                 user.getUserId(), organization);
 
         addOrganizations(user, organization);
-        addUsers(companyId, organization);
+        Role demoRole = createRole(user.getUserId());
+        addUsers(companyId, organization, demoRole);
         importSampleData(companyId, false);
 
         if (_log.isInfoEnabled()) {
@@ -274,8 +276,14 @@ public class SetupWizardSampleDataUtil {
         }
     }
 
-    protected static void addUsers(long companyId, Organization parentOrganization) {
+    protected static void addUsers(long companyId, Organization parentOrganization, Role demoRole) {
         if (FileUtil.exists(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + "users.json")) {
+            Group guestGroup = null;
+            try {
+                guestGroup = GroupLocalServiceUtil.fetchGroup(companyId, GroupConstants.GUEST);
+            } catch (SystemException e) {
+                e.printStackTrace();
+            }
             File usersJsonFile = new File(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + "users.json");
             try {
                 String usersStr = FileUtil.read(usersJsonFile);
@@ -323,6 +331,9 @@ public class SetupWizardSampleDataUtil {
                             1970, curUser.getString("jobTitle"), groupIds, organizationIds, null, null, false,
                             new ServiceContext());
                     updateUserLogo(user);
+                    if (Validator.isNotNull(guestGroup) && Validator.isNotNull(demoRole)) {
+                        UserGroupRoleLocalServiceUtil.addUserGroupRoles(user.getUserId(), guestGroup.getGroupId(), new long[]{demoRole.getRoleId()});
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -389,7 +400,20 @@ public class SetupWizardSampleDataUtil {
     }
 
     private static void createDemoExpandoOrg(Organization organization) throws PortalException {
-        organization.getExpandoBridge().addAttribute("demo", ExpandoColumnConstants.BOOLEAN, Boolean.TRUE, false);
+        try {
+            organization.getExpandoBridge().addAttribute("demo", ExpandoColumnConstants.BOOLEAN, Boolean.TRUE, false);
+        } catch (DuplicateColumnNameException e) {}
+    }
+
+    private static Role createRole(long userId) {
+        Role role = null;
+        try {
+            role = RoleLocalServiceUtil.addRole(userId, null,0, "Demo", null, null,
+                    RoleConstants.TYPE_SITE, StringPool.BLANK, new ServiceContext());
+        } catch (PortalException | SystemException e) {
+            e.printStackTrace();
+        }
+        return role;
     }
 
     private static Log _log = LogFactoryUtil.getLog(
