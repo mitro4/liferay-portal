@@ -46,7 +46,7 @@ import java.util.*;
  */
 public class SetupWizardSampleDataUtil {
 
-    public static void addSampleData(long companyId) throws Exception {
+    public static void addSampleData(long companyId, User user) throws Exception {
         StopWatch stopWatch = new StopWatch();
 
         stopWatch.start();
@@ -78,19 +78,10 @@ public class SetupWizardSampleDataUtil {
                         + StringUtil.replace(PropsValues.COMPANY_DEFAULT_NAME.toLowerCase(), StringPool.BLANK, StringPool.MINUS)
                         + "-demo");
 
-        User user = UserLocalServiceUtil.fetchUserByEmailAddress(
-                company.getCompanyId(), "admin@liferay.com");
-
         if (user == null) {
             user = UserLocalServiceUtil.addDefaultAdminUser(
                     companyId, "admin", "admin@liferay.com",
                     LocaleUtil.getDefault(), "Вася", StringPool.BLANK, "Пупкин");
-        }
-        else {
-            user.setScreenName("admin");
-            user.setGreeting("Добро пожаловать, Вася Пупкин!");
-            user.setFirstName("Вася");
-            user.setLastName("Пупкин");
         }
 
         UserLocalServiceUtil.addGroupUser(organization.getGroupId(), user.getUserId());
@@ -330,7 +321,7 @@ public class SetupWizardSampleDataUtil {
                             curUser.getString("firstName"), curUser.getString("middleName"), curUser.getString("lastName"), 0, 0, true, Calendar.JANUARY, 1,
                             1970, curUser.getString("jobTitle"), groupIds, organizationIds, null, null, false,
                             new ServiceContext());
-                    updateUserLogo(user);
+                    updateUserLogo(user, false);
                     if (Validator.isNotNull(guestGroup) && Validator.isNotNull(demoRole)) {
                         UserGroupRoleLocalServiceUtil.addUserGroupRoles(user.getUserId(), guestGroup.getGroupId(), new long[]{demoRole.getRoleId()});
                     }
@@ -343,9 +334,14 @@ public class SetupWizardSampleDataUtil {
         }
     }
 
-    public static void updateUserLogo(User user) {
+    public static void updateUserLogo(User user, boolean isAdmin) {
         File portrait = null;
-        String fileName = PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + user.getScreenName();
+        String fileName = PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH;
+        if (isAdmin) {
+            fileName = fileName + "admin";
+        } else {
+            fileName = fileName + user.getScreenName();
+        }
         if (FileUtil.exists(fileName + ".jpg")) {
             portrait = new File(fileName + ".jpg");
         } else if (FileUtil.exists(fileName + ".jpeg")) {

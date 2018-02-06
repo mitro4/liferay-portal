@@ -192,7 +192,7 @@ public class SetupWizardUtil {
         _reloadServletContext(request, unicodeProperties);
 
         _updateCompany(request);
-        _updateAdminUser(request, response, unicodeProperties);
+        User adminUser = _updateAdminUser(request, response, unicodeProperties);
 
         _initPlugins();
 
@@ -206,7 +206,7 @@ public class SetupWizardUtil {
 
         long companyId = PortalInstances.getDefaultCompanyId();
         if (ParamUtil.getBoolean(request, "addSampleData")) {
-            SetupWizardSampleDataUtil.addSampleData(companyId);
+            SetupWizardSampleDataUtil.addSampleData(companyId, adminUser);
         }
         SetupWizardSampleDataUtil.importSampleData(companyId, true);
     }
@@ -337,7 +337,7 @@ public class SetupWizardUtil {
         }
     }
 
-    private static void _updateAdminUser(
+    private static User _updateAdminUser(
             HttpServletRequest request, HttpServletResponse response,
             UnicodeProperties unicodeProperties)
             throws Exception {
@@ -443,7 +443,7 @@ public class SetupWizardUtil {
         }
 
         if (ParamUtil.getBoolean(request, "addSampleData")) {
-            SetupWizardSampleDataUtil.updateUserLogo(user);
+            SetupWizardSampleDataUtil.updateUserLogo(user, true);
         }
 
         user = UserLocalServiceUtil.updatePasswordReset(user.getUserId(), true);
@@ -458,6 +458,7 @@ public class SetupWizardUtil {
         EventsProcessorUtil.process(
                 PropsKeys.LOGIN_EVENTS_POST, PropsValues.LOGIN_EVENTS_POST, request,
                 response);
+        return user;
     }
 
     private static void _updateCompany(HttpServletRequest request)
