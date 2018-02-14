@@ -50,7 +50,7 @@ public class GroupConstants {
 
 	public static final int TYPE_SITE_OPEN = 1;
 
-	public static final String TYPE_SITE_OPEN_LABEL = "open";
+	public static final String TYPE_SITE_OPEN_LABEL = "membership-open";
 
 	public static final int TYPE_SITE_PRIVATE = 3;
 

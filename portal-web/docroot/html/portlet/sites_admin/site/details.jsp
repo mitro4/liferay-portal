@@ -150,9 +150,9 @@ else if (group != null) {
 
 	<c:if test="<%= (group == null) || !group.isCompany() %>">
 		<aui:select label="membership-type" name="type">
-			<aui:option label="open" value="<%= GroupConstants.TYPE_SITE_OPEN %>" />
-			<aui:option label="restricted" value="<%= GroupConstants.TYPE_SITE_RESTRICTED %>" />
-			<aui:option label="private" value="<%= GroupConstants.TYPE_SITE_PRIVATE %>" />
+			<aui:option label="<%= GroupConstants.TYPE_SITE_OPEN_LABEL %>" value="<%= GroupConstants.TYPE_SITE_OPEN %>" />
+			<aui:option label="<%= GroupConstants.TYPE_SITE_RESTRICTED_LABEL %>" value="<%= GroupConstants.TYPE_SITE_RESTRICTED %>" />
+			<aui:option label="<%= GroupConstants.TYPE_SITE_PRIVATE_LABEL %>" value="<%= GroupConstants.TYPE_SITE_PRIVATE %>" />
 		</aui:select>
 
 		<%
