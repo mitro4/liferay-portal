@@ -34,8 +34,10 @@ import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
 import com.liferay.portlet.expando.model.ExpandoTableConstants;
+import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import org.apache.commons.lang.time.StopWatch;
+import org.apache.xpath.operations.Bool;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +67,8 @@ public class SetupWizardSampleDataUtil {
         AccountLocalServiceUtil.updateAccount(account);
 
         User defaultUser = company.getDefaultUser();
+
+        addOrgExpandoColumnDemo(companyId);
 
         Organization organization =
                 OrganizationLocalServiceUtil.addOrganization(
@@ -395,10 +399,28 @@ public class SetupWizardSampleDataUtil {
         }
     }
 
-    private static void createDemoExpandoOrg(Organization organization) throws PortalException {
+    private static void createDemoExpandoOrg(Organization organization) {
         try {
-            organization.getExpandoBridge().addAttribute("demo", ExpandoColumnConstants.BOOLEAN, Boolean.TRUE, false);
-        } catch (DuplicateColumnNameException e) {}
+            organization.getExpandoBridge().setAttribute(EXPANDO_DEMO_COLUMN_NAME, Boolean.TRUE, false);
+        } catch (Exception e) {
+            _log.error(e);
+        }
+    }
+
+    private static void addOrgExpandoColumnDemo(long companyId) {
+        try {
+            ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.fetchDefaultTable(companyId, Organization.class.getName());
+            if (Validator.isNull(expandoTable)) {
+                expandoTable = ExpandoTableLocalServiceUtil.addDefaultTable(companyId, Organization.class.getName());
+            }
+            if (Validator.isNotNull(expandoTable)) {
+                ExpandoColumnLocalServiceUtil.addColumn(expandoTable.getTableId(), EXPANDO_DEMO_COLUMN_NAME, ExpandoColumnConstants.BOOLEAN, Boolean.FALSE);
+            } else {
+                _log.error("default expando table for organization is null");
+            }
+        } catch (Exception e) {
+            _log.error(e);
+        }
     }
 
     private static Role createRole(long userId) {
@@ -407,7 +429,7 @@ public class SetupWizardSampleDataUtil {
             role = RoleLocalServiceUtil.addRole(userId, null,0, "Demo", null, null,
                     RoleConstants.TYPE_SITE, StringPool.BLANK, new ServiceContext());
         } catch (PortalException | SystemException e) {
-            e.printStackTrace();
+            _log.error(e);
         }
         return role;
     }
@@ -428,4 +450,6 @@ public class SetupWizardSampleDataUtil {
                     OrganizationConstants.TYPE_REGULAR_ORGANIZATION, "novosibirsk"
             },
     };
+
+    private static String EXPANDO_DEMO_COLUMN_NAME = "demo";
 }
