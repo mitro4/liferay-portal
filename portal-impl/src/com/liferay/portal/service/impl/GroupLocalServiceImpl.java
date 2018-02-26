@@ -692,6 +692,13 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 				if (layoutSet.getPageCount() == 0) {
 					addDefaultGuestPublicLayouts(group);
 				}
+
+				layoutSet = layoutSetLocalService.getLayoutSet(
+						group.getGroupId(), true);
+
+				if (layoutSet.getPageCount() == 0) {
+					addDefaultGuestPrivateLayouts(group);
+				}
 			}
 
 			_systemGroupsMap.put(groupCacheKey, group);
@@ -3698,86 +3705,111 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		}
 	}
 
+	protected void addDefaultGuestPrivateLayouts(Group group)
+			throws PortalException, SystemException {
+
+		if (privateLARFile != null) {
+			addDefaultGuestPrivateLayoutsByLAR(group, privateLARFile);
+		}
+	}
+
 	protected void addDefaultGuestPublicLayoutsByLAR(Group group, File larFile)
 		throws PortalException, SystemException {
 
 		long defaultUserId = userLocalService.getDefaultUserId(
 			group.getCompanyId());
 
-		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
-
-		parameterMap.put(
-                PortletDataHandlerKeys.LOGO,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.CATEGORIES,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.COMMENTS,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.RATINGS,
-                new String[]{Boolean.FALSE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PERMISSIONS,
-                new String[]{Boolean.FALSE.toString()});
-
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_CONFIGURATION,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_DATA,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_DATA_ALL,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_SETUP,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_SETUP_ALL,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS,
-                new String[]{Boolean.FALSE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS_ALL,
-                new String[]{Boolean.FALSE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_USER_PREFERENCES,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.PORTLET_USER_PREFERENCES_ALL,
-                new String[]{Boolean.TRUE.toString()});
-
-        parameterMap.put(
-                PortletDataHandlerKeys.PUBLIC_LAYOUT_PERMISSIONS,
-                new String[]{Boolean.FALSE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.LAYOUT_SET_SETTINGS,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE,
-                new String[]{PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_NAME});
-
-        parameterMap.put(
-                PortletDataHandlerKeys.DATA_STRATEGY,
-                new String[]{PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE});
-        parameterMap.put(
-                PortletDataHandlerKeys.THEME_REFERENCE,
-                new String[]{Boolean.TRUE.toString()});
-        parameterMap.put(
-                PortletDataHandlerKeys.USER_ID_STRATEGY,
-                new String[]{UserIdStrategy.CURRENT_USER_ID});
+		Map<String, String[]> parameterMap = getParamMap();
 
 		layoutLocalService.importLayouts(
 			defaultUserId, group.getGroupId(), false, parameterMap, larFile);
+	}
+
+	protected void addDefaultGuestPrivateLayoutsByLAR(Group group, File larFile)
+			throws PortalException, SystemException {
+
+		long defaultUserId = userLocalService.getDefaultUserId(
+				group.getCompanyId());
+
+		Map<String, String[]> parameterMap = getParamMap();
+
+		layoutLocalService.importLayouts(
+				defaultUserId, group.getGroupId(), true, parameterMap, larFile);
+	}
+
+	private Map<String, String[]> getParamMap() {
+		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
+
+		parameterMap.put(
+				PortletDataHandlerKeys.LOGO,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.CATEGORIES,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.COMMENTS,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.RATINGS,
+				new String[]{Boolean.FALSE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PERMISSIONS,
+				new String[]{Boolean.FALSE.toString()});
+
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_CONFIGURATION,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_DATA,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_DATA_ALL,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_SETUP,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_SETUP_ALL,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS,
+				new String[]{Boolean.FALSE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS_ALL,
+				new String[]{Boolean.FALSE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_USER_PREFERENCES,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.PORTLET_USER_PREFERENCES_ALL,
+				new String[]{Boolean.TRUE.toString()});
+
+		parameterMap.put(
+				PortletDataHandlerKeys.PUBLIC_LAYOUT_PERMISSIONS,
+				new String[]{Boolean.FALSE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.LAYOUT_SET_SETTINGS,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE,
+				new String[]{PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_NAME});
+
+		parameterMap.put(
+				PortletDataHandlerKeys.DATA_STRATEGY,
+				new String[]{PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE});
+		parameterMap.put(
+				PortletDataHandlerKeys.THEME_REFERENCE,
+				new String[]{Boolean.TRUE.toString()});
+		parameterMap.put(
+				PortletDataHandlerKeys.USER_ID_STRATEGY,
+				new String[]{UserIdStrategy.CURRENT_USER_ID});
+		return parameterMap;
 	}
 
 	protected void deletePortletData(Group group)
@@ -4238,6 +4270,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 	protected void initImportLARFile() {
 		String publicLARFileName = PropsValues.DEFAULT_GUEST_PUBLIC_LAYOUTS_LAR;
+		String privateLARFileName = PropsValues.DEFAULT_GUEST_PRIVATE_LAYOUTS_LAR;
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Reading public LAR file " + publicLARFileName);
@@ -4251,10 +4284,23 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 					"Public LAR file " + publicLARFile + " does not exist");
 
 				publicLARFile = null;
-			}
-			else {
+			} else {
 				if (_log.isDebugEnabled()) {
 					_log.debug("Using public LAR file " + publicLARFileName);
+				}
+			}
+		}
+
+		if (Validator.isNotNull(privateLARFileName)) {
+			privateLARFile = new File(privateLARFileName);
+
+			if (!privateLARFile.exists()) {
+				_log.error(
+						"Private LAR file " + privateLARFile + " does not exist");
+				privateLARFile = null;
+			} else {
+				if (_log.isDebugEnabled()) {
+					_log.debug("Using private LAR file " + privateLARFileName);
 				}
 			}
 		}
@@ -4687,6 +4733,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	protected File publicLARFile;
+	protected File privateLARFile;
 
 	private static Log _log = LogFactoryUtil.getLog(
 		GroupLocalServiceImpl.class);

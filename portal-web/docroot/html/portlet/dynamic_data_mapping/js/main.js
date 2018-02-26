@@ -143,7 +143,7 @@ AUI.add(
 							options: Liferay.Language.get('options'),
 							predefinedValue: Liferay.Language.get('predefined-value'),
 							propertyName: Liferay.Language.get('property-name'),
-							required: Liferay.Language.get('required'),
+							required: Liferay.Language.get('required-field'),
 							reset: Liferay.Language.get('reset'),
 							save: Liferay.Language.get('save'),
 							settings: Liferay.Language.get('settings'),
