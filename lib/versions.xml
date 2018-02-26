@@ -607,7 +607,7 @@
 	</library>
 	<library>
 		<file-name>lib/development/postgresql.jar</file-name>
-		<version>9.1-901 JDBC 3</version>
+		<version>9.1-901 JDBC 4.1</version>
 		<project-name>PostgreSQL JDBC Driver</project-name>
 		<project-url>http://jdbc.postgresql.org</project-url>
 		<licenses>
