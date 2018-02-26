@@ -236,8 +236,12 @@ public class HttpImpl implements Http {
 
 		String result = sb.toString();
 
-		if (result.length() > URL_MAXIMUM_LENGTH) {
-			result = shortenURL(result, 2);
+		for (int i = 2; result.length() > URL_MAXIMUM_LENGTH; i--) {
+			result = shortenURL(result, i);
+
+			if (i == 0) {
+				break;
+			}
 		}
 
 		return result;
@@ -1041,50 +1045,61 @@ public class HttpImpl implements Http {
 
 	@Override
 	public String shortenURL(String url, int count) {
-		if (count == 0) {
-			return null;
-		}
-
 		StringBundler sb = new StringBundler();
 
-		String[] params = url.split(StringPool.AMPERSAND);
+		int index = url.indexOf(CharPool.QUESTION);
+
+		if (index > 0) {
+			sb.append(url.substring(0, index));
+			sb.append(CharPool.QUESTION);
+
+			url = url.substring(index + 1);
+		}
+
+		String[] params = StringUtil.split(url, CharPool.AMPERSAND);
 
 		for (int i = 0; i < params.length; i++) {
 			String param = params[i];
 
 			if (param.contains("_backURL=") || param.contains("_redirect=") ||
-				param.contains("_returnToFullPageURL=") ||
-				param.startsWith("redirect")) {
+					param.contains("_returnToFullPageURL=") ||
+					param.startsWith("redirect")) {
 
-				int pos = param.indexOf(StringPool.EQUAL);
+				if (count == 0) {
+					continue;
+				}
+
+				int pos = param.indexOf(CharPool.EQUAL);
 
 				String qName = param.substring(0, pos);
 
 				String redirect = param.substring(pos + 1);
 
-				redirect = decodeURL(redirect);
-
-				String newURL = shortenURL(redirect, count - 1);
-
-				if (newURL != null) {
-					newURL = encodeURL(newURL);
-
-					sb.append(qName);
-					sb.append(StringPool.EQUAL);
-					sb.append(newURL);
-
-					if (i < (params.length - 1)) {
-						sb.append(StringPool.AMPERSAND);
-					}
+				try {
+					redirect = URLCodec.decodeURL(redirect, StringPool.UTF8, false);
 				}
+				catch (IllegalArgumentException iae) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+								"Skipping undecodable parameter " + param, iae);
+					}
+
+					continue;
+				}
+
+				sb.append(qName);
+				sb.append(StringPool.EQUAL);
+				sb.append(URLCodec.encodeURL(shortenURL(redirect, count - 1)));
+				sb.append(CharPool.AMPERSAND);
 			}
 			else {
 				sb.append(param);
-
-				if (i < (params.length - 1)) {
-					sb.append(StringPool.AMPERSAND);
-				}
+				sb.append(CharPool.AMPERSAND);
 			}
+		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
 		}
 
 		return sb.toString();
