@@ -16,6 +16,7 @@ package com.liferay.taglib.ui;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.servlet.taglib.FileAvailabilityUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
@@ -61,7 +62,7 @@ public class IconHelpTag extends IconTag {
 		jspWriter.write("id=\"");
 		jspWriter.write(id);
 		jspWriter.write("\" >");
-		jspWriter.write(LanguageUtil.get(pageContext, getMessage()));
+		jspWriter.write(HtmlUtil.unescape(LanguageUtil.get(pageContext, getMessage())));
 		jspWriter.write("</span></span>");
 
 		return EVAL_PAGE;
