@@ -29,7 +29,15 @@ import com.liferay.portal.model.*;
 import com.liferay.portal.service.*;
 import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.util.PropsValues;
+import com.liferay.portlet.expando.DuplicateColumnNameException;
+import com.liferay.portlet.expando.model.ExpandoColumn;
+import com.liferay.portlet.expando.model.ExpandoColumnConstants;
+import com.liferay.portlet.expando.model.ExpandoTable;
+import com.liferay.portlet.expando.model.ExpandoTableConstants;
+import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
+import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import org.apache.commons.lang.time.StopWatch;
+import org.apache.xpath.operations.Bool;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +48,7 @@ import java.util.*;
  */
 public class SetupWizardSampleDataUtil {
 
-    public static void addSampleData(long companyId) throws Exception {
+    public static void addSampleData(long companyId, User user) throws Exception {
         StopWatch stopWatch = new StopWatch();
 
         stopWatch.start();
@@ -60,30 +68,24 @@ public class SetupWizardSampleDataUtil {
 
         User defaultUser = company.getDefaultUser();
 
+        addOrgExpandoColumnDemo(companyId);
+
         Organization organization =
                 OrganizationLocalServiceUtil.addOrganization(
                         defaultUser.getUserId(),
                         OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
                         PropsValues.COMPANY_DEFAULT_NAME + " Demo", true);
+        createDemoExpandoOrg(organization);
 
         GroupLocalServiceUtil.updateFriendlyURL(
                 organization.getGroupId(), "/"
                         + StringUtil.replace(PropsValues.COMPANY_DEFAULT_NAME.toLowerCase(), StringPool.BLANK, StringPool.MINUS)
                         + "-demo");
 
-        User user = UserLocalServiceUtil.fetchUserByEmailAddress(
-                company.getCompanyId(), "admin@liferay.com");
-
         if (user == null) {
             user = UserLocalServiceUtil.addDefaultAdminUser(
                     companyId, "admin", "admin@liferay.com",
                     LocaleUtil.getDefault(), "Вася", StringPool.BLANK, "Пупкин");
-        }
-        else {
-            user.setScreenName("admin");
-            user.setGreeting("Добро пожаловать, Вася Пупкин!");
-            user.setFirstName("Вася");
-            user.setLastName("Пупкин");
         }
 
         UserLocalServiceUtil.addGroupUser(organization.getGroupId(), user.getUserId());
@@ -96,9 +98,9 @@ public class SetupWizardSampleDataUtil {
                 user.getUserId(), organization);
 
         addOrganizations(user, organization);
-        addUsers(companyId, organization);
+        Role demoRole = createRole(user.getUserId());
+        addUsers(companyId, organization, demoRole);
         importSampleData(companyId, false);
-        importSampleData(companyId, true);
 
         if (_log.isInfoEnabled()) {
             _log.info("Finished adding data in " + stopWatch.getTime() + " ms");
@@ -140,7 +142,7 @@ public class SetupWizardSampleDataUtil {
                     new String[]{Boolean.FALSE.toString()});
             parameterMap.put(
                     PortletDataHandlerKeys.PERMISSIONS,
-                    new String[]{Boolean.FALSE.toString()});
+                    new String[]{Boolean.TRUE.toString()});
 
             parameterMap.put(
                     PortletDataHandlerKeys.PORTLET_CONFIGURATION,
@@ -202,6 +204,14 @@ public class SetupWizardSampleDataUtil {
 
     public static void importSampleData(long companyId, boolean defaultData) throws SystemException, PortalException {
 
+
+        StopWatch stopWatch = new StopWatch();
+
+        stopWatch.start();
+
+        if (_log.isInfoEnabled()) {
+            _log.info("Start import lar files for default: " + defaultData);
+        }
         Company company = CompanyLocalServiceUtil.getCompanyById(companyId);
 
         User user = UserLocalServiceUtil.fetchUserByEmailAddress(
@@ -256,10 +266,19 @@ public class SetupWizardSampleDataUtil {
                 }
             }
         }
+        if (_log.isInfoEnabled()) {
+            _log.info("Finished import lar in " + stopWatch.getTime() + " ms");
+        }
     }
 
-    protected static void addUsers(long companyId, Organization parentOrganization) {
+    protected static void addUsers(long companyId, Organization parentOrganization, Role demoRole) {
         if (FileUtil.exists(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + "users.json")) {
+            Group guestGroup = null;
+            try {
+                guestGroup = GroupLocalServiceUtil.fetchGroup(companyId, GroupConstants.GUEST);
+            } catch (SystemException e) {
+                e.printStackTrace();
+            }
             File usersJsonFile = new File(PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + "users.json");
             try {
                 String usersStr = FileUtil.read(usersJsonFile);
@@ -306,7 +325,10 @@ public class SetupWizardSampleDataUtil {
                             curUser.getString("firstName"), curUser.getString("middleName"), curUser.getString("lastName"), 0, 0, true, Calendar.JANUARY, 1,
                             1970, curUser.getString("jobTitle"), groupIds, organizationIds, null, null, false,
                             new ServiceContext());
-                    updateUserLogo(user);
+                    updateUserLogo(user, false);
+                    if (Validator.isNotNull(guestGroup) && Validator.isNotNull(demoRole)) {
+                        UserGroupRoleLocalServiceUtil.addUserGroupRoles(user.getUserId(), guestGroup.getGroupId(), new long[]{demoRole.getRoleId()});
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -316,9 +338,14 @@ public class SetupWizardSampleDataUtil {
         }
     }
 
-    public static void updateUserLogo(User user) {
+    public static void updateUserLogo(User user, boolean isAdmin) {
         File portrait = null;
-        String fileName = PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH + user.getScreenName();
+        String fileName = PropsValues.LIFERAY_HOME + StringPool.SLASH + "sample-data" + StringPool.SLASH;
+        if (isAdmin) {
+            fileName = fileName + "admin";
+        } else {
+            fileName = fileName + user.getScreenName();
+        }
         if (FileUtil.exists(fileName + ".jpg")) {
             portrait = new File(fileName + ".jpg");
         } else if (FileUtil.exists(fileName + ".jpeg")) {
@@ -365,10 +392,46 @@ public class SetupWizardSampleDataUtil {
                             FriendlyURLNormalizerUtil.normalize(
                                     StringPool.SLASH + organizationArray[4]));
                 }
+                createDemoExpandoOrg(organization);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static void createDemoExpandoOrg(Organization organization) {
+        try {
+            organization.getExpandoBridge().setAttribute(EXPANDO_DEMO_COLUMN_NAME, Boolean.TRUE, false);
+        } catch (Exception e) {
+            _log.error(e);
+        }
+    }
+
+    private static void addOrgExpandoColumnDemo(long companyId) {
+        try {
+            ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.fetchDefaultTable(companyId, Organization.class.getName());
+            if (Validator.isNull(expandoTable)) {
+                expandoTable = ExpandoTableLocalServiceUtil.addDefaultTable(companyId, Organization.class.getName());
+            }
+            if (Validator.isNotNull(expandoTable)) {
+                ExpandoColumnLocalServiceUtil.addColumn(expandoTable.getTableId(), EXPANDO_DEMO_COLUMN_NAME, ExpandoColumnConstants.BOOLEAN, Boolean.FALSE);
+            } else {
+                _log.error("default expando table for organization is null");
+            }
+        } catch (Exception e) {
+            _log.error(e);
+        }
+    }
+
+    private static Role createRole(long userId) {
+        Role role = null;
+        try {
+            role = RoleLocalServiceUtil.addRole(userId, null,0, "Demo", null, null,
+                    RoleConstants.TYPE_SITE, StringPool.BLANK, new ServiceContext());
+        } catch (PortalException | SystemException e) {
+            _log.error(e);
+        }
+        return role;
     }
 
     private static Log _log = LogFactoryUtil.getLog(
@@ -387,4 +450,6 @@ public class SetupWizardSampleDataUtil {
                     OrganizationConstants.TYPE_REGULAR_ORGANIZATION, "novosibirsk"
             },
     };
+
+    private static String EXPANDO_DEMO_COLUMN_NAME = "demo";
 }

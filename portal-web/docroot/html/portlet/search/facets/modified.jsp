@@ -154,7 +154,7 @@ if (fieldParamSelection.equals("0")) {
 				</div>
 
 				<div id="<%= randomNamespace %>customRangeTo">
-					<aui:field-wrapper label="to">
+					<aui:field-wrapper label="range-to">
 						<liferay-ui:input-date
 							dayParam='<%= HtmlUtil.escapeJS(facet.getFieldId()) + "dayTo" %>'
 							dayValue="<%= toCalendar.get(Calendar.DATE) %>"
