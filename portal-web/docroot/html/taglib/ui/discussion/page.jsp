@@ -306,7 +306,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 
 						<div class="lfr-discussion <%= cssClass %>">
 							<div id="<%= randomNamespace %>messageScroll<%= message.getMessageId() %>">
-								<a name="<%= randomNamespace %>message_<%= message.getMessageId() %>"></a>
+								<a name="<%= renderResponse.getNamespace() %>message_<%= message.getMessageId() %>"></a>
 
 								<aui:input name='<%= "messageId" + i %>' type="hidden" value="<%= message.getMessageId() %>" />
 								<aui:input name='<%= "parentMessageId" + i %>' type="hidden" value="<%= message.getMessageId() %>" />
