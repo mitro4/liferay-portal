@@ -61,6 +61,9 @@ public class RenderPortletAction extends Action {
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			companyId, portletId);
 
+		// LRE-271
+		PortletContainerUtil.preparePortlet(request, portlet);
+
 		String columnId = ParamUtil.getString(request, "p_p_col_id");
 		int columnPos = ParamUtil.getInteger(request, "p_p_col_pos");
 		int columnCount = ParamUtil.getInteger(request, "p_p_col_count");
