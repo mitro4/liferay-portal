@@ -101,7 +101,7 @@ public class DDLRecordAssetRenderer extends BaseAssetRenderer {
 		throws Exception {
 
 		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
-			getControlPanelPlid(liferayPortletRequest),
+			getPlId(liferayPortletRequest),
 			PortletKeys.DYNAMIC_DATA_LISTS, PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
