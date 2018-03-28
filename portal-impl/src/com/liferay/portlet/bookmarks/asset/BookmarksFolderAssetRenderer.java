@@ -143,7 +143,7 @@ public class BookmarksFolderAssetRenderer
 		throws Exception {
 
 		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
-			getControlPanelPlid(liferayPortletRequest), PortletKeys.BOOKMARKS,
+			getPlId(liferayPortletRequest), PortletKeys.BOOKMARKS,
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("struts_action", "/bookmarks/edit_folder");

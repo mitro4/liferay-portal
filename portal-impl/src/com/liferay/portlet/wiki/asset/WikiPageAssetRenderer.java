@@ -148,7 +148,7 @@ public class WikiPageAssetRenderer
 		throws Exception {
 
 		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
-			getControlPanelPlid(liferayPortletRequest), PortletKeys.WIKI,
+			getPlId(liferayPortletRequest), PortletKeys.WIKI,
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("struts_action", "/wiki/edit_page");

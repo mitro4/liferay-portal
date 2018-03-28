@@ -196,7 +196,7 @@ public class DLFileEntryAssetRenderer
 		throws Exception {
 
 		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
-			getControlPanelPlid(liferayPortletRequest),
+			getPlId(liferayPortletRequest),
 			PortletKeys.DOCUMENT_LIBRARY, PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(

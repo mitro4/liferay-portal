@@ -55,7 +55,7 @@ public class MBDiscussionAssetRenderer extends MBMessageAssetRenderer {
 
 		PortletURL editPortletURL = PortletURLFactoryUtil.create(
 			request, PortletKeys.MESSAGE_BOARDS,
-			getControlPanelPlid(themeDisplay), PortletRequest.RENDER_PHASE);
+			getPlId(themeDisplay), PortletRequest.RENDER_PHASE);
 
 		editPortletURL.setParameter(
 			"struts_action", "/message_boards/edit_discussion");

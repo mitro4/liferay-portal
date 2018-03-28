@@ -19,8 +19,10 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -364,6 +366,23 @@ public abstract class BaseAssetRenderer implements AssetRenderer {
 		sb.append(primaryKeyParameterValue);
 
 		return PortalUtil.addPreservedParameters(themeDisplay, sb.toString());
+	}
+
+	protected long getPlId(LiferayPortletRequest liferayPortletRequest) throws PortalException, SystemException {
+		ThemeDisplay themeDisplay =
+				(ThemeDisplay)liferayPortletRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+		return getPlId(themeDisplay);
+	}
+
+	protected long getPlId(ThemeDisplay themeDisplay) throws SystemException, PortalException {
+		long plId = 0;
+		if (GetterUtil.getBoolean(PropsUtil.get("asset.publisher.edit.in.site"), Boolean.FALSE)) {
+			plId = themeDisplay.getPlid();
+		} else {
+			plId = getControlPanelPlid(themeDisplay);
+		}
+		return plId;
 	}
 
 	private static final String[] _AVAILABLE_LANGUAGE_IDS = new String[0];
