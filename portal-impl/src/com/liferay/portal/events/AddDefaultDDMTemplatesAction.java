@@ -138,6 +138,10 @@ public class AddDefaultDDMTemplatesAction extends SimpleAction {
 
 		serviceContext.setUserId(defaultUserId);
 
+		serviceContext.setAddGroupPermissions(Boolean.TRUE);
+
+		serviceContext.setAddGuestPermissions(Boolean.TRUE);
+
 		addDDMTemplates(defaultUserId, group.getGroupId(), serviceContext);
 	}
 

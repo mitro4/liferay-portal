@@ -73,6 +73,10 @@ public class AssetVocabularyLocalServiceImpl
 
 		serviceContext.setScopeGroupId(groupId);
 
+		serviceContext.setAddGroupPermissions(Boolean.TRUE);
+
+		serviceContext.setAddGuestPermissions(Boolean.TRUE);
+
 		return addVocabulary(
 			defaultUserId, StringPool.BLANK, titleMap, null, StringPool.BLANK,
 			serviceContext);
