@@ -38,7 +38,9 @@ rssURL.setParameter("struts_action", "/activities/rss");
 
 String feedTitle = LanguageUtil.format(pageContext, "x's-activities", HtmlUtil.escape(group.getDescriptiveName(locale)));
 
-rssURL.setParameter("feedTitle", feedTitle);
+if (feedTitle != null) {
+    rssURL.setParameter("feedTitle", feedTitle);
+}
 
 String taglibFeedTitle = LanguageUtil.format(pageContext, "subscribe-to-x's-activities", HtmlUtil.escape(group.getDescriptiveName(locale)));
 %>
