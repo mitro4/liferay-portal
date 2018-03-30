@@ -3,8 +3,8 @@
 <root>
 	<template>
 		<template-key>blogs-basic-ftl</template-key>
-		<name>Basic</name>
-		<description>Displays titles, authors, and abstracts compactly for blog entries.</description>
+		<name>Основной</name>
+		<description>Отображаются заголовок, автор и краткое описание записи блога.</description>
 		<language>ftl</language>
 		<script-file>com/liferay/portlet/blogs/dependencies/portlet_display_template_basic.ftl</script-file>
 		<cacheable>false</cacheable>
