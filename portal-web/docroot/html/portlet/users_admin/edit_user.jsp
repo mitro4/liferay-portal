@@ -162,6 +162,12 @@ if (selUser != null) {
 	}
 }
 
+if (passwordPolicy != null) {
+    if (!passwordPolicy.isChangeable()) {
+        mainSections = ArrayUtil.remove(mainSections, "password");
+    }
+}
+
 String[][] categorySections = {mainSections, identificationSections, miscellaneousSections};
 
 if (organizations.size() == 1) {
