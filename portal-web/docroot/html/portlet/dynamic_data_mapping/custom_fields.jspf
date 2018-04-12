@@ -48,6 +48,8 @@ int firstDayOfWeek = localeCal.getFirstDayOfWeek() - 1;
 			var TPL_TEXT_HTML = '<textarea class="form-builder-field-node lfr-ddm-text-html"></textarea>';
 
 			var TPL_WCM_IMAGE = '<div class="lfr-wcm-image"></div>';
+			
+			var TPL_TIMEPICKER = '<input class="form-control" type="text" placeholder="hh:mm" value="" id="timepicker">';
 
 			var applyStyles = function(node, styleContent) {
 				var styles = styleContent.replace(/\n/g, STR_BLANK).split(';');
@@ -576,6 +578,47 @@ int firstDayOfWeek = localeCal.getFirstDayOfWeek() - 1;
 					}
 				}
 			);
+			
+			var TimePickerField = A.Component.create(
+			{
+				ATTRS: 
+				{
+					dataType: 
+					{
+						value:'time'
+					},
+					fieldNamespace:
+					{
+						value: 'ddm'
+					}
+				},
+				
+				EXTENDS: A.FormBuilderTextField,
+				
+				NAME: 'time',
+				
+				prototype: {
+						getHTML: function() {
+							return TPL_TIMEPICKER;
+						},
+						
+						renderUI: function() {
+							var instance = this;
+
+							TimePickerField.superclass.renderUI.apply(instance, arguments);
+
+							A.use('aui-timepicker', function(A) {
+							    new A.TimePicker({
+							        trigger : 'input#timepicker',
+							        mask : '%H:%M',
+							        popover : {
+							            zIndex : 1011
+							        }
+						   		 });
+							});
+						}
+				}
+			});
 
 			FormBuilderTypes['ddm-date'] = DDMDateField;
 			FormBuilderTypes['ddm-decimal'] = DDMDecimalField;
@@ -587,6 +630,7 @@ int firstDayOfWeek = localeCal.getFirstDayOfWeek() - 1;
 			FormBuilderTypes['ddm-separator'] = DDMSeparatorField;
 			FormBuilderTypes['ddm-text-html'] = DDMHTMLTextField;
 			FormBuilderTypes['wcm-image'] = WCMImageField;
+			FormBuilderTypes['time'] = TimePickerField;
 		},
 		'',
 		{
