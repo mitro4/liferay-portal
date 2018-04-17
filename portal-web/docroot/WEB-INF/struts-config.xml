@@ -678,6 +678,8 @@
 
 		<action path="/dynamic_data_mapping/edit_template_display" forward="portlet.dynamicdatamapping.edit_template_display" />
 
+		<action path="/dynamic_data_mapping/get_site_users_action" type="com.liferay.portlet.dynamicdatamapping.action.GetSiteUsersAction" />
+
 		<action path="/dynamic_data_mapping/get_structure" type="com.liferay.portlet.dynamicdatamapping.action.GetStructureAction" />
 
 		<action path="/dynamic_data_mapping/get_structure_json" type="com.liferay.portlet.dynamicdatamapping.action.GetStructureJSONAction" />

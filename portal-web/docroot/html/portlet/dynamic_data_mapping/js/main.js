@@ -864,6 +864,12 @@ AUI.add(
 					iconClass: 'icon-fb-text-box',
 					label: Liferay.Language.get('text-box'),
 					type: 'textarea'
+				},
+				{
+					hiddenAttributes: MAP_HIDDEN_FIELD_ATTRS.DEFAULT,
+					iconClass: 'icon-user',
+					label: Liferay.Language.get('select-user'),
+					type: 'selectuser'
 				}
 			],
 
